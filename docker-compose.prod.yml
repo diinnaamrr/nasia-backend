@@ -1,6 +1,6 @@
 services:
   app:
-    image: ghcr.io/diinnaamrr/nasia-backend:latest
+    image: ghcr.io/diinnaamrr/nasia-backend:main
     container_name: nasia_app
     restart: unless-stopped
     working_dir: /var/www/html
