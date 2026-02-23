@@ -230,7 +230,7 @@ jobs:
             docker run --rm -v $(pwd):/target ghcr.io/osama21245/nasia-backend:dev sh -c "
               # Copy all files except storage and bootstrap/cache (preserve existing data)
               cd /var/www/html
-              find . -mindepth 1 -maxdepth 1 ! -name 'storage' ! -name 'bootstrap' ! -name '.env' -exec cp -a {} /target/ \;
+              find . -mindepth 1 -maxdepth 1 ! -name 'storage' ! -name '.env' -exec cp -a {} /target/ \;
               # Copy bootstrap/cache structure but not contents
               mkdir -p /target/bootstrap/cache
               # Copy vendor directory (important!)

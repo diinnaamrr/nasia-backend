@@ -6,6 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use App\Traits\AddonHelper;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\URL;
 use App\CentralLogics\Helpers;
 
 class AppServiceProvider extends ServiceProvider
@@ -31,6 +32,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        // روابط الـ assets (CSS/JS) تطلع بـ https لو الدومين https (يفيد خلف reverse proxy)
+        if (!$this->app->runningInConsole() && strpos(config('app.url', ''), 'https://') === 0) {
+            URL::forceScheme('https');
+        }
 
         try
         {
