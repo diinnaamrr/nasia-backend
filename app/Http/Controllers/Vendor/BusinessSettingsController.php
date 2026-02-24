@@ -23,7 +23,8 @@ class BusinessSettingsController extends Controller
     {
         $store = Helpers::get_store_data();
         $store = Store::withoutGlobalScope('translate')->findOrFail($store->id);
-        return view('vendor-views.business-settings.restaurant-index', compact('store'));
+        $toggle_veg_non_veg = (bool)(BusinessSetting::where('key', 'toggle_veg_non_veg')->first()?->value ?? 0);
+        return view('vendor-views.business-settings.restaurant-index', compact('store', 'toggle_veg_non_veg'));
     }
 
     public function store_setup(Store $store, Request $request)
