@@ -15,21 +15,21 @@ $countryCode= strtolower($country?$country->value:'auto');
     <title>@yield('title')</title>
     <meta property="og:title" content="Nasia Market">
     <meta property="og:description" content="Nasia Market - Premium Shopping Experience">
-    <meta property="og:image" content="{{ asset('public/assets/landing/img/Nasia.jpeg') }}">
+    <meta property="og:image" content="{{ asset('assets/landing/img/Nasia.jpeg') }}">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content="{{ asset('public/assets/landing/img/Nasia.jpeg') }}">
+    <meta name="twitter:image" content="{{ asset('assets/landing/img/Nasia.jpeg') }}">
 
-    <link rel="stylesheet" href="{{ asset('public/assets/landing/css/bootstrap.min.css') }}" />
-    <link rel="stylesheet" href="{{ asset('public/assets/landing/css/customize-animate.css') }}" />
-    <link rel="stylesheet" href="{{ asset('public/assets/landing/css/odometer.css') }}" />
-    <link rel="stylesheet" href="{{ asset('public/assets/landing/css/owl.min.css') }}" />
-    <link rel="stylesheet" href="{{ asset('public/assets/admin/css/toastr.css') }}">
-    <link rel="stylesheet" href="{{ asset('public/assets/landing/css/main.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('assets/landing/css/bootstrap.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/landing/css/customize-animate.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/landing/css/odometer.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/landing/css/owl.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/admin/css/toastr.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/landing/css/main.css') }}"/>
 
-    <link rel="stylesheet" href="{{asset('public/assets/admin/intltelinput/css/intlTelInput.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/admin/intltelinput/css/intlTelInput.css')}}">
 
     @php($icon = \App\Models\BusinessSetting::where(['key' => 'icon'])->first())
-    <link rel="icon" type="image/x-icon" href="{{ asset('public/assets/landing/img/Nasia.jpeg') }}">
+    <link rel="icon" type="image/x-icon" href="{{ asset('assets/landing/img/Nasia.jpeg') }}">
     @stack('css_or_js')
     @php($backgroundChange = \App\Models\BusinessSetting::where(['key' => 'backgroundChange'])->first())
     @php($backgroundChange = isset($backgroundChange) && $backgroundChange->value ? json_decode($backgroundChange->value,true):'')
@@ -78,6 +78,11 @@ $countryCode= strtolower($country?$country->value:'auto');
             width: 100%;
             height: 100%;
         }
+
+        /* Fix: clip the large circular decoration inside newsletter section */
+        .newsletter-section {
+            overflow: hidden !important;
+        }
     </style>
 </head>
 
@@ -98,8 +103,8 @@ $countryCode= strtolower($country?$country->value:'auto');
                     @php($logo = \App\Models\BusinessSetting::where(['key' => 'logo'])->first())
                     <a href="{{ route('home') }}" class="logo">
                         <img class="onerror-image"
-                            data-onerror-image="{{ asset('public/assets/admin/img/160x160/img2.jpg') }}"
-                            src="{{ asset('public/assets/landing/img/Nasia.jpeg') }}"
+                            data-onerror-image="{{ asset('assets/admin/img/160x160/img2.jpg') }}"
+                            src="{{ asset('assets/landing/img/Nasia.jpeg') }}"
                             alt="image">
                     </a>
                     <ul class="menu">
@@ -247,13 +252,13 @@ $countryCode= strtolower($country?$country->value:'auto');
                 </div>
             </div>
         </div>
-        <div class="footer-bottom">
+        <div class="footer-bottom" id="download-app">
             <div class="container">
                 <div class="footer-wrapper ps-xl-5">
                     <div class="footer-widget">
                         <div class="footer-logo">
                             <a class="logo">
-                                <img  class="onerror-image"  data-onerror-image="{{ asset('public/assets/landing/img/Nasia.jpeg') }}" src="{{ asset('public/assets/landing/img/Nasia.jpeg') }}" alt="image">
+                                <img  class="onerror-image"  data-onerror-image="{{ asset('assets/landing/img/Nasia.jpeg') }}" src="{{ asset('assets/landing/img/Nasia.jpeg') }}" alt="image">
                             </a>
                         </div>
                         <div class="txt">
@@ -265,7 +270,7 @@ $countryCode= strtolower($country?$country->value:'auto');
                                 @foreach ($social_media as $social)
                                 <li>
                                     <a href="{{ $social->link }}" target="_blank">
-                                        <img src="{{ asset('public/assets/landing/img/footer/'. $social->name.'.svg') }}" alt="">
+                                        <img src="{{ asset('assets/landing/img/footer/'. $social->name.'.svg') }}" alt="">
                                     </a>
                                 </li>
                                 @endforeach
@@ -274,15 +279,15 @@ $countryCode= strtolower($country?$country->value:'auto');
                         @php($landing_page_links = \App\Models\DataSetting::where(['type' => 'admin_landing_page','key' => 'download_user_app_links'])->first())
                         @php($landing_page_links = isset($landing_page_links->value) ? json_decode($landing_page_links->value, true) : null)
                         @if (isset($landing_page_links['playstore_url_status']) || isset( $landing_page_links['apple_store_url_status']))
-                        <div class="app-btn-grp">
+                        <div class="app-btn-grp" >
                             @if (isset($landing_page_links['playstore_url_status']))
                             <a href="{{ isset($landing_page_links['playstore_url']) ? $landing_page_links['playstore_url'] : '' }}">
-                                <img src="{{ asset('public/assets/landing/img/google.svg') }}" alt="">
+                                <img src="{{ asset('assets/landing/img/google.svg') }}" alt="">
                             </a>
                             @endif
                             @if (isset($landing_page_links['apple_store_url_status']))
                             <a href="{{ isset($landing_page_links['apple_store_url']) ? $landing_page_links['apple_store_url'] : '' }}">
-                                <img src="{{ asset('public/assets/landing/img/apple.svg') }}" alt="">
+                                <img src="{{ asset('assets/landing/img/apple.svg') }}" alt="">
                             </a>
                             @endif
                         </div>
@@ -367,14 +372,14 @@ $countryCode= strtolower($country?$country->value:'auto');
         </div>
     </footer>
     <!-- ======= Footer Section ======= -->
-    <script src="{{ asset('public/assets/landing/js/jquery-3.6.0.min.js') }}"></script>
-    <script src="{{ asset('public/assets/landing/js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('public/assets/landing/js/viewport.jquery.js') }}"></script>
-    <script src="{{ asset('public/assets/landing/js/wow.min.js') }}"></script>
-    <script src="{{ asset('public/assets/landing/js/odometer.min.js') }}"></script>
-    <script src="{{ asset('public/assets/landing/js/owl.min.js') }}"></script>
-    <script src="{{ asset('public/assets/landing/js/main.js') }}"></script>
-    <script src="{{ asset('public/assets/admin') }}/js/toastr.js"></script>
+    <script src="{{ asset('assets/landing/js/jquery-3.6.0.min.js') }}"></script>
+    <script src="{{ asset('assets/landing/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('assets/landing/js/viewport.jquery.js') }}"></script>
+    <script src="{{ asset('assets/landing/js/wow.min.js') }}"></script>
+    <script src="{{ asset('assets/landing/js/odometer.min.js') }}"></script>
+    <script src="{{ asset('assets/landing/js/owl.min.js') }}"></script>
+    <script src="{{ asset('assets/landing/js/main.js') }}"></script>
+    <script src="{{ asset('assets/admin/js/toastr.js') }}"></script>
 
     {!! Toastr::message() !!}
     @if ($errors->any())
@@ -530,7 +535,7 @@ $countryCode= strtolower($country?$country->value:'auto');
         sync1.owlCarousel();
 
     </script>
-        <script src="{{asset('public/assets/admin/intltelinput/js/intlTelInput.min.js')}}"></script>
+        <script src="{{asset('assets/admin/intltelinput/js/intlTelInput.min.js')}}"></script>
 
 <script>
             "use strict";
@@ -538,7 +543,7 @@ $countryCode= strtolower($country?$country->value:'auto');
             inputs.forEach(input => {
                 window.intlTelInput(input, {
                     initialCountry: "{{$countryCode}}",
-                    utilsScript: "{{ asset('public/assets/admin/intltelinput/js/utils.js') }}",
+                    utilsScript: "{{ asset('assets/admin/intltelinput/js/utils.js') }}",
                     autoInsertDialCode: true,
                     nationalMode: false,
                     formatOnDisplay: false,
