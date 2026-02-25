@@ -39,6 +39,8 @@
     @php($logo = \App\Models\BusinessSetting::where(['key' => 'logo'])->first())
     <!-- ==== Global Theme Overrides ==== -->
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap');
+        
         html {
             scroll-behavior: smooth;
         }
@@ -47,6 +49,19 @@
             --base-rgb: 212, 175, 55 !important;
             --base-2: #FFD700 !important; /* Lighter Gold */
             --base-rgb-2: 255, 215, 0 !important;
+            --font-main: 'Inter', 'Segoe UI', Roboto, sans-serif;
+        }
+
+        body {
+            font-family: var(--font-main);
+            color: #4B5563;
+            background-color: #fff;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-main);
+            font-weight: 800;
+            color: #111827;
         }
 
         /* Generic primary color overrides */
@@ -56,23 +71,94 @@
         .bg--base, .bg-base, .cmn--btn {
             background-color: var(--base-1) !important;
         }
+
+        /* Glassmorphism Classes */
+        .glass-premium {
+            background: rgba(255, 255, 255, 0.7) !important;
+            backdrop-filter: blur(12px) !important;
+            -webkit-backdrop-filter: blur(12px) !important;
+            border: 1px solid rgba(255, 255, 255, 0.3) !important;
+        }
+        .glass-dark {
+            background: rgba(17, 24, 39, 0.8) !important;
+            backdrop-filter: blur(12px) !important;
+            -webkit-backdrop-filter: blur(12px) !important;
+            border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        }
+
+        /* Global Luxury Spacing */
+        section {
+            padding: 120px 0 !important;
+        }
+        @media (max-width: 768px) {
+            section {
+                padding: 80px 0 !important;
+            }
+        }
+        /* Primary Button Glow */
         .btn-primary-premium {
             background: var(--base-1) !important;
-            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3) !important;
+            color: #fff !important;
+            border: none !important;
+            box-shadow: 0 10px 30px rgba(var(--base-rgb), 0.3) !important;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
         }
         .btn-primary-premium:hover {
-            box-shadow: 0 15px 30px rgba(212, 175, 55, 0.4) !important;
+            transform: translateY(-5px) scale(1.05) !important;
+            box-shadow: 0 20px 40px rgba(var(--base-rgb), 0.4) !important;
+            background: var(--base-2) !important;
         }
-        .hero-title {
-            background: linear-gradient(90deg, var(--title-clr), #D4AF37) !important;
-            -webkit-background-clip: text !important;
-            -webkit-text-fill-color: transparent !important;
+
+        /* Glass Header (Targeting typical classes) */
+        header, .navbar, .top-nav {
+            backdrop-filter: blur(15px) !important;
+            -webkit-backdrop-filter: blur(15px) !important;
+            background: rgba(255, 255, 255, 0.8) !important;
+            transition: all 0.4s ease !important;
+            border-bottom: 1px solid rgba(0,0,0,0.05) !important;
         }
-        .product-price, .section-title-premium h2::after {
-            color: var(--base-1) !important;
+
+        /* Advanced Section Titles */
+        .section-title-premium h2 {
+            font-size: clamp(32px, 5vw, 48px);
+            font-weight: 900;
+            color: #111827;
+            position: relative;
+            display: inline-block;
+            margin-bottom: 20px;
         }
         .section-title-premium h2::after {
-            background: var(--base-1) !important;
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: var(--base-1);
+            border-radius: 10px;
+        }
+
+        /* Standard Elite Pill */
+        .elite-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(var(--base-rgb), 0.1);
+            color: var(--base-1);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            border: 1px solid rgba(var(--base-rgb), 0.2);
+            transition: all 0.3s ease;
+        }
+        .elite-pill:hover {
+            background: rgba(var(--base-rgb), 0.2);
+            transform: scale(1.05);
         }
         .product-btn {
             background: var(--base-1) !important;
@@ -159,6 +245,99 @@
             color: var(--title-clr) !important;
             border: 2px solid var(--border-clr);
         }
+        .delivery-content .btn-role-cta:hover {
+        background: #C3A04B !important;
+        color: #fff !important;
+    }
+
+    /* Testimonials Redesign */
+    .testimonial-card-premium {
+        background: #fff;
+        border-radius: 30px;
+        padding: 40px;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        border: 1px solid rgba(0,0,0,0.03);
+        box-shadow: 0 10px 40px rgba(0,0,0,0.02);
+        position: relative;
+    }
+    .testimonial-card-premium:hover {
+        transform: translateY(-12px);
+        box-shadow: 0 20px 60px rgba(0,0,0,0.06);
+        border-color: rgba(195, 160, 75, 0.1);
+    }
+    .testi-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 25px;
+    }
+    .testi-author-info {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+    .testi-avatar {
+        width: 65px;
+        height: 65px;
+        border-radius: 20px;
+        overflow: hidden;
+        background: #f8f9fa;
+        border: 2px solid #fff;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    }
+    .testi-avatar img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    .testi-author-info h4 {
+        font-size: 18px;
+        font-weight: 800;
+        margin-bottom: 3px;
+        color: #1A1D23;
+    }
+    .testi-role {
+        font-size: 12px;
+        font-weight: 700;
+        text-transform: uppercase;
+        padding: 4px 12px;
+        border-radius: 50px;
+        letter-spacing: 0.5px;
+    }
+    .testi-role.buyer { background: rgba(39, 190, 215, 0.1); color: #27BED7; }
+    .testi-role.seller { background: rgba(195, 160, 75, 0.1); color: #C3A04B; }
+
+    .testi-rating {
+        color: #FFB800;
+        font-size: 14px;
+        display: flex;
+        gap: 3px;
+    }
+    .testi-body p {
+        font-size: 16px;
+        line-height: 1.7;
+        color: #6B7280;
+        font-style: italic;
+        margin-bottom: 0;
+    }
+    .testi-footer {
+        margin-top: 30px;
+        padding-top: 20px;
+        border-top: 1px dashed rgba(0,0,0,0.06);
+        display: flex;
+        justify-content: flex-end;
+    }
+    .testi-date {
+        font-size: 13px;
+        color: #9CA3AF;
+        font-weight: 500;
+    }
+
+    }
         .btn-secondary-premium:hover {
             background: var(--title-clr);
             color: #fff !important;
@@ -397,29 +576,38 @@
             background: var(--base-1);
             border-radius: 2px;
         }
-        .why-choose-us, .testimonial-section {
-            padding: 100px 0;
-        }
 
         /* New Improved Feature Grid */
         .feature-grid-v2 {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 40px;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 15px;
+        }
+        @media (max-width: 1199px) {
+            .feature-grid-v2 {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        @media (max-width: 767px) {
+            .feature-grid-v2 {
+                grid-template-columns: 1fr;
+            }
         }
         .feature-item-premium {
-            background: #fff;
-            padding: 50px 35px;
+            padding: 40px 20px;
             border-radius: 30px;
             text-align: center;
             border: 1px solid rgba(212, 175, 55, 0.1);
-            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
             position: relative;
             overflow: hidden;
             display: flex;
             flex-direction: column;
             align-items: center;
             height: 100%;
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
         }
         .feature-item-premium::before {
             content: '';
@@ -478,154 +666,8 @@
             margin: 0;
         }
 
-        /* Improved Testimonials */
-        .testimonial-card-v2 {
-            background: #fff;
-            padding: 50px;
-            border-radius: 35px;
-            box-shadow: 0 15px 45px rgba(0,0,0,0.04);
-            position: relative;
-            border: 1px solid #f8f8f8;
-            transition: all 0.4s ease;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-        }
-        .testimonial-card-v2:hover {
-            box-shadow: 0 20px 60px rgba(0,0,0,0.08);
-            border-color: rgba(212, 175, 55, 0.2);
-        }
-        .quote-icon-v2 {
-            font-size: 60px;
-            color: var(--base-1);
-            opacity: 0.1;
-            position: absolute;
-            top: 40px;
-            left: 40px;
-            line-height: 1;
-        }
-        .testimonial-text-v2 {
-            font-size: 18px;
-            line-height: 1.9;
-            color: var(--body-clr);
-            margin-bottom: 40px;
-            position: relative;
-            z-index: 2;
-            font-style: italic;
-            flex-grow: 1;
-        }
-        .testimonial-author-v2 {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            padding-top: 30px;
-            border-top: 1px solid #f0f0f0;
-        }
-        .author-img-v2 {
-            width: 70px;
-            height: 70px;
-            border-radius: 20px;
-            object-fit: cover;
-            border: 4px solid #fff;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        }
-        .author-meta-v2 h4 {
-            font-size: 20px;
-            font-weight: 800;
-            margin: 0 0 5px;
-            color: var(--title-clr);
-        }
-        .author-meta-v2 span {
-            font-size: 15px;
-            color: var(--base-1);
-            font-weight: 600;
-        }
-        /* Grid Layout */
-        .testimonial-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 25px;
-        }
-
-        /* Responsive */
-        @media (max-width: 992px) {
-            .testimonial-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 576px) {
-            .testimonial-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* تصغير الكارت */
-        .testimonial-card-v2 {
-            padding: 30px;
-            border-radius: 25px;
-        }
-
-        /* تصغير النص */
-        .testimonial-text-v2 {
-            font-size: 15px;
-            line-height: 1.7;
-            margin-bottom: 25px;
-        }
-
-        /* تصغير الصورة */
-        .author-img-v2 {
-            width: 55px;
-            height: 55px;
-        }
-
-        /* تصغير الاسم */
-        .author-meta-v2 h4 {
-            font-size: 17px;
-        }
-
-        .author-meta-v2 span {
-            font-size: 13px;
-        }
 
 
-        /* Partners Loop Smoothing */
-        .partners-section-v2 {
-            padding: 80px 0;
-            background: #fff;
-            border-top: 1px solid #f5f5f5;
-        }
-        .partners-marquee-v2 {
-            display: flex;
-            overflow: hidden;
-            width: 100%;
-            mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
-        }
-        .partners-track-v2 {
-            display: flex;
-            width: max-content;
-            animation: marquee-scroll 40s linear infinite;
-        }
-        .partner-box-v2 {
-            padding: 0 50px;
-            display: flex;
-            align-items: center;
-        }
-        .partner-box-v2 img {
-            height: 45px;
-            filter: grayscale(1);
-            opacity: 0.4;
-            transition: all 0.4s ease;
-        }
-        .partner-box-v2:hover img {
-            filter: grayscale(0);
-            opacity: 1;
-            transform: scale(1.1);
-        }
-        @keyframes marquee-scroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
 
         /* Elite Categories Gallery Styles */
         .categories-gallery-section {
@@ -963,271 +1005,1391 @@
         }
     </style>
 
-    <!-- ==== Premium Hero Section Starts Here ==== -->
-    <section class="hero-section" id="hero">
-        <div class="hero-bg-shapes">
-            <div class="shape shape-1"></div>
-            <div class="shape shape-2"></div>
+    <!-- ==== ULTRA PREMIUM HERO ==== -->
+    <style>
+        /* ====== ULTRA HERO ====== */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap');
+
+        .ultra-hero {
+            min-height: 85vh;
+            background: url('{{ asset('assets/ba.png') }}') center center / cover no-repeat;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding: 80px 0 60px;
+            font-family: 'Inter', sans-serif;
+        }
+        /* Strong dark overlay so text stays readable */
+        .ultra-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                135deg,
+                rgba(5,5,10,0.92) 0%,
+                rgba(10,10,20,0.85) 50%,
+                rgba(0,0,0,0.90) 100%
+            );
+            z-index: 1;
+        }
+
+        /* ---- Particle Canvas BG ---- */
+        #hero-particles {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+        }
+
+        /* ---- Gold Glow Orbs ---- */
+        .hero-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: 0;
+            pointer-events: none;
+        }
+        .hero-orb-1 {
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(212,175,55,0.18) 0%, transparent 70%);
+            top: -200px; right: -150px;
+        }
+        .hero-orb-2 {
+            width: 400px; height: 400px;
+            background: radial-gradient(circle, rgba(212,175,55,0.10) 0%, transparent 70%);
+            bottom: -100px; left: -100px;
+        }
+        .hero-orb-3 {
+            width: 300px; height: 300px;
+            background: radial-gradient(circle, rgba(100,150,255,0.05) 0%, transparent 70%);
+            top: 40%; left: 40%;
+        }
+
+        /* ---- Grid Lines BG ---- */
+        .hero-grid-bg {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(212,175,55,0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(212,175,55,0.04) 1px, transparent 1px);
+            background-size: 60px 60px;
+            z-index: 0;
+        }
+
+        /* ---- Content ---- */
+        .ultra-hero .container { position: relative; z-index: 2; }
+
+        /* Eyebrow pill */
+        .hero-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(212,175,55,0.08);
+            border: 1px solid rgba(212,175,55,0.25);
+            padding: 10px 24px;
+            border-radius: 50px;
+            margin-bottom: 32px;
+        }
+        .hero-pill-dot {
+            width: 8px; height: 8px;
+            background: #D4AF37;
+            border-radius: 50%;
+            box-shadow: 0 0 8px #D4AF37;
+            animation: pulse-dot 2s ease-in-out infinite;
+        }
+        @keyframes pulse-dot {
+            0%, 100% { box-shadow: 0 0 6px #D4AF37; }
+            50% { box-shadow: 0 0 16px #D4AF37, 0 0 30px rgba(212,175,55,0.4); }
+        }
+        .hero-pill-text {
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--base-1);
+        }
+
+        /* Headline */
+        .ultra-hero-title {
+            font-size: clamp(52px, 8vw, 96px);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 35px;
+            letter-spacing: -1px;
+        }
+        .title-line-solid {
+            display: block;
+            color: #D4AF37;
+        }
+        .title-line-gold {
+            display: block;
+            background: linear-gradient(90deg, var(--title-clr), #D4AF37);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .title-line-outline {
+            display: block;
+            -webkit-text-stroke: 2px rgba(212,175,55,0.5);
+            color: transparent;
+        }
+
+        /* Subtitle */
+        .ultra-hero-sub {
+            font-size: 18px;
+            line-height: 1.8;
+            color: rgba(255,255,255,0.85);
+            max-width: 600px;
+            margin-bottom: 50px;
+            border-left: 3px solid var(--base-1);
+            padding-left: 20px;
+        }
+
+        /* Store buttons */
+        .ultra-store-btns {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+            margin-bottom: 56px;
+        }
+        .ultra-store-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 14px;
+            padding: 16px 30px;
+            border-radius: 18px;
+            text-decoration: none !important;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+        .ultra-store-btn::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .ultra-store-btn:hover::before { opacity: 1; }
+        .usb-gold {
+            background: linear-gradient(135deg, var(--base-1) 0%, var(--base-2) 100%);
+            box-shadow: 0 10px 35px rgba(var(--base-rgb), 0.4), 0 0 0 1px rgba(var(--base-rgb), 0.3);
+            color: #000 !important;
+        }
+        .usb-gold:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 20px 50px rgba(var(--base-rgb), 0.55), 0 0 0 1px rgba(var(--base-rgb), 0.5);
+        }
+        .usb-dark {
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.12);
+            color: #fff !important;
+            backdrop-filter: blur(10px);
+        }
+        .usb-dark:hover {
+            border-color: rgba(212,175,55,0.4);
+            background: rgba(212,175,55,0.08);
+            color: #D4AF37 !important;
+            transform: translateY(-5px);
+        }
+        .usb-icon { font-size: 28px; }
+        .usb-text .t-label { font-size: 10px; letter-spacing: 1px; opacity: 0.7; display: block; line-height: 1; }
+        .usb-text .t-name { font-size: 18px; font-weight: 800; line-height: 1.3; }
+
+        /* Stats */
+        .ultra-stats {
+            display: flex;
+            gap: 0;
+            border-top: 1px solid rgba(255,255,255,0.07);
+            padding-top: 28px;
+        }
+        .ultra-stat {
+            flex: 1;
+            padding: 0 24px 0 0;
+            border-right: 1px solid rgba(255,255,255,0.07);
+        }
+        .ultra-stat:first-child { padding-left: 0; }
+        .ultra-stat:last-child { border-right: none; }
+        .ultra-stat-num {
+            font-size: 32px;
+            font-weight: 900;
+            background: linear-gradient(90deg, var(--base-1), var(--base-2));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+            margin-bottom: 6px;
+        }
+        .ultra-stat-lbl {
+            font-size: 12px;
+            font-weight: 600;
+            color: rgba(255,255,255,0.4);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Full-width centered content */
+        .ultra-hero .hero-center-col {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .ultra-hero .ultra-hero-sub {
+            margin-left: auto;
+            margin-right: auto;
+            border-left: none;
+            border-top: 3px solid var(--base-1);
+            padding-left: 0;
+            padding-top: 20px;
+            text-align: center;
+        }
+        .ultra-store-btns { justify-content: center; }
+        .ultra-stats { justify-content: center; }
+
+        /* Floating mini cards */
+        .ultra-float-card {
+            position: absolute;
+            background: rgba(18,18,24,0.85);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(212,175,55,0.2);
+            border-radius: 20px;
+            padding: 14px 18px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            z-index: 10;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+        }
+        @media (max-width: 991px) {
+            .ultra-float-card { display: none !important; }
+        }
+        .ufc-1 {
+            top: 0px; right: 10px;
+            animation: uFloat 5s ease-in-out infinite;
+        }
+        .ufc-2 {
+            bottom: 40px; left: -10px;
+            animation: uFloat 5s ease-in-out infinite 1.5s;
+        }
+        .ufc-3 {
+            top: 42%; right: -20px;
+            animation: uFloat 5s ease-in-out infinite 3s;
+        }
+        @keyframes uFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-14px); }
+        }
+        .ufc-icon {
+            width: 60px; height: 60px;
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 18px; flex-shrink: 0;
+        }
+        .ufc-icon.g { background: none; }
+        .ufc-icon.b { background: none; }
+        .ufc-icon.e { background: none; }
+        .ufc-icon img { width: 100%; height: 100%; object-fit: contain; }
+        .ufc-text {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            max-width: 150px;
+        }
+        .ufc-label { font-size: 13px; font-weight: 800; color: #fff; line-height: 1.3; }
+        .ufc-sub { font-size: 11px; color: rgba(255,255,255,0.45); line-height: 1.2; }
+
+        /* Scrolldown */
+        .hero-scroll-hint {
+            position: absolute;
+            bottom: 35px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            color: rgba(255,255,255,0.25);
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        .scroll-mouse {
+            width: 24px; height: 38px;
+            border: 2px solid rgba(212,175,55,0.3);
+            border-radius: 12px;
+            position: relative;
+        }
+        .scroll-mouse::before {
+            content: '';
+            position: absolute;
+            top: 6px; left: 50%; transform: translateX(-50%);
+            width: 4px; height: 8px;
+            background: #D4AF37;
+            border-radius: 2px;
+            animation: scroll-wheel 2s ease-in-out infinite;
+        }
+        @keyframes scroll-wheel {
+            0% { transform: translateX(-50%) translateY(0); opacity: 1; }
+            100% { transform: translateX(-50%) translateY(14px); opacity: 0; }
+        }
+
+        /* Bottom wave */
+        .hero-wave {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 80px;
+            z-index: 1;
+        }
+
+        @media (max-width: 991px) {
+            .ultra-hero { padding: 100px 0 60px; min-height: auto; }
+            .ultra-hero-title { letter-spacing: -2px; }
+            .ultra-stat { padding: 0 16px; }
+            .hero-scroll-hint { display: none; }
+        }
+
+        /* Features Carousel Section (Figma Replica) */
+        #features-carousel {
+            background: #ffffff;
+            padding: 20px 0 10px 0;
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .feature-card {
+            background-size: cover !important;
+            background-position: center !important;
+            padding: 50px 20px;
+            text-align: center;
+            border: none;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+            height: 520px;
+            width: 95%;
+            max-width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+            border-radius: 30px;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(160deg, rgba(10,10,20,0.65) 0%, rgba(0,0,0,0.8) 100%);
+            border-radius: 30px;
+            z-index: 0;
+        }
+        .feature-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 30px 80px rgba(0,0,0,0.35);
+        }
+        .feature-card > * {
+            position: relative;
+            z-index: 1;
+        }
+        .feature-icon-box {
+            width: 120px;
+            height: 120px;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .feature-icon-box svg {
+            width: 100%;
+            height: 100%;
+        }
+        .feature-title {
+            font-size: clamp(28px, 4vw, 42px);
+            font-weight: 800;
+            color: #1A1D23;
+            margin-bottom: 25px;
+            line-height: 1.2;
+        }
+        .feature-text {
+            font-size: clamp(18px, 1.8vw, 24px);
+            color: #8E9196;
+            line-height: 1.8;
+            margin: 0;
+            width: 100%;
+            max-width: 900px;
+        }
+        /* Figma Pagination Dots */
+        #features-carousel .owl-dots {
+            margin-top: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+        }
+        #features-carousel .owl-dot span {
+            width: 10px !important;
+            height: 10px !important;
+            background: #E5E7EB !important;
+            margin: 0 !important;
+            border-radius: 50% !important;
+            transition: all 0.3s ease;
+        }
+        #features-carousel .owl-dot.active span {
+            width: 32px !important;
+            border-radius: 10px !important;
+            background: #C3A04B !important;
+        }
+        #features-carousel .owl-nav { display: none !important; }
+
+        /* How it Works Section */
+        .hiw-section {
+            background: #ffffff;
+            padding: 10px 0 60px;
+            position: relative;
+        }
+        .hiw-step-card {
+            text-align: center;
+            padding: 30px;
+            position: relative;
+            z-index: 2;
+            transition: all 0.4s ease;
+        }
+        .hiw-icon-wrapper {
+            width: 140px;
+            height: 140px;
+            margin: 0 auto 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        .hiw-icon-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .hiw-step-card:hover .hiw-icon-wrapper img {
+            transform: translateY(-15px) scale(1.1);
+        }
+        .hiw-number {
+            position: absolute;
+            top: -10px;
+            right: 0;
+            font-size: 80px;
+            font-weight: 900;
+            color: rgba(195, 160, 75, 0.08);
+            line-height: 1;
+            z-index: -1;
+            font-family: 'Inter', sans-serif;
+        }
+        .hiw-title {
+            font-size: 22px;
+            font-weight: 800;
+            color: #1A1D23;
+            margin-bottom: 15px;
+        }
+        .hiw-desc {
+            font-size: 16px;
+            color: #8E9196;
+            line-height: 1.6;
+        }
+        /* Connecting Line (Desktop) */
+        .hiw-row {
+            position: relative;
+        }
+        @media (min-width: 992px) {
+            .hiw-row::before {
+                content: '';
+                position: absolute;
+                top: 70px;
+                left: 10%;
+                right: 10%;
+                height: 2px;
+                background: linear-gradient(to right, transparent, rgba(195, 160, 75, 0.2), transparent);
+                z-index: 1;
+            }
+        }
+        .hiw-badge {
+            display: inline-block;
+            padding: 6px 16px;
+            background: rgba(195, 160, 75, 0.1);
+            color: #C3A04B;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Role-Specific Sections Styles */
+        .role-section {
+            padding: 10px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        .role-section-alt {
+            background: #fafaf8;
+        }
+        .role-card { 
+            background: #ffffff;
+            border-radius: 30px;
+            padding: 20px 30px;
+            height: 100%;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid rgba(0,0,0,0.03);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .role-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.06);
+            border-color: rgba(195, 160, 75, 0.2);
+        }
+        .role-icon-box {
+            width: 90px;
+            height: 90px;
+            background: rgba(195, 160, 75, 0.05);
+            border-radius: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 25px;
+            transition: all 0.4s ease;
+        }
+        .role-card:hover .role-icon-box {
+            background: #C3A04B;
+            transform: scale(1.1) rotate(10deg);
+            border-radius: 50%;
+        }
+        .role-icon-box img {
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
+            transition: all 0.3s ease;
+        }
+        .role-card:hover .role-icon-box img {
+            filter: brightness(0) invert(1);
+        }
+        .role-card h4 {
+            font-size: 20px;
+            font-weight: 800;
+            color: #1A1D23;
+            margin-bottom: 15px;
+        }
+        .role-card p {
+            font-size: 15px;
+            color: #6B7280;
+            line-height: 1.6;
+            margin: 0;
+        }
+        .role-cta-wrapper {
+            margin-top: 50px;
+            text-align: center;
+        }
+        .btn-role-cta {
+            padding: 10px 45px;
+            border-radius: 50px;
+            font-weight: 800;
+            font-size: 18px;
+            letter-spacing: 1px;
+            text-transform: uppercase; 
+            transition: all 0.4s ease;
+            box-shadow: 0 10px 25px rgba(195, 160, 75, 0.2);
+        }
+        .btn-role-cta:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(195, 160, 75, 0.3);
+        }
+        .delivery-showcase-box {
+            background: #fdfdfb;
+            border-radius: 30px;
+            padding: 40px 60px;
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            box-shadow: 0 40px 80px rgba(0,0,0,0.12), 0 10px 20px rgba(195, 160, 75, 0.05);
+            border: 1px solid rgba(195, 160, 75, 0.1);
+        }
+        .delivery-img-wrapper {
+            max-width: 350px;
+            flex-shrink: 0;
+            transition: all 0.4s ease;
+        }
+        @media (max-width: 991px) {
+            .delivery-showcase-box {
+                flex-direction: column;
+                text-align: center;
+                padding: 40px 20px;
+            }
+            .delivery-img-wrapper {
+                max-width: 300px;
+                margin: 0 auto;
+            }
+        }
+        .delivery-img-wrapper img {
+            width: 100%;
+            height: auto;
+            animation: float 5s ease-in-out infinite;
+        }
+
+        /* Testimonials Redesign */
+        .testimonial-card-premium {
+            background: #fff;
+            border-radius: 30px;
+            padding: 40px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid rgba(0,0,0,0.03);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.02);
+            position: relative;
+        }
+        .testimonial-card-premium:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.06);
+            border-color: rgba(195, 160, 75, 0.1);
+        }
+        .testi-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 25px;
+        }
+        .testi-author-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .testi-avatar {
+            width: 65px;
+            height: 65px;
+            border-radius: 20px;
+            overflow: hidden;
+            background: #f8f9fa;
+            border: 2px solid #fff;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        .testi-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .testi-author-info h4 {
+            font-size: 18px;
+            font-weight: 800;
+            margin-bottom: 3px;
+            color: #1A1D23;
+        }
+        .testi-role {
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            padding: 4px 12px;
+            border-radius: 50px;
+            letter-spacing: 0.5px;
+        }
+        .testi-role.buyer { background: rgba(39, 190, 215, 0.1); color: #27BED7; }
+        .testi-role.seller { background: rgba(195, 160, 75, 0.1); color: #C3A04B; }
+
+        .testi-rating {
+            color: #FFB800;
+            font-size: 14px;
+            display: flex;
+            gap: 3px;
+        }
+        .testi-body p {
+            font-size: 16px;
+            line-height: 1.7;
+            color: #6B7280;
+            font-style: italic;
+            margin-bottom: 0;
+        }
+        .testi-footer {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px dashed rgba(0,0,0,0.06);
+            display: flex;
+            justify-content: flex-end;
+        }
+        .testi-date {
+            font-size: 13px;
+            color: #9CA3AF;
+            font-weight: 500;
+        }
+
+        /* Final CTA Section */
+        .final-cta-section {
+            background: #1A1D23;
+            padding: 120px 0;
+            position: relative;
+            overflow: hidden;
+            border-radius: 60px;
+            margin-top: -40px;
+            margin-bottom: 40px;
+            z-index: 5;
+        }
+        .final-cta-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -20%;
+            width: 140%;
+            height: 200%;
+            background: radial-gradient(circle at center, rgba(195, 160, 75, 0.08) 0%, transparent 60%);
+            pointer-events: none;
+        }
+        .cta-content-wrapper {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .cta-title-ultra {
+            font-size: 48px;
+            font-weight: 900;
+            color: #fff;
+            margin-bottom: 40px;
+            line-height: 1.2;
+        }
+        .cta-btns-group {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .btn-cta-big {
+            padding: 20px 50px;
+            border-radius: 60px;
+            font-size: 18px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.4s ease;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .btn-cta-gold {
+            background: #C3A04B !important;
+            color: #fff !important;
+            box-shadow: 0 15px 35px rgba(195, 160, 75, 0.3);
+        }
+        .btn-cta-gold:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 45px rgba(195, 160, 75, 0.4);
+        }
+        .btn-cta-outline {
+            background: transparent !important;
+            color: #fff !important;
+            border: 2px solid rgba(255,255,255,0.1) !important;
+        }
+        .btn-cta-outline:hover {
+            background: rgba(255,255,255,0.05) !important;
+            border-color: #C3A04B !important;
+            transform: translateY(-8px);
+        }
+
+        @media (max-width: 768px) {
+            .cta-title-ultra {
+                font-size: 32px;
+            }
+            .btn-cta-big {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+
+    <section class="ultra-hero" id="hero">
+        {{-- Backgrounds --}}
+        <canvas id="hero-particles"></canvas>
+        <div class="hero-grid-bg"></div>
+        <div class="hero-orb hero-orb-1"></div>
+        <div class="hero-orb hero-orb-2"></div>
+        <div class="hero-orb hero-orb-3"></div>
+
+        <div class="container" style="position:relative; z-index:2;">
+            <div class="row justify-content-center">
+                <div class="col-lg-9 col-xl-8 hero-center-col wow fadeInUp" data-wow-delay="0.05s">
+
+
+                    <h1 class="ultra-hero-title">
+                        <span class="title-line-solid">{{ translate('NASIA') }}</span>
+                        <span class="title-line-gold">{{ translate('MARKET') }}</span>
+                    </h1>
+
+                    {{-- Floating Elements --}}
+                    <div class="ultra-float-card ufc-1 wow fadeInRight" data-wow-delay="0.8s">
+                        <div class="ufc-icon g">
+                            <img src="https://img.icons8.com/3d-fluency/188/shopping-basket.png" alt="Shopping">
+                        </div>
+                        <div class="ufc-text">
+                            <span class="ufc-label">{{ translate('Quick shopping') }}</span>
+                            <span class="ufc-sub">{{ translate('Your favorite products are here') }}</span>
+                        </div>
+                    </div>
+
+                    <div class="ultra-float-card ufc-2 wow fadeInLeft" data-wow-delay="1s">
+                        <div class="ufc-icon b">
+                            <img src="https://img.icons8.com/3d-fluency/188/shop.png" alt="Seller">
+                        </div>
+                        <div class="ufc-text">
+                            <span class="ufc-label">{{ translate('Be a seller') }}</span>
+                            <span class="ufc-sub">{{ translate('Showcase your products immediately') }}</span>
+                        </div>
+                    </div>
+
+                    <div class="ultra-float-card ufc-3 wow fadeInRight" data-wow-delay="1.2s">
+                        <div class="ufc-icon e">
+                            <img src="https://img.icons8.com/3d-fluency/188/truck.png" alt="Delivery">
+                        </div>
+                        <div class="ufc-text">
+                            <span class="ufc-label">{{ translate('For delivery') }}</span>
+                            <span class="ufc-sub">{{ translate('Safe delivery') }}</span>
+                        </div>
+                    </div>
+
+                    {{-- Subtitle --}}
+                    <p class="ultra-hero-sub">
+                        {{ translate('Shop, sell, and deliver your products with ease.') }}<br>
+                        <span style="font-size:14px; opacity:0.7;">{{ translate('Nasia – The integrated e-commerce platform for individuals and sellers') }}</span>
+                    </p>
+
+                    <div class="ultra-store-btns">
+                        <a href="#download-app" class="ultra-store-btn usb-gold">
+                            <span class="usb-icon"><i class="fab fa-google-play"></i></span>
+                            <span class="usb-text">
+                                <span class="t-name">{{ translate('Download App') }}</span>
+                            </span>
+                        </a>
+                        <a href="{{ route('about-us') }}" class="ultra-store-btn usb-dark">
+                            <span class="usb-icon"><i class="fas fa-arrow-right"></i></span>
+                            <span class="usb-text">
+                                <span class="t-name">{{ translate('More about') }}</span>
+                            </span>
+                        </a>
+                    </div>
+
+
+
+                </div>
+            </div>
         </div>
 
+        {{-- Scroll Hint --}}
+        <div class="hero-scroll-hint">
+            <div class="scroll-mouse"></div>
+            <span>{{ translate('Scroll') }}</span>
+        </div>
+
+        {{-- Bottom Wave --}}
+        <svg class="hero-wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 80" preserveAspectRatio="none">
+            <path d="M0,40 C360,80 1080,0 1440,40 L1440,80 L0,80 Z" fill="#ffffff"/>
+        </svg>
+    </section>
+
+    
+
+    {{-- How it Works Section --}}
+    <section class="hiw-section section-luxury-spacing">
         <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6 hero-content wow fadeInLeft">
-                    <h1 class="hero-title">{{ translate('NASIA Market') }}</h1>
-                    <p class="hero-subtitle">{{ translate('Experience the future of e-commerce with our premium selection of quality products. Fast delivery, secure payments, and unbeatable variety tailored just for you.') }}</p>
+            <div class="section-title-premium text-center mb-80 wow fadeInUp">
+                <span class="elite-pill">{{ translate('الرحلة تبدأ هنا') }}</span>
+                <h2 class="fw-900" style="color: #1A1D23;">{{ translate('إزاي بيشتغل التطبيق؟') }}</h2>
+            </div>
 
-                    <div class="hero-search-wrapper">
-                        <input type="text" class="hero-search-input" placeholder="{{ translate('Search for fresh products...') }}">
-                        <button class="hero-search-btn">
-                            <i class="fas fa-search"></i>
-                        </button>
-                    </div>
-
-                    <div class="hero-btns">
-                        <a href="#products-section" class="btn-premium btn-primary-premium">{{ translate('Shop Now') }}</a>
-                        <a href="{{ route('about-us') }}" class="btn-premium btn-secondary-premium">{{ translate('Learn More') }}</a>
+            <div class="row hiw-row g-4">
+                {{-- Step 1 --}}
+                <div class="col-lg-3 col-md-6">
+                    <div class="hiw-step-card wow fadeInUp" data-wow-delay="0.1s">
+                        <span class="hiw-number">01</span>
+                        <div class="hiw-icon-wrapper">
+                            <img src="https://img.icons8.com/3d-fluency/188/shopping-cart.png" alt="Browse & Buy">
+                        </div>
+                        <h4 class="hiw-title">{{ translate('تصفح واشتري') }}</h4>
+                        <p class="hiw-desc">{{ translate('المستخدم يختار المنتجات ويضيفها للعربة بكل سهولة') }}</p>
                     </div>
                 </div>
-                <div class="col-lg-6 hero-image-wrapper wow fadeInRight">
-                    <div class="position-relative">
-                        <img src="{{asset('public/assets/landing/img/super.jpg')}}" class="hero-main-img" alt="NASIA EC Hero">
 
-                        <div class="floating-badge badge-1">
-                            <i class="fas fa-shipping-fast text-success fs-4"></i>
-                            <div>
-                                <div class="fw-bold text-dark">{{ translate('Fast Delivery') }}</div>
-                                <div class="small">{{ translate('Within 24 Hours') }}</div>
-                            </div>
+                {{-- Step 2 --}}
+                <div class="col-lg-3 col-md-6">
+                    <div class="hiw-step-card wow fadeInUp" data-wow-delay="0.2s">
+                        <span class="hiw-number">02</span>
+                        <div class="hiw-icon-wrapper">
+                            <img src="https://img.icons8.com/3d-fluency/188/shop.png" alt="Be a Seller">
                         </div>
+                        <h4 class="hiw-title">{{ translate('كن بائع') }}</h4>
+                        <p class="hiw-desc">{{ translate('بلمسة واحدة زر Be a Vendor يحولك لبائع مباشرة') }}</p>
+                    </div>
+                </div>
 
-                        <div class="floating-badge badge-2">
-                            <i class="fas fa-shield-alt text-primary fs-4"></i>
-                            <div>
-                                <div class="fw-bold text-dark">{{ translate('Secure Payment') }}</div>
-                                <div class="small">{{ translate('100% Protected') }}</div>
-                            </div>
+                {{-- Step 3 --}}
+                <div class="col-lg-3 col-md-6">
+                    <div class="hiw-step-card wow fadeInUp" data-wow-delay="0.3s">
+                        <span class="hiw-number">03</span>
+                        <div class="hiw-icon-wrapper">
+                            <img src="https://img.icons8.com/3d-fluency/188/upload.png" alt="Upload Products">
                         </div>
+                        <h4 class="hiw-title">{{ translate('رفع المنتجات') }}</h4>
+                        <p class="hiw-desc">{{ translate('تحكم كامل في السعر والكمية دون أي قيود برمجية') }}</p>
+                    </div>
+                </div>
+
+                {{-- Step 4 --}}
+                <div class="col-lg-3 col-md-6">
+                    <div class="hiw-step-card wow fadeInUp" data-wow-delay="0.4s">
+                        <span class="hiw-number">04</span>
+                        <div class="hiw-icon-wrapper">
+                            <img src="https://img.icons8.com/3d-fluency/188/truck.png" alt="Fast Delivery">
+                        </div>
+                        <h4 class="hiw-title">{{ translate('توصيل سريع') }}</h4>
+                        <p class="hiw-desc">{{ translate('مندوب التوصيل يستلم الأوردر ويوصله للعميل فوراً') }}</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <!-- ==== Premium Hero Section Ends Here ==== -->
 
+    <script>
+    // ---- Particle Canvas ----
+    (function(){
+        const canvas = document.getElementById('hero-particles');
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        let W, H, particles = [];
+        function resize() {
+            W = canvas.width = canvas.offsetWidth;
+            H = canvas.height = canvas.offsetHeight;
+        }
+        function Particle() {
+            this.x = Math.random() * W;
+            this.y = Math.random() * H;
+            this.r = Math.random() * 1.5 + 0.3;
+            this.dx = (Math.random() - 0.5) * 0.3;
+            this.dy = (Math.random() - 0.5) * 0.3;
+            this.alpha = Math.random() * 0.4 + 0.1;
+        }
+        Particle.prototype.update = function() {
+            this.x += this.dx; this.y += this.dy;
+            if (this.x < 0) this.x = W; if (this.x > W) this.x = 0;
+            if (this.y < 0) this.y = H; if (this.y > H) this.y = 0;
+        };
+        function init() {
+            resize();
+            particles = [];
+            for (let i = 0; i < 120; i++) particles.push(new Particle());
+        }
+        function draw() {
+            ctx.clearRect(0, 0, W, H);
+            particles.forEach(p => {
+                p.update();
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(212,175,55,${p.alpha})`;
+                ctx.fill();
+            });
+            requestAnimationFrame(draw);
+        }
+        window.addEventListener('resize', init);
+        init(); draw();
+    })();
 
-    <!-- ==== Category Discovery Slider (Departments) Starts Here ==== -->
-    @if(count($landing_data['landing_departments']) > 0)
-    <section class="category-discovery-section py-4">
-        <div class="container px-3">
-            <div class="owl-carousel owl-theme category-slider-v3">
-                @foreach($landing_data['landing_departments'] as $department)
-                <div class="category-item-v3">
-                    <a href="#dept-{{ $department->id }}">
-                        <div class="category-icon-wrapper" style="background-image: url('{{ $department->cover_image ? asset('storage/'.$department->cover_image) : asset('assets/landing/img/super.jpg') }}')">
-                        </div>
-                        <h4 class="category-name-v3 text-center">{{ $department->title }}</h4>
-                        
-                    </a>
-                </div>
-                @endforeach
-            </div>
-        </div>
-    </section>
-    @endif
-
-    <!-- ==== Light Premium Flash Showroom Starts Here ==== -->
-
-    <!-- ==== Light Premium Flash Showroom Starts Here ==== -->
-    @foreach($landing_data['flash_sales'] as $fIndex => $campaign)
-    <section class="premium-flash-showroom @if($fIndex > 0) pt-0 @endif">
-        <div class="container">
-            <div class="showroom-header">
-                <span class="flash-badge-light">{{ translate('Exclusive Limited Offers') }}</span>
-                <h2 class="showroom-title">{{ $campaign->headline }}</h2>
-                <div class="showroom-timer-inline flash-countdown-wrapper" data-end-time="{{ $campaign->ends_at->format('Y-m-d H:i:s') }}">
-                    <div class="timer-unit"><span class="timer-val hours">00</span><span class="timer-lab">{{ translate('Hours') }}</span></div>
-                    <div class="timer-unit"><span class="timer-val mins">00</span><span class="timer-lab">{{ translate('Mins') }}</span></div>
-                    <div class="timer-unit"><span class="timer-val secs">00</span><span class="timer-lab">{{ translate('Secs') }}</span></div>
-                </div>
-            </div>
-
-            <div class="ld-flash-grid">
-                @foreach($campaign->stockUnits as $unit)
-                    <div class="light-glass-card">
-                        <span class="showroom-discount-tag">-{{ $unit->pivot->discount_rate }}% OFF</span>
-                        
-                        <div class="showroom-img-box">
-                            <img src="{{ $unit->thumbnail ? asset('storage/'.$unit->thumbnail) : 'https://via.placeholder.com/400x300' }}" alt="{{ $unit->title }}">
-                        </div>
-
-                        <div class="showroom-details">
-                            <span class="showroom-p-category">{{ translate('Elite Selection') }}</span>
-                            <h3 class="showroom-p-title">{{ $unit->title }}</h3>
-                            
-                            <div class="showroom-price-box">
-                                @if($unit->base_price > 0 && $unit->base_price > $unit->final_price)
-                                    <span class="showroom-price-was">{{ number_format($unit->base_price,2) }} EGP</span>
-                                @endif
-                                <span class="showroom-price-now">{{ number_format($unit->final_price,2) }} EGP</span>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
-            </div>
-        </div>
-    </section>
-    @endforeach
-
-    <!-- ==== All Departments Section ==== -->
-    @if($landing_data['landing_departments']->count() > 0)
-    <section class="ld-departments-section" id="products-section">
-        <div class="container">
-        @foreach($landing_data['landing_departments'] as $department)
-            <div class="ld-department-wrapper mb-80">
-                <div class="ld-department-header mb-4">
-                    <h2 class="showroom-title" style="font-size: 2.5rem;">🔹 {{ $department->title }}</h2>
-                </div>
-
-                <div class="ld-products-grid" id="dept-{{ $department->id }}">
-                    @foreach($department->stockUnits->take(4) as $unit)
-                        <div class="light-glass-card">
-                            <div class="showroom-img-box" style="height: 200px;">
-                                <img src="{{ $unit->thumbnail ? asset('storage/'.$unit->thumbnail) : 'https://via.placeholder.com/400x300' }}">
-                            </div>
-                            <div class="showroom-details">
-                                <h3 class="showroom-p-title" style="font-size: 1.1rem;">{{ $unit->title }}</h3>
-                                <div class="showroom-price-box">
-                                    @if($unit->base_price > 0 && $unit->base_price > $unit->final_price)
-                                        <span class="showroom-price-was" style="font-size: 0.85rem;">{{ number_format($unit->base_price,2) }} EGP</span>
-                                    @endif
-                                    <span class="showroom-price-now">{{ number_format($unit->final_price,2) }} EGP</span>
-                                </div>
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
-
-                @if($department->stockUnits->count() > 4)
-                    <div class="text-center mt-4" id="btn-container-{{ $department->id }}">
-                        <button class="btn-premium btn-secondary-premium" onclick="loadMoreProducts({{ $department->id }})">{{ translate('Show More') }}</button>
-                    </div>
-                @endif
-            </div>
-        @endforeach
-        </div>
-    </section>
-    @endif
-    <!-- ==== Custom Products Section Ends Here ==== -->
+    // ---- Animated Counters ----
+    (function(){
+        function animateCounter(el) {
+            const target = parseInt(el.getAttribute('data-target'));
+            const duration = 2000;
+            const start = performance.now();
+            function update(now) {
+                const elapsed = now - start;
+                const progress = Math.min(elapsed / duration, 1);
+                const eased = 1 - Math.pow(1 - progress, 3);
+                const current = Math.floor(eased * target);
+                el.textContent = current >= 1000 ? (current/1000).toFixed(0) + 'K+' : current + '+';
+                if (progress < 1) requestAnimationFrame(update);
+                else el.textContent = target >= 1000 ? (target/1000).toFixed(0) + 'K+' : target + '+';
+            }
+            requestAnimationFrame(update);
+        }
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(e => { if (e.isIntersecting) { animateCounter(e.target); observer.unobserve(e.target); }});
+        }, { threshold: 0.5 });
+        document.querySelectorAll('.ultra-stat-num.counter').forEach(el => observer.observe(el));
+    })();
+    </script>
+    
 
     <!-- ==== Why Choose Us Section Combined Styles ==== -->
 
-    <section class="why-choose-us pt-100 pb-100" id="features" style="background: #fafaf8;">
+    <section class="why-choose-us section-luxury-spacing" id="features" style="background: #fafaf8;">
         <div class="container">
             <div class="section-title-premium text-center mb-80 wow fadeInUp">
-                <span class="text-base fw-bold text-uppercase mb-2 d-block" style="letter-spacing: 3px;">{{ translate('Excellence') }}</span>
-                <h2 class="mb-0">{{ translate('Why Choose NASIA Market') }}</h2>
+                <span class="elite-pill">{{ translate('Excellence') }}</span>
+                <h2 class="mb-0">{{ translate('Why Choose NASIA APP') }}</h2>
             </div>
             <div class="feature-grid-v2">
+                {{-- Card 1: Multi-Vendor --}}
                 <div class="feature-item-premium wow fadeInUp" data-wow-delay="0.1s">
                     <div class="feature-icon-v2">
-                        <img src="{{ asset('public/assets/landing/img/feature/trusted.svg') }}" alt="Quality">
+                        <img src="https://img.icons8.com/3d-fluency/188/shopping-bag.png" alt="Multi-Vendor">
                     </div>
-                    <h3>{{ translate('Premium Selection') }}</h3>
-                    <p>{{ translate('Every item in our collection is handpicked to meet the highest standards of luxury and durability.') }}</p>
+                    <h3>{{ translate('دعم متعدد البائعين') }}</h3>
+                    <p>{{ translate('منصة واحدة… وفرص بيع بلا حدود.') }}</p>
                 </div>
+
+                {{-- Card 2: Dashboard --}}
                 <div class="feature-item-premium wow fadeInUp" data-wow-delay="0.2s">
                     <div class="feature-icon-v2">
-                        <img src="{{ asset('public/assets/landing/img/feature/delivery.svg') }}" alt="Delivery">
+                        <img src="https://img.icons8.com/3d-fluency/188/monitor.png" alt="Dashboard">
                     </div>
-                    <h3>{{ translate('Gold Standard Shipping') }}</h3>
-                    <p>{{ translate('Precision logistics ensure your premium products arrive in perfect condition, exactly when you expect them.') }}</p>
+                    <h3>{{ translate('لوحة تحكم البائع ') }}</h3>
+                    <p>{{ translate('إدارة متجرك بالكامل من داخل التطبيق.') }}</p>
                 </div>
+
+                {{-- Card 3: Control --}}
                 <div class="feature-item-premium wow fadeInUp" data-wow-delay="0.3s">
                     <div class="feature-icon-v2">
-                        <img src="{{ asset('public/assets/landing/img/feature/payment.svg') }}" alt="Security">
+                        <img src="https://img.icons8.com/3d-fluency/188/administrative-tools.png" alt="Control">
                     </div>
-                    <h3>{{ translate('Secure Elite Pay') }}</h3>
-                    <p>{{ translate('Our military-grade encryption systems provide the most secure shopping environment available today.') }}</p>
+                    <h3>{{ translate('تحكم كامل في البيع') }}</h3>
+                    <p>{{ translate('حدد السعر والكمية بحرية تامة — أنت المتحكم.') }}</p>
+                </div>
+
+                {{-- Card 4: Notifications --}}
+                <div class="feature-item-premium wow fadeInUp" data-wow-delay="0.4s">
+                    <div class="feature-icon-v2">
+                        <img src="https://img.icons8.com/3d-fluency/188/bell.png" alt="Notifications">
+                    </div>
+                    <h3>{{ translate('إشعارات لحظية') }}</h3>
+                    <p>{{ translate('كل طلب جديد يوصلك فورًا بدون تأخير.') }}</p>
+                </div>
+
+                {{-- Card 5: Bilingual --}}
+                <div class="feature-item-premium wow fadeInUp" data-wow-delay="0.5s">
+                    <div class="feature-icon-v2">
+                        <img src="https://img.icons8.com/3d-fluency/188/globe.png" alt="Bilingual">
+                    </div>
+                    <h3>{{ translate('عربي & English') }}</h3>
+                    <p>{{ translate('تجربة سلسة بلغتين تناسب الجميع.') }}</p>
                 </div>
             </div>
+        </div>
+    </section>
+
+    {{-- Features Section --}}
+    <section id="features-carousel">
+        <div class="container-fluid p-0">
+            <div class="owl-carousel owl-theme" id="features-owl">
+                {{-- Card 1: Shopping --}}
+                <div class="item">
+                    <div class="feature-card" style="background: url('https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?q=80&w=1740&auto=format&fit=crop') center/cover no-repeat;">
+                        <div class="feature-icon-box">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="3" y="8" width="18" height="13" rx="4" />
+                                <path d="M8 8V6a4 4 0 0 1 8 0v2" />
+                                <path d="M12 11a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z" />
+                                <path d="M9 16c0 1.5 1.3 2.5 3 2.5s3-1 3-2.5" />
+                            </svg>
+                        </div>
+                        <h3 class="feature-title" style="color:#fff;">{{ translate('تسوق من بائعين متعددين') }}</h3>
+                        <p class="feature-text" style="color:rgba(255,255,255,0.8);">{{ translate('اكتشف منتجات متنوعة من بائعين مختلفين في مكان واحد') }}</p>
+                    </div>
+                </div>
+
+                {{-- Card 2: Tracking --}}
+                <div class="item">
+                    <div class="feature-card" style="background: url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=1740&auto=format&fit=crop') center/cover no-repeat;">
+                        <div class="feature-icon-box">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 10V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l2-1.14" />
+                                <path d="m7.5 4.27 4.5 2.57 4.5-2.57" />
+                                <path d="m3 8 9 5.14 9-5.14" />
+                                <path d="m12 13v8.57" />
+                                <circle cx="18" cy="18" r="3" />
+                                <path d="m20 20 2 2" />
+                            </svg>
+                        </div>
+                        <h3 class="feature-title" style="color:#fff;">{{ translate('تتبع طلباتك بسهوله') }}</h3>
+                        <p class="feature-text" style="color:rgba(255,255,255,0.8);">{{ translate('راقب حاله طلبك من لحظه الشراء حتي التسليم') }}</p>
+                    </div>
+                </div>
+
+                {{-- Card 3: Seller --}}
+                <div class="item">
+                    <div class="feature-card" style="background: url('https://images.unsplash.com/photo-1664575602276-acd073f104c1?q=80&w=1740&auto=format&fit=crop') center/cover no-repeat;">
+                        <div class="feature-icon-box">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                                <polyline points="9 22 9 12 15 12 15 22" />
+                                <path d="M2 9h20" />
+                                <path d="M10 9V7a2 2 0 0 1 2-2h0a2 2 0 0 1 2 2v2" />
+                            </svg>
+                        </div>
+                        <h3 class="feature-title" style="color:#fff;">{{ translate('كن بائعا وابدأ التجاره') }}</h3>
+                        <p class="feature-text" style="color:rgba(255,255,255,0.8);">{{ translate('حول حسابك الي متجر وابدأ بيع منتجاتك بسهوله') }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {{-- Role Section 1: For Vendors --}}
+    <section class="role-section">
+        <div class="container">
+            <div class="section-title-premium text-center mb-80 wow fadeInUp">
+                <span class="elite-pill">{{ translate('Providers') }}</span>
+                <h2 class="mb-0">{{ translate('للبائعين والعارضين') }}</h2>
+                <p class="mt-3" style="color: #6B7280; font-size: 18px;">{{ translate('كن بائعاً بسهولة، بدون أوراق أو تعقيدات.') }}</p>
+            </div>
+            
+            <div class="row g-4 justify-content-center">
+                <div class="col-lg-3 col-md-6">
+                    <div class="role-card glass-premium wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="role-icon-box">
+                            <img src="https://img.icons8.com/3d-fluency/188/shop.png" alt="Join"> 
+                        </div>
+                        <h4>{{ translate('Join Platform') }}</h4>
+                        <p>{{ translate('An easy start with no complicated paperwork or entry barriers.') }}</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="role-card glass-premium wow fadeInUp" data-wow-delay="0.2s">
+                        <div class="role-icon-box">
+                            <img src="https://img.icons8.com/3d-fluency/188/plus.png" alt="Upload">
+                        </div>
+                        <h4>{{ translate('رفع منتجاتك مباشرة') }}</h4>
+                        <p>{{ translate('Upload your collection instantly with full control over images and details.') }}</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="role-card glass-premium wow fadeInUp" data-wow-delay="0.3s">
+                        <div class="role-icon-box">
+                            <img src="https://img.icons8.com/3d-fluency/188/administrative-tools.png" alt="Pricing">
+                        </div>
+                        <h4>{{ translate('تحديد السعر والكمية بحرية') }}</h4>
+                        <p>{{ translate('Adjust your pricing and inventory levels anytime without any restrictions.') }}</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="role-card glass-premium wow fadeInUp" data-wow-delay="0.4s">
+                        <div class="role-icon-box">
+                            <img src="https://img.icons8.com/3d-fluency/188/group.png" alt="Customers">
+                        </div>
+                        <h4>{{ translate('الوصول لمجموعة واسعة من العملاء') }}</h4>
+                        <p>{{ translate('Reach thousands of active shoppers looking for premium products every day.') }}</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="role-cta-wrapper wow fadeInUp" data-wow-delay="0.5s">
+                <a href="#download-app" class="btn-premium btn-role-cta" style="background: #C3A04B; color: #fff;">{{ translate('ابدأ البيع الآن') }}</a>
+            </div>
+        </div>
+    </section>
+
+    {{-- Role Section 2: For Shoppers --}}
+    <section class="role-section role-section-alt section-luxury-spacing">
+        <div class="container">
+            <div class="section-title-premium text-center mb-80 wow fadeInUp">
+                <span class="elite-pill">{{ translate('Shopping') }}</span>
+                <h2 class="mb-0">{{ translate('للمشترين') }}</h2>
+                <p class="mt-3" style="color: #6B7280; font-size: 18px;">{{ translate('استمتع بتجربة تسوق فاخرة وسهلة مع منصة ناسيا.') }}</p>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6">
+                    <div class="role-card glass-premium wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="role-icon-box">
+                            <img src="https://img.icons8.com/3d-fluency/188/search.png" alt="Search">
+                        </div>
+                        <h4>{{ translate('سهولة البحث والشراء') }}</h4>
+                        <p>{{ translate('Find your luxury items effortlessly with our smart search and filtering.') }}</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="role-card glass-premium wow fadeInUp" data-wow-delay="0.2s">
+                        <div class="role-icon-box">
+                            <img src="https://img.icons8.com/3d-fluency/188/track-order.png" alt="Track">
+                        </div>
+                        <h4>{{ translate('متابعة الطلبات في الوقت الحقيقي') }}</h4>
+                        <p>{{ translate('Know exactly where your package is from the moment of purchase to delivery.') }}</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="role-card glass-premium wow fadeInUp" data-wow-delay="0.3s">
+                        <div class="role-icon-box">
+                            <img src="https://img.icons8.com/3d-fluency/188/cash-in-hand.png" alt="Payment">
+                        </div>
+                        <h4>{{ translate('خيارات دفع متنوعة') }}</h4>
+                        <p>{{ translate('Multiple secure payment gateways to provide you the most convenient checkout.') }}</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="role-card glass-premium wow fadeInUp" data-wow-delay="0.4s">
+                        <div class="role-icon-box">
+                            <img src="https://img.icons8.com/3d-fluency/188/truck.png" alt="Delivery">
+                        </div>
+                        <h4>{{ translate('توصيل سريع وآمن') }}</h4>
+                        <p>{{ translate('Your premium orders are handled with care and delivered with gold-standard speed.') }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {{-- Role Section 3: For Delivery --}}
+    <section class="role-section section-luxury-spacing">
+        <div class="container">
+            <div class="delivery-showcase-box glass-premium wow fadeInUp">
+                <div class="delivery-img-wrapper">
+                    <img src="https://img.icons8.com/3d-fluency/400/truck.png" alt="Delivery App">
+                </div>
+                <div class="delivery-content">
+                    <h2 class="fw-900 mb-4" style="font-size: 36px; color: #1A1D23;">{{ translate('للمندوبين') }}</h2>
+                    <p class="mb-4" style="font-size: 18px; color: #6B7280; line-height: 1.8;">
+                        {{ translate('استلم طلباتك وتابع مواقع التوصيل بذكاء من خلال تطبيق المندوب المتطور.') }}
+                    </p>
+                    <div class="d-flex gap-3">
+                        <a href="#download-app" class="btn-premium btn-role-cta" style="background: #1A1D23; color: #fff;">{{ translate('Join Now') }}</a>
+                    </div>
+                </div>
+            </div> 
         </div>
     </section>
 
     <!-- ==== Testimonials Section Starts Here ==== -->
-    @php($testimonials = \App\Models\AdminTestimonial::all())
-    <section class="testimonial-section pt-100 pb-100" id="testimonials" style="background: #fff;">
+    <section class="testimonial-section section-luxury-spacing" id="testimonials" style="background: #fff;">
         <div class="container">
             <div class="section-title-premium text-center mb-80 wow fadeInUp">
-                <span class="text-base fw-bold text-uppercase mb-2 d-block" style="letter-spacing: 3px;">{{ translate('Voices') }}</span>
-                <h2 class="mb-0">{{ translate('Client Perspectives') }}</h2>
+                <span class="elite-pill">{{ translate('قالوا عن ناصية') }}</span>
+                <h2 class="mb-0">{{ translate('آراء عملائنا') }}</h2>
             </div>
-            <div class="testimonial-grid">
-                <!-- Manual Elite Reviews -->
-                @foreach($extra_testimonials as $extra)
-                <div class="testimonial-card-v2 wow fadeInUp">
-                    <div class="quote-icon-v2"><i class="fas fa-quote-left"></i></div>
-                    <div class="testimonial-text-v2">
-                        "{{ translate($extra['desc']) }}"
-                    </div>
-                    <div class="testimonial-author-v2">
-                        <div class="author-meta-v2">
-                            <h4>{{ translate($extra['name']) }}</h4>
-                            <span>{{ translate($extra['position']) }}</span>
+            
+            <div class="row g-4 align-items-stretch">
+                {{-- Testimonial 1: Buyer --}}
+                <div class="col-lg-4 col-md-6">
+                    <div class="testimonial-card-premium wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="testi-header">
+                            <div class="testi-author-info">
+                                <div class="testi-avatar">
+                                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=150&h=150&auto=format&fit=crop" alt="User">
+                                </div>
+                                <div>
+                                    <h4>Ahmed Ali</h4>
+                                    <span class="testi-role buyer">{{ translate('مشتري') }}</span>
+                                </div>
+                            </div>
+                            <div class="testi-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                        <div class="testi-body">
+                            <p>"{{ translate('تجربة تسوق رائعة، التطبيق سهل جداً في الاستخدام والتوصيل كان أسرع مما توقعت. جودة المنتجات ممتازة.') }}"</p>
+                        </div>
+                        <div class="testi-footer">
+                            <span class="testi-date">Feb 20, 2024</span>
                         </div>
                     </div>
                 </div>
-                @endforeach
 
-
-            </div>
-        </div>
-    </section>
-
-    <!-- ==== Partners Marquee Section Starts Here ==== -->
-    <section class="partners-section-v2 pt-80 pb-80" id="partners">
-        <div class="container">
-            <div class="partners-marquee-v2">
-                <div class="partners-track-v2">
-                    @for($i = 0; $i < 4; $i++)
-                    <div class="partner-box-v2"><img src="{{ asset('public/assets/landing/img/client/logo-1.svg') }}" alt="Partner"></div>
-                    <div class="partner-box-v2"><img src="{{ asset('public/assets/landing/img/client/logo-2.svg') }}" alt="Partner"></div>
-                    <div class="partner-box-v2"><img src="{{ asset('public/assets/landing/img/client/logo-3.svg') }}" alt="Partner"></div>
-                    <div class="partner-box-v2"><img src="{{ asset('public/assets/landing/img/client/logo-4.svg') }}" alt="Partner"></div>
-                    @endfor
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ==== Departments Gallery Section ==== -->
-    @if(count($landing_data['landing_departments']) > 0)
-    <section class="categories-gallery-section pt-120 pb-120" id="categories">
-        <div class="container">
-            <div class="section-title-premium text-center mb-80 wow fadeInUp">
-                <span class="text-base fw-bold text-uppercase mb-2 d-block" style="letter-spacing: 3px;">{{ translate('The Collection') }}</span>
-                <h2 class="mb-0">{{ translate('Elite Departments') }}</h2>
-            </div>
-
-            <div class="category-grid-v2">
-                @foreach($landing_data['landing_departments']->take(4) as $index => $dept)
-                <div class="category-card-v2 wow fadeInUp" data-wow-delay="0.{{ $index + 1 }}s">
-                    <img src="{{ $dept->cover_image ? asset('storage/'.$dept->cover_image) : asset('assets/landing/img/super.jpg') }}" class="category-img-v2" alt="{{ $dept->title }}">
-                    <div class="category-overlay-v2">
-                        <div class="category-content-v2">
-                            <span class="category-badge-v2">{{ translate('Elite') }}</span>
-                            <h3 class="category-title-v2">{{ $dept->title }}</h3>
-                            <p class="category-desc-v2">{{ translate('Explore our curated selection in ') . $dept->title }}</p>
-                            <a href="#dept-{{ $dept->id }}" class="category-link-v2">
-                                {{ translate('Explore Now') }} <i class="fas fa-arrow-right"></i>
-                            </a>
+                {{-- Testimonial 2: Seller --}}
+                <div class="col-lg-4 col-md-6">
+                    <div class="testimonial-card-premium wow fadeInUp" data-wow-delay="0.2s">
+                        <div class="testi-header">
+                            <div class="testi-author-info">
+                                <div class="testi-avatar">
+                                    <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=150&h=150&auto=format&fit=crop" alt="Seller">
+                                </div>
+                                <div>
+                                    <h4>Nour Fashion</h4>
+                                    <span class="testi-role seller">{{ translate('بائع') }}</span>
+                                </div>
+                            </div>
+                            <div class="testi-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                        <div class="testi-body">
+                            <p>"{{ translate('لوحة تحكم البائع ساعدتني جداً في إدارة مخزوني وطلباتي بسهولة. ناصية فتحت لي سوق جديد وعملاء أكتر.') }}"</p>
+                        </div>
+                        <div class="testi-footer">
+                            <span class="testi-date">Feb 15, 2024</span>
                         </div>
                     </div>
                 </div>
-                @endforeach
+
+                {{-- Testimonial 3: Buyer --}}
+                <div class="col-lg-4 col-md-6">
+                    <div class="testimonial-card-premium wow fadeInUp" data-wow-delay="0.3s">
+                        <div class="testi-header">
+                            <div class="testi-author-info">
+                                <div class="testi-avatar">
+                                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=150&h=150&auto=format&fit=crop" alt="User">
+                                </div>
+                                <div>
+                                    <h4>Sara Khaled</h4>
+                                    <span class="testi-role buyer">{{ translate('مشتري') }}</span>
+                                </div>
+                            </div>
+                            <div class="testi-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                        <div class="testi-body">
+                            <p>"{{ translate('أفضل تطبيق للتسوق في المنطقة. خيارات الدفع متنوعة ومريحة، والدعم الفني دايماً موجود للمساعدة.') }}"</p>
+                        </div>
+                        <div class="testi-footer">
+                            <span class="testi-date">Jan 28, 2024</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
-    @endif
+
+    <!-- ==== Final CTA Section ==== -->
+    <section class="final-cta-section wow fadeInUp">
+        <div class="container">
+            <div class="cta-content-wrapper">
+                <h2 class="cta-title-ultra">{{ translate('حمل التطبيق وابدأ رحلتك الآن') }}</h2>
+                <div class="cta-btns-group">
+                    <a href="#download-app" class="btn-cta-big btn-cta-gold">
+                        <i class="fab fa-google-play"></i>
+                        {{ translate('Download App') }}
+                    </a>
+                    <a href="#download-app" class="btn-cta-big btn-cta-outline">
+                        <i class="fas fa-store"></i>
+                        {{ translate('Be a Vendor') }}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
 
 @endsection
 @push('script_2')
@@ -1332,6 +2494,24 @@
             
             setInterval(updateAllFlashCounters, 1000);
             updateAllFlashCounters();
+
+            // Features Carousel (Figma Version)
+            if ($('#features-owl').length) {
+                var isRtl = $('html').attr('dir') === 'rtl';
+                $('#features-owl').owlCarousel({
+                    loop: true,
+                    margin: 0,
+                    nav: false,
+                    dots: true,
+                    autoplay: true,
+                    autoplayTimeout: 5000,
+                    smartSpeed: 1000,
+                    rtl: isRtl,
+                    items: 1,
+                    animateOut: 'fadeOut',
+                    animateIn: 'fadeIn'
+                });
+            }
         });
     </script>
     <script>
