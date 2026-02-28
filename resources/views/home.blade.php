@@ -580,12 +580,12 @@
         /* New Improved Feature Grid */
         .feature-grid-v2 {
             display: grid;
-            grid-template-columns: repeat(5, 1fr);
+            grid-template-columns: repeat(4, 1fr);
             gap: 15px;
         }
         @media (max-width: 1199px) {
             .feature-grid-v2 {
-                grid-template-columns: repeat(3, 1fr);
+                grid-template-columns: repeat(2, 1fr);
             }
         }
         @media (max-width: 767px) {
@@ -1942,7 +1942,7 @@
                             <img src="https://img.icons8.com/3d-fluency/188/upload.png" alt="Upload Products">
                         </div>
                         <h4 class="hiw-title">{{ translate('رفع المنتجات') }}</h4>
-                        <p class="hiw-desc">{{ translate('تحكم كامل في السعر والكمية دون أي قيود برمجية') }}</p>
+                        <p class="hiw-desc">{{ translate('تحكم كامل في الكمية دون أي قيود برمجية') }}</p>
                     </div>
                 </div>
 
@@ -2047,23 +2047,13 @@
                     <h3>{{ translate('دعم متعدد البائعين') }}</h3>
                     <p>{{ translate('منصة واحدة… وفرص بيع بلا حدود.') }}</p>
                 </div>
-
-                {{-- Card 2: Dashboard --}}
-                <div class="feature-item-premium wow fadeInUp" data-wow-delay="0.2s">
-                    <div class="feature-icon-v2">
-                        <img src="https://img.icons8.com/3d-fluency/188/monitor.png" alt="Dashboard">
-                    </div>
-                    <h3>{{ translate('لوحة تحكم البائع ') }}</h3>
-                    <p>{{ translate('إدارة متجرك بالكامل من داخل التطبيق.') }}</p>
-                </div>
-
                 {{-- Card 3: Control --}}
                 <div class="feature-item-premium wow fadeInUp" data-wow-delay="0.3s">
                     <div class="feature-icon-v2">
                         <img src="https://img.icons8.com/3d-fluency/188/administrative-tools.png" alt="Control">
                     </div>
                     <h3>{{ translate('تحكم كامل في البيع') }}</h3>
-                    <p>{{ translate('حدد السعر والكمية بحرية تامة — أنت المتحكم.') }}</p>
+                    <p>{{ translate('حدد الكمية بحرية تامة — أنت المتحكم.') }}</p>
                 </div>
 
                 {{-- Card 4: Notifications --}}
@@ -2177,16 +2167,16 @@
                         <div class="role-icon-box">
                             <img src="https://img.icons8.com/3d-fluency/188/administrative-tools.png" alt="Pricing">
                         </div>
-                        <h4>{{ translate('تحديد السعر والكمية بحرية') }}</h4>
-                        <p>{{ translate('Adjust your pricing and inventory levels anytime without any restrictions.') }}</p>
-                    </div>
-                </div>
+                        <h4>{{ translate('تحديد الكمية بحرية') }}</h4>
+                        <p>{{ translate('عدل مخزونك في أي وقت بدون قيود.') }}</p>
+                    </div> 
+                </div> 
                 <div class="col-lg-3 col-md-6">
                     <div class="role-card glass-premium wow fadeInUp" data-wow-delay="0.4s">
                         <div class="role-icon-box">
                             <img src="https://img.icons8.com/3d-fluency/188/group.png" alt="Customers">
                         </div>
-                        <h4>{{ translate('الوصول لمجموعة واسعة من العملاء') }}</h4>
+                        <h4>{{ translate('انتشار أوسع') }}</h4>
                         <p>{{ translate('Reach thousands of active shoppers looking for premium products every day.') }}</p>
                     </div>
                 </div>
