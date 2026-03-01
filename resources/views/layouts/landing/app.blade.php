@@ -112,16 +112,16 @@ $countryCode= strtolower($country?$country->value:'auto');
                             <a id="home-link" href="{{route('home')}}" class="{{ Request::is('/') ? 'active' : '' }}"><span>{{ translate('messages.home') }}</span></a>
                         </li>
                         <li>
-                            <a href="{{route('about-us')}}" class="{{ Request::is('about-us') ? 'active' : '' }}"><span>{{ translate('messages.about_us') }}</span></a>
+                            <a  class="{{ Request::is('about-us') ? 'active' : '' }}"><span>{{ translate('messages.about_us') }}</span></a>
                         </li>
                         <li>
-                            <a href="{{route('privacy-policy')}}" class="{{ Request::is('privacy-policy') ? 'active' : '' }}"><span>{{ translate('messages.privacy_policy') }}</span></a>
+                            <a  class="{{ Request::is('privacy-policy') ? 'active' : '' }}"><span>{{ translate('messages.privacy_policy') }}</span></a>
                         </li>
                         <li>
-                            <a href="{{route('terms-and-conditions')}}" class="{{ Request::is('terms-and-conditions') ? 'active' : '' }}"><span>{{ translate('messages.terms_and_condition') }}</span></a>
+                            <a  class="{{ Request::is('terms-and-conditions') ? 'active' : '' }}"><span>{{ translate('messages.terms_and_condition') }}</span></a>
                         </li>
                         <li>
-                            <a href="{{route('contact-us')}}"  class="{{ Request::is('contact-us') ? 'active' : '' }}"><span>{{ translate('messages.contact_us') }}</span></a>
+                            <a   class="{{ Request::is('contact-us') ? 'active' : '' }}"><span>{{ translate('messages.contact_us') }}</span></a>
                         </li>
                         @if ($fixed_link &&$fixed_link['web_app_url_status'])
                             <div class="me-2 d-lg-none">
@@ -185,7 +185,7 @@ $countryCode= strtolower($country?$country->value:'auto');
                         <ul class="dropdown-list">
                             @if ($toggle_store_registration)
                             <li>
-                                <a class="" href="{{ route('restaurant.create') }}">
+                                <a class="" >
                                     {{ translate('messages.store_registration') }}
                                 </a>
                             </li>
@@ -197,7 +197,7 @@ $countryCode= strtolower($country?$country->value:'auto');
                         @endif
                         @if ($toggle_dm_registration)
                             <li><a class=""
-                                    href="{{ route('deliveryman.create') }}">{{ translate('messages.deliveryman_registration') }}</a>
+                                    >{{ translate('messages.deliveryman_registration') }}</a>
                             </li>
                         @endif
                         </ul>
@@ -269,7 +269,7 @@ $countryCode= strtolower($country?$country->value:'auto');
                             @if (isset($social_media))
                                 @foreach ($social_media as $social)
                                 <li>
-                                    <a href="{{ $social->link }}" target="_blank">
+                                    <a  target="_blank">
                                         <img src="{{ asset('assets/landing/img/footer/'. $social->name.'.svg') }}" alt="">
                                     </a>
                                 </li>
@@ -281,12 +281,12 @@ $countryCode= strtolower($country?$country->value:'auto');
                         @if (isset($landing_page_links['playstore_url_status']) || isset( $landing_page_links['apple_store_url_status']))
                         <div class="app-btn-grp" >
                             @if (isset($landing_page_links['playstore_url_status']))
-                            <a href="{{ isset($landing_page_links['playstore_url']) ? $landing_page_links['playstore_url'] : '' }}">
+                            <a >
                                 <img src="{{ asset('assets/landing/img/google.svg') }}" alt="">
                             </a>
                             @endif
                             @if (isset($landing_page_links['apple_store_url_status']))
-                            <a href="{{ isset($landing_page_links['apple_store_url']) ? $landing_page_links['apple_store_url'] : '' }}">
+                            <a >
                                 <img src="{{ asset('assets/landing/img/apple.svg') }}" alt="">
                             </a>
                             @endif
@@ -298,25 +298,25 @@ $countryCode= strtolower($country?$country->value:'auto');
                         <h5 class="subtitle mt-2 text-white">{{translate("messages.Suppport")}}</h5>
                         <ul>
                             <li>
-                                <a href="{{route('privacy-policy')}}">{{ translate('messages.privacy_policy') }}</a>
+                                <a >{{ translate('messages.privacy_policy') }}</a>
                             </li>
                             <li>
-                                <a href="{{route('terms-and-conditions')}}">{{ translate('messages.terms_and_condition') }}</a>
+                                <a >{{ translate('messages.terms_and_condition') }}</a>
                             </li>
 
                             @if (isset($landing_data['refund_policy_status']) && $landing_data['refund_policy_status']  == 1)
                             <li>
-                                <a href="{{route('refund')}}">{{ translate('messages.Refund Policy') }}</a>
+                                <a >{{ translate('messages.Refund Policy') }}</a>
                             </li>
                             @endif
                             @if (isset($landing_data['shipping_policy_status']) && $landing_data['shipping_policy_status']  == 1)
                             <li>
-                                <a href="{{route('shipping-policy')}}">{{ translate('messages.Shipping Policy') }}</a>
+                                <a >{{ translate('messages.Shipping Policy') }}</a>
                             </li>
                             @endif
                             @if (isset($landing_data['cancellation_policy_status']) && $landing_data['cancellation_policy_status']  == 1)
                             <li>
-                                <a href="{{route('cancelation')}}">{{ translate('messages.Cancelation Policy') }}</a>
+                                <a >{{ translate('messages.Cancelation Policy') }}</a>
                             </li>
                             @endif
 
@@ -337,7 +337,7 @@ $countryCode= strtolower($country?$country->value:'auto');
                                 </a>
                             </li>
                             <li>
-                                <a href="mailto:{{ \App\CentralLogics\Helpers::get_settings('email_address') }}">
+                                <a >
                                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
                                         <path
@@ -347,26 +347,26 @@ $countryCode= strtolower($country?$country->value:'auto');
                                             d="M15.8067 3.98127C15.6885 3.92627 15.5495 3.94546 15.4512 4.02946C13.0159 6.0939 9.90788 8.74008 8.93 9.62124C8.38116 10.1167 7.61944 10.1167 7.06931 9.62058C6.027 8.68146 2.53675 5.71433 0.548813 4.02943C0.449844 3.94543 0.310531 3.9269 0.193344 3.98124C0.0755312 4.03596 0 4.1538 0 4.28368V12.6665C0 13.4019 0.597969 13.9998 1.33334 13.9998H14.6667C15.402 13.9998 16 13.4019 16 12.6665V4.28368C16 4.1538 15.9245 4.03565 15.8067 3.98127Z"
                                             fill="white" />
                                     </svg>
-                                    {{ \App\CentralLogics\Helpers::get_settings('email_address') }}
+                                    ex@example.com
                                 </a>
                             </li>
                             <li>
-                                <a href="tel:{{ \App\CentralLogics\Helpers::get_settings('phone') }}">
+                                <a >
                                     <svg width="16" height="14" viewBox="0 0 14 14" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
                                         <path
                                             d="M13.6043 10.2746L11.6505 8.32085C10.9528 7.62308 9.76655 7.90222 9.48744 8.80928C9.27812 9.4373 8.58035 9.78618 7.95236 9.6466C6.55683 9.29772 4.67287 7.48353 4.32398 6.01822C4.11465 5.39021 4.53331 4.69244 5.1613 4.48314C6.0684 4.20403 6.3475 3.01783 5.64974 2.32007L3.696 0.366327C3.13778 -0.122109 2.30047 -0.122109 1.81203 0.366327L0.486277 1.69208C-0.839476 3.08761 0.62583 6.78576 3.90533 10.0653C7.18482 13.3448 10.883 14.8799 12.2785 13.4843L13.6043 12.1586C14.0927 11.6003 14.0927 10.763 13.6043 10.2746Z"
                                             fill="white" />
                                     </svg>
-                                    {{ \App\CentralLogics\Helpers::get_settings('phone') }}
+                                    01000000000
                                 </a>
                             </li>
                         </ul>
                     </div>
                 </div>
                 <div class="copyright text-center mt-3">
-                    &copy; {{ \App\CentralLogics\Helpers::get_settings('footer_text') }}
-                        by {{ \App\CentralLogics\Helpers::get_settings('business_name') }}
+                    &copy;  E-commerce @ 2026Nasia
+                        by Nasia
                 </div>
             </div>
         </div>

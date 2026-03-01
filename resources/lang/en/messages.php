@@ -6338,4 +6338,5 @@ Smartly or Earn. ',
   'عدل مخزونك في أي وقت بدون قيود.' => 'Adjust your inventory at any time without any restrictions.',
   'تحديد الكمية بحرية' => 'You are in control of the quantity.',
   'انتشار أوسع' => 'Spread wider',
+  'ناصية سهلت عليا جداً في إدارة مخزوني وطلباتي بسهولة. ناصية فتحت لي سوق جديد وعملاء أكتر.'=>'Nasia made managing my inventory and orders incredibly easy. Nasia opened up a new market for me and brought in more customers.'
 );
