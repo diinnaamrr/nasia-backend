@@ -1873,7 +1873,7 @@
                                 <span class="t-name">{{ translate('Download App') }}</span>
                             </span>
                         </a>
-                        <a href="{{ route('about-us') }}" class="ultra-store-btn usb-dark">
+                        <a href="#" class="ultra-store-btn usb-dark">
                             <span class="usb-icon"><i class="fas fa-arrow-right"></i></span>
                             <span class="usb-text">
                                 <span class="t-name">{{ translate('More about') }}</span>
@@ -2319,7 +2319,7 @@
                             </div>
                         </div>
                         <div class="testi-body">
-                            <p>"{{ translate('لوحة تحكم البائع ساعدتني جداً في إدارة مخزوني وطلباتي بسهولة. ناصية فتحت لي سوق جديد وعملاء أكتر.') }}"</p>
+                            <p>"{{ translate('ناصية سهلت عليا جداً في إدارة مخزوني وطلباتي بسهولة. ناصية فتحت لي سوق جديد وعملاء أكتر.') }}"</p>
                         </div>
                         <div class="testi-footer">
                             <span class="testi-date">Feb 15, 2024</span>
