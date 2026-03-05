@@ -55,16 +55,16 @@ class TraderController extends Controller
     // List Orders (similar to vendor app but simplified)
     public function getOrders(Request $request)
     {
-        $user = $request->user();
+        $user = $request->user ?? $request->user();
 
-        if ($user->user_type !== 'trader' || !$user->vendor_id) {
+        if (!$user || $user->user_type !== 'trader' || !$user->vendor_id) {
             return response()->json([
                 'errors' => [['code' => 'forbidden', 'message' => translate('messages.user_not_authorized')]]
             ], 403);
         }
 
         $store = Store::where('vendor_id', $user->vendor_id)->first();
-         if (!$store) {
+        if (!$store) {
             return response()->json([
                 'errors' => [['code' => 'store_not_found', 'message' => translate('messages.store_not_found')]]
             ], 404);
@@ -72,30 +72,44 @@ class TraderController extends Controller
 
         $limit = $request['limit'] ?? 10;
         $offset = $request['offset'] ?? 1;
+        $statusFilter = $request->get('status'); // optional: pending, accepted, delivered, canceled
 
-        $paginator = Order::withoutGlobalScopes()
+        $query = Order::withoutGlobalScopes()
+            ->with(['store', 'details', 'customer'])
             ->where('store_id', $store->id)
-            ->latest()
-            ->paginate($limit, ['*'], 'page', $offset);
+            ->latest();
+
+        if ($statusFilter && in_array($statusFilter, ['pending', 'accepted', 'confirmed', 'processing', 'handover', 'picked_up', 'delivered', 'canceled'], true)) {
+            $query->where('order_status', $statusFilter);
+        }
+
+        $paginator = $query->paginate($limit, ['*'], 'page', $offset);
 
         $orders = [];
         foreach ($paginator->items() as $order) {
-            // Log raw count for debugging
-            $raw_count = \DB::table('order_details')->where('order_id', $order->id)->count();
-            \Log::info("Trader API: Order ID {$order->id} raw details count: {$raw_count}");
-
             $order_data = Helpers::order_data_formatting($order, false);
-            
-            // Manually fetch details bypassing all scopes
+
             $details = OrderDetail::withoutGlobalScopes()
                 ->where('order_id', $order->id)
                 ->get();
-            
             $formatted_details = Helpers::order_details_data_formatting($details);
             $order_data['details'] = $formatted_details;
             $order_data['details_count'] = count($formatted_details);
 
-            // للفرونت: إخفاء أزرار Accept/Reject للطلبات المُوصّلة أو الملغاة
+            // اسم العميل للعرض في قائمة الطلبات
+            $order_data['customer_name'] = null;
+            if ($order->relationLoaded('customer') && $order->customer) {
+                $order_data['customer_name'] = trim(($order->customer->f_name ?? '') . ' ' . ($order->customer->l_name ?? ''));
+            }
+            if (empty($order_data['customer_name']) && $order->delivery_address) {
+                $addr = is_string($order->delivery_address) ? json_decode($order->delivery_address, true) : $order->delivery_address;
+                $order_data['customer_name'] = $addr['contact_person_name'] ?? translate('Guest');
+            }
+            if (empty($order_data['customer_name'])) {
+                $order_data['customer_name'] = translate('Guest');
+            }
+
+            $order_data['order_status'] = $order->order_status;
             $order_data['order_is_complete'] = in_array($order->order_status, ['delivered', 'canceled'], true);
             $order_data['can_accept_reject'] = !$order_data['order_is_complete'];
 
@@ -104,8 +118,8 @@ class TraderController extends Controller
 
         return response()->json([
             'total_size' => $paginator->total(),
-            'limit' => $limit,
-            'offset' => $offset,
+            'limit' => (int) $limit,
+            'offset' => (int) $offset,
             'orders' => $orders
         ], 200);
     }
