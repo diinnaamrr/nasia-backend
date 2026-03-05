@@ -95,6 +95,10 @@ class TraderController extends Controller
             $order_data['details'] = $formatted_details;
             $order_data['details_count'] = count($formatted_details);
 
+            // للفرونت: إخفاء أزرار Accept/Reject للطلبات المُوصّلة أو الملغاة
+            $order_data['order_is_complete'] = in_array($order->order_status, ['delivered', 'canceled'], true);
+            $order_data['can_accept_reject'] = !$order_data['order_is_complete'];
+
             $orders[] = $order_data;
         }
 
@@ -165,6 +169,13 @@ class TraderController extends Controller
             return response()->json([
                 'errors' => [['code' => 'order_not_found', 'message' => translate('messages.order_not_found')]]
             ], 404);
+        }
+
+        // لا يسمح بقبول/رفض أو تغيير حالة الطلبات المُوصّلة أو الملغاة
+        if (in_array($order->order_status, ['delivered', 'canceled'], true)) {
+            return response()->json([
+                'errors' => [['code' => 'order_already_complete', 'message' => translate('Order already delivered or canceled. No further action allowed.')]]
+            ], 403);
         }
 
         // Logic to update status
