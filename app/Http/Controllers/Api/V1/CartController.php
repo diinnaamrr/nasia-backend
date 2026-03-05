@@ -116,7 +116,17 @@ class CartController extends Controller
         $cart->add_on_ids = isset($request->add_on_ids)?json_encode($request->add_on_ids):json_encode([]);
         $cart->add_on_qtys = isset($request->add_on_qtys)?json_encode($request->add_on_qtys):json_encode([]);
         $cart->item_type = $request->model;
-        $cart->price = $request->price;
+        
+        // تطبيق سعر الجملة للتجار المعتمدين باستخدام tier_prices
+        $user = $request->user();
+        $isApprovedTrader = $user && $user->user_type === 'trader' && (int)$user->is_trader_approved === 1;
+        if ($isApprovedTrader && $request->model === 'Item') {
+            // نستخدم السعر المرسل من الفرونت كسعر أساس (يشمل أي خصومات/اختلافات)
+            $cart->price = Helpers::calculate_tiered_price($item, $request->quantity, $request->price);
+        } else {
+            $cart->price = $request->price;
+        }
+
         $cart->quantity = $request->quantity;
         $cart->variation = isset($request->variation)?json_encode($request->variation):json_encode([]);
         $cart->save();
@@ -165,7 +175,24 @@ class CartController extends Controller
         $cart->is_guest = $is_guest;
         $cart->add_on_ids = isset($request->add_on_ids)?json_encode($request->add_on_ids):$cart->add_on_ids;
         $cart->add_on_qtys = isset($request->add_on_qtys)?json_encode($request->add_on_qtys):$cart->add_on_qtys;
-        $cart->price = $request->price;
+        
+        // تحديث السعر مع مراعاة سعر الجملة للتجار المعتمدين
+        $user = $request->user();
+        $isApprovedTrader = $user && $user->user_type === 'trader' && (int)$user->is_trader_approved === 1;
+        if ($isApprovedTrader && $cart->item_type === 'App\\Models\\Item') {
+            $baseItem = $cart->item_type === 'App\\Models\\Item'
+                ? Item::find($cart->item_id)
+                : null;
+
+            if ($baseItem) {
+                $cart->price = Helpers::calculate_tiered_price($baseItem, $request->quantity, $request->price);
+            } else {
+                $cart->price = $request->price;
+            }
+        } else {
+            $cart->price = $request->price;
+        }
+
         $cart->quantity = $request->quantity;
         $cart->variation = isset($request->variation)?json_encode($request->variation):$cart->variation;
         $cart->save();
