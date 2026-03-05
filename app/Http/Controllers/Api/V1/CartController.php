@@ -121,7 +121,8 @@ class CartController extends Controller
         // ملاحظة: في هذا المشروع الميدل وير بيحط الـ user في $request->user مش user()
         $user = $request->user;
         $isApprovedTrader = $user && $user->user_type === 'trader' && (int)$user->is_trader_approved === 1;
-        if ($isApprovedTrader && $request->model === 'Item') {
+
+        if ($isApprovedTrader && $item instanceof Item) {
             // نستخدم السعر المرسل من الفرونت كسعر أساس (يشمل أي خصومات/اختلافات)
             $cart->price = Helpers::calculate_tiered_price($item, $request->quantity, $request->price);
         } else {
