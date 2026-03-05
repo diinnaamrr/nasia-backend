@@ -325,18 +325,56 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-sm-6 col-lg-3">
+                                <div class="col-12">
                                     <div class="form-group mb-0">
-                                        <label class="input-label" for="tier_prices">
+                                        <label class="input-label d-block">
                                             {{ translate('messages.tier_prices') }}
-                                            <small class="text-muted d-block">
-                                                {{ translate('messages.wholesale_tiers_example') }}:
-                                                [{"min_qty":1,"max_qty":9,"price":80},{"min_qty":10,"max_qty":null,"price":70}]
-                                            </small>
+                                            <span class="text-muted small">({{ translate('Wholesale / trader prices by quantity') }})</span>
                                         </label>
-                                        <textarea name="tier_prices" id="tier_prices" class="form-control"
-                                                  rows="3"
-                                                  placeholder='[{"min_qty":1,"max_qty":9,"price":80},{"min_qty":10,"max_qty":null,"price":70}]'>{{ old('tier_prices', $product->tier_prices) }}</textarea>
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered" id="tier_prices_table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>{{ translate('From quantity') }}</th>
+                                                        <th>{{ translate('To quantity') }} <small class="text-muted">({{ translate('empty = no limit') }})</small></th>
+                                                        <th>{{ translate('Price') }}</th>
+                                                        <th width="60"></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="tier_prices_tbody">
+                                                    @php
+                                                        $tiers = [];
+                                                        if (!empty($product->tier_prices)) {
+                                                            $raw = $product->tier_prices;
+                                                            $tiers = is_string($raw) ? json_decode($raw, true) : $raw;
+                                                            if (!is_array($tiers)) $tiers = [];
+                                                        }
+                                                        if (empty($tiers)) {
+                                                            $tiers = [['min_qty' => 1, 'max_qty' => '', 'price' => '']];
+                                                        }
+                                                    @endphp
+                                                    @foreach($tiers as $idx => $tier)
+                                                    <tr class="tier-row">
+                                                        <td>
+                                                            <input type="number" name="tier_min_qty[]" class="form-control" min="0" value="{{ $tier['min_qty'] ?? '' }}" placeholder="1">
+                                                        </td>
+                                                        <td>
+                                                            <input type="number" name="tier_max_qty[]" class="form-control" min="0" placeholder="{{ translate('empty') }}" value="{{ isset($tier['max_qty']) && $tier['max_qty'] !== null ? $tier['max_qty'] : '' }}">
+                                                        </td>
+                                                        <td>
+                                                            <input type="number" name="tier_price[]" class="form-control" min="0" step="0.01" value="{{ $tier['price'] ?? '' }}" placeholder="0.00">
+                                                        </td>
+                                                        <td>
+                                                            <button type="button" class="btn btn-sm btn-outline-danger tier-remove"><i class="tio-delete"></i></button>
+                                                        </td>
+                                                    </tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <button type="button" class="btn btn-sm btn-outline-primary mt-1" id="tier_add_row">
+                                            <i class="tio-add"></i> {{ translate('Add tier') }}
+                                        </button>
                                     </div>
                                 </div>
                                 <div class="col-sm-6 col-lg-3" id="veg_input">
@@ -1391,6 +1429,20 @@
      $(document).on('change', '.combination_update', function () {
          combination_update();
      });
+     // Tier prices: add row
+     $('#tier_add_row').on('click', function() {
+         var row = '<tr class="tier-row">' +
+             '<td><input type="number" name="tier_min_qty[]" class="form-control" min="0" placeholder="1"></td>' +
+             '<td><input type="number" name="tier_max_qty[]" class="form-control" min="0" placeholder=""></td>' +
+             '<td><input type="number" name="tier_price[]" class="form-control" min="0" step="0.01" placeholder="0.00"></td>' +
+             '<td><button type="button" class="btn btn-sm btn-outline-danger tier-remove"><i class="tio-delete"></i></button></td>' +
+             '</tr>';
+         $('#tier_prices_tbody').append(row);
+     });
+     $(document).on('click', '.tier-remove', function() {
+         $(this).closest('tr').remove();
+     });
+
      // $('#product_form').on('keydown', function(e) {
      //        if (e.key === 'Enter') {
      //        e.preventDefault(); // Prevent submission on Enter
