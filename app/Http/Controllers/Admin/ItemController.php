@@ -424,7 +424,19 @@ if ($request->has('image') && filter_var($request->image, FILTER_VALIDATE_URL)) 
         $sub_category = null;
     }
 
-    return view('admin-views.product.edit', compact('product', 'sub_category', 'category', 'temp_product'));
+    $tiers = [];
+    if (!empty($product->tier_prices)) {
+        $raw = $product->tier_prices;
+        $tiers = is_string($raw) ? json_decode($raw, true) : $raw;
+        if (!is_array($tiers)) {
+            $tiers = [];
+        }
+    }
+    if (empty($tiers)) {
+        $tiers = [['min_qty' => 1, 'max_qty' => '', 'price' => '']];
+    }
+
+    return view('admin-views.product.edit', compact('product', 'sub_category', 'category', 'temp_product', 'tiers'));
 }
 
 

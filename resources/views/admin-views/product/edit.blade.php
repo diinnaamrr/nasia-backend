@@ -342,24 +342,13 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody id="tier_prices_tbody">
-                                                    @php
-                                                        $tiers = [];
-                                                        if (!empty($product->tier_prices)) {
-                                                            $raw = $product->tier_prices;
-                                                            $tiers = is_string($raw) ? json_decode($raw, true) : $raw;
-                                                            if (!is_array($tiers)) $tiers = [];
-                                                        }
-                                                        if (empty($tiers)) {
-                                                            $tiers = [['min_qty' => 1, 'max_qty' => '', 'price' => '']];
-                                                        }
-                                                    @endphp
-                                                    @foreach($tiers as $idx => $tier)
+                                                    @foreach(isset($tiers) && is_array($tiers) ? $tiers : [['min_qty'=>1,'max_qty'=>'','price'=>'']] as $idx => $tier)
                                                     <tr class="tier-row">
                                                         <td>
                                                             <input type="number" name="tier_min_qty[]" class="form-control" min="0" value="{{ $tier['min_qty'] ?? '' }}" placeholder="1">
                                                         </td>
                                                         <td>
-                                                            <input type="number" name="tier_max_qty[]" class="form-control" min="0" placeholder="{{ translate('empty') }}" value="{{ isset($tier['max_qty']) && $tier['max_qty'] !== null ? $tier['max_qty'] : '' }}">
+                                                            <input type="number" name="tier_max_qty[]" class="form-control" min="0" placeholder="" value="{{ isset($tier['max_qty']) && $tier['max_qty'] !== null && $tier['max_qty'] !== '' ? $tier['max_qty'] : '' }}">
                                                         </td>
                                                         <td>
                                                             <input type="number" name="tier_price[]" class="form-control" min="0" step="0.01" value="{{ $tier['price'] ?? '' }}" placeholder="0.00">
