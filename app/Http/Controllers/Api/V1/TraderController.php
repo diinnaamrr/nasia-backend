@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\CentralLogics\Helpers;
+use App\CentralLogics\StoreLogic;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Models\OrderDetail;
+use App\Models\OrderTransaction;
 use App\Models\Store;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -32,15 +34,17 @@ class TraderController extends Controller
         }
 
         $today = now()->format('Y-m-d');
-        
+        $vendorId = $user->vendor_id;
+
         $total_orders = Order::where('store_id', $store->id)->count();
         $pending_orders = Order::where('store_id', $store->id)->where('order_status', 'pending')->count();
         $delivered_orders = Order::where('store_id', $store->id)->where('order_status', 'delivered')->count();
         $todays_orders = Order::where('store_id', $store->id)->whereDate('created_at', $today)->count();
-        
-        // Simple earning logic needed?
-        // Maybe total_sales for now
+
         $total_sales = Order::where('store_id', $store->id)->where('order_status', 'delivered')->sum('order_amount');
+
+        $earningData = StoreLogic::get_earning_data($vendorId);
+        $total_earnings = (float) OrderTransaction::NotRefunded()->where('vendor_id', $vendorId)->sum('store_amount');
 
         return response()->json([
             'total_orders' => $total_orders,
@@ -49,6 +53,42 @@ class TraderController extends Controller
             'todays_orders' => $todays_orders,
             'total_sales' => round($total_sales, 2),
             'store_status' => (bool)$store->status,
+            'total_earnings' => round($total_earnings, 2),
+            'daily_earnings' => round($earningData['daily_earning'] ?? 0, 2),
+            'weekly_earnings' => round($earningData['weekly_earning'] ?? 0, 2),
+            'monthly_earnings' => round($earningData['monthely_earning'] ?? 0, 2),
+        ], 200);
+    }
+
+    /**
+     * Earnings / revenue for merchant dashboard (total, daily, weekly, monthly).
+     */
+    public function getEarnings(Request $request)
+    {
+        $user = $request->user ?? $request->user();
+
+        if (!$user || $user->user_type !== 'trader' || !$user->vendor_id) {
+            return response()->json([
+                'errors' => [['code' => 'forbidden', 'message' => translate('messages.user_not_authorized')]]
+            ], 403);
+        }
+
+        $store = Store::where('vendor_id', $user->vendor_id)->first();
+        if (!$store) {
+            return response()->json([
+                'errors' => [['code' => 'store_not_found', 'message' => translate('messages.store_not_found')]]
+            ], 404);
+        }
+
+        $vendorId = $user->vendor_id;
+        $earningData = StoreLogic::get_earning_data($vendorId);
+        $total_earnings = (float) OrderTransaction::NotRefunded()->where('vendor_id', $vendorId)->sum('store_amount');
+
+        return response()->json([
+            'total_earnings' => round($total_earnings, 2),
+            'daily_earnings' => round($earningData['daily_earning'] ?? 0, 2),
+            'weekly_earnings' => round($earningData['weekly_earning'] ?? 0, 2),
+            'monthly_earnings' => round($earningData['monthely_earning'] ?? 0, 2),
         ], 200);
     }
 
