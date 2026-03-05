@@ -325,6 +325,20 @@
                                         </select>
                                     </div>
                                 </div>
+                                <div class="col-sm-6 col-lg-3">
+                                    <div class="form-group mb-0">
+                                        <label class="input-label" for="tier_prices">
+                                            {{ translate('messages.tier_prices') }}
+                                            <small class="text-muted d-block">
+                                                {{ translate('messages.wholesale_tiers_example') }}:
+                                                [{"min_qty":1,"max_qty":9,"price":80},{"min_qty":10,"max_qty":null,"price":70}]
+                                            </small>
+                                        </label>
+                                        <textarea name="tier_prices" id="tier_prices" class="form-control"
+                                                  rows="3"
+                                                  placeholder='[{"min_qty":1,"max_qty":9,"price":80},{"min_qty":10,"max_qty":null,"price":70}]'>{{ old('tier_prices', $product->tier_prices) }}</textarea>
+                                    </div>
+                                </div>
                                 <div class="col-sm-6 col-lg-3" id="veg_input">
                                     <div class="form-group mb-0">
                                         <label class="input-label"

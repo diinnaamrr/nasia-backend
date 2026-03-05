@@ -339,6 +339,10 @@ class ItemController extends Controller
         $item->food_variations = json_encode($food_variations);
         $item->variations = json_encode($variations);
         $item->price = $request->price;
+        // تحديث tier_prices من الداشبورد
+        $item->tier_prices = $request->tier_prices ? $request->tier_prices : null;
+        // حفظ tier_prices (أسعار الجملة بالشرائح) كما هي JSON
+        $item->tier_prices = $request->tier_prices ? $request->tier_prices : null;
 if ($request->has('image') && filter_var($request->image, FILTER_VALIDATE_URL)) {
     // If image is an external URL, save it directly
     $item->image = $request->image;
