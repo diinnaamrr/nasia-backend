@@ -393,6 +393,7 @@ Route::group(['namespace' => 'Api\V1', 'middleware'=>'localization'], function (
                 Route::post('update-type', 'StoreRegistrationController@updateUserType');
                 Route::get('store', 'StoreRegistrationController@getTraderStore');
                 Route::get('dashboard', 'TraderController@getDashboard');
+                Route::get('earnings', 'TraderController@getEarnings');
                 Route::get('orders', 'TraderController@getOrders');
                 Route::put('order/status', 'TraderController@updateOrderStatus');
                 Route::post('update-active-status', 'TraderController@toggleStoreStatus');
