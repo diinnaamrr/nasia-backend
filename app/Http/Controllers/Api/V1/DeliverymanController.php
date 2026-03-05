@@ -264,6 +264,13 @@ class DeliverymanController extends Controller
                 ]
             ], 404);
         }
+        if ($order->order_status == 'canceled') {
+            return response()->json([
+                'errors' => [
+                    ['code' => 'order_canceled', 'message' => translate('messages.order_already_canceled')]
+                ]
+            ], 403);
+        }
         if($dm->current_orders >= config('dm_maximum_orders'))
         {
             return response()->json([
@@ -444,6 +451,14 @@ class DeliverymanController extends Controller
             return response()->json([
                 'errors' => [
                     ['code' => 'not_found', 'message' => translate('messages.you_can_not_change_the_status_of_this_order')]
+                ]
+            ], 403);
+        }
+
+        if ($order->order_status == 'canceled') {
+            return response()->json([
+                'errors' => [
+                    ['code' => 'order_canceled', 'message' => translate('messages.order_already_canceled')]
                 ]
             ], 403);
         }
@@ -648,7 +663,9 @@ class DeliverymanController extends Controller
                 ]
             ], 204);
         }
-        return response()->json(Helpers::order_data_formatting($order), 200);
+        $formatted = Helpers::order_data_formatting($order);
+        $formatted['can_confirm_order'] = $order->order_status !== 'canceled';
+        return response()->json($formatted, 200);
     }
 
     public function get_all_orders(Request $request)
