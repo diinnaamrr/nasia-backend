@@ -118,7 +118,8 @@ class CartController extends Controller
         $cart->item_type = $request->model;
         
         // تطبيق سعر الجملة للتجار المعتمدين باستخدام tier_prices
-        $user = $request->user();
+        // ملاحظة: في هذا المشروع الميدل وير بيحط الـ user في $request->user مش user()
+        $user = $request->user;
         $isApprovedTrader = $user && $user->user_type === 'trader' && (int)$user->is_trader_approved === 1;
         if ($isApprovedTrader && $request->model === 'Item') {
             // نستخدم السعر المرسل من الفرونت كسعر أساس (يشمل أي خصومات/اختلافات)
@@ -177,7 +178,8 @@ class CartController extends Controller
         $cart->add_on_qtys = isset($request->add_on_qtys)?json_encode($request->add_on_qtys):$cart->add_on_qtys;
         
         // تحديث السعر مع مراعاة سعر الجملة للتجار المعتمدين
-        $user = $request->user();
+        // استخدام خاصية user الموجودة على الـ request بدل دالة user()
+        $user = $request->user;
         $isApprovedTrader = $user && $user->user_type === 'trader' && (int)$user->is_trader_approved === 1;
         if ($isApprovedTrader && $cart->item_type === 'App\\Models\\Item') {
             $baseItem = $cart->item_type === 'App\\Models\\Item'
