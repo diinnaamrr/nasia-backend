@@ -339,6 +339,7 @@ class ItemController extends Controller
         $item->food_variations = json_encode($food_variations);
         $item->variations = json_encode($variations);
         $item->price = $request->price;
+        $item->tier_prices = self::buildTierPricesFromRequest($request);
 if ($request->has('image') && filter_var($request->image, FILTER_VALIDATE_URL)) {
     // If image is an external URL, save it directly
     $item->image = $request->image;
@@ -423,7 +424,19 @@ if ($request->has('image') && filter_var($request->image, FILTER_VALIDATE_URL)) 
         $sub_category = null;
     }
 
-    return view('admin-views.product.edit', compact('product', 'sub_category', 'category', 'temp_product'));
+    $tiers = [];
+    if (!empty($product->tier_prices)) {
+        $raw = $product->tier_prices;
+        $tiers = is_string($raw) ? json_decode($raw, true) : $raw;
+        if (!is_array($tiers)) {
+            $tiers = [];
+        }
+    }
+    if (empty($tiers)) {
+        $tiers = [['min_qty' => 1, 'max_qty' => '', 'price' => '']];
+    }
+
+    return view('admin-views.product.edit', compact('product', 'sub_category', 'category', 'temp_product', 'tiers'));
 }
 
 
@@ -674,6 +687,7 @@ if ($request->has('image') && filter_var($request->image, FILTER_VALIDATE_URL)) 
         $item->discount =  $request->discount;
         $item->discount_type = $request->discount_type;
         $item->unit_id = $request->unit;
+        $item->tier_prices = self::buildTierPricesFromRequest($request);
         $item->attributes = $request->has('attribute_id') ? json_encode($request->attribute_id) : json_encode([]);
         $item->add_ons = $request->has('addon_ids') ? json_encode($request->addon_ids) : json_encode([]);
         $item->store_id = $request->store_id;
@@ -2111,5 +2125,25 @@ if (!empty($image) && !filter_var($image, FILTER_VALIDATE_URL)) {
         return view('admin-views.product.product_gallery', compact('items', 'store', 'category', 'type'));
     }
 
-
+    /**
+     * Build tier_prices JSON from dashboard form (tier_min_qty[], tier_max_qty[], tier_price[]).
+     * If arrays are present, use them; otherwise fall back to raw tier_prices string.
+     */
+    public static function buildTierPricesFromRequest($request)
+    {
+        $prices = $request->tier_price;
+        if (!is_array($prices) || empty($prices)) {
+            return $request->tier_prices ?: null;
+        }
+        $minQtys = $request->tier_min_qty ?? [];
+        $maxQtys = $request->tier_max_qty ?? [];
+        $tiers = [];
+        foreach ($prices as $i => $price) {
+            $minQty = isset($minQtys[$i]) && $minQtys[$i] !== '' ? (int) $minQtys[$i] : 0;
+            $maxQty = isset($maxQtys[$i]) && $maxQtys[$i] !== '' ? (int) $maxQtys[$i] : null;
+            $priceVal = isset($price) && $price !== '' ? (float) $price : 0;
+            $tiers[] = ['min_qty' => $minQty, 'max_qty' => $maxQty, 'price' => $priceVal];
+        }
+        return $tiers ? json_encode($tiers) : null;
+    }
 }
