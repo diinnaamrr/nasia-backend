@@ -1003,6 +1003,78 @@
         .light-glass-card {
             min-width: 0; /* Prevent grid blowout */
         }
+
+        /* ==== SELLER CALLOUT BANNER ==== */
+        .seller-banner-section {
+            padding: 20px 0 !important;
+            margin-top: -40px;
+            position: relative;
+            z-index: 20;
+        }
+        .seller-banner-box {
+            background: linear-gradient(135deg, #1A1D23 0%, #2D323C 100%);
+            border-radius: 24px;
+            padding: 35px 50px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.25);
+            border: 1px solid rgba(212, 175, 55, 0.25);
+            position: relative;
+            overflow: hidden;
+        }
+        .seller-banner-box::before {
+            content: '';
+            position: absolute;
+            top: -50%; left: -10%;
+            width: 40%; height: 200%;
+            background: radial-gradient(circle, rgba(212,175,55,0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .banner-title {
+            color: #D4AF37;
+            font-weight: 800;
+            margin-bottom: 10px;
+            font-size: 26px;
+            letter-spacing: -0.5px;
+        }
+        .banner-desc {
+            color: rgba(255,255,255,0.75);
+            margin-bottom: 0;
+            max-width: 650px;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+        .btn-seller-cta {
+            background: #D4AF37;
+            color: #1A1D23 !important;
+            padding: 14px 35px;
+            border-radius: 14px;
+            font-weight: 800;
+            text-decoration: none !important;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            white-space: nowrap;
+            display: inline-flex;
+            align-items: center;
+            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.2);
+        }
+        .btn-seller-cta:hover {
+            background: #fff;
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(212, 175, 55, 0.3);
+        }
+        @media (max-width: 991px) {
+            .seller-banner-section { margin-top: -20px; }
+            .seller-banner-box {
+                flex-direction: column;
+                text-align: center;
+                padding: 40px 25px;
+                gap: 25px;
+            }
+            .banner-title { font-size: 22px; }
+            .banner-desc { font-size: 15px; }
+            .btn-seller-cta { width: 100%; justify-content: center; }
+        }
     </style>
 
     <!-- ==== ULTRA PREMIUM HERO ==== -->
@@ -1899,6 +1971,23 @@
         </svg>
     </section>
 
+    {{-- Become a Seller Secondary Banner --}}
+    <section class="seller-banner-section wow fadeInUp" data-wow-delay="0.2s">
+        <div class="container">
+            <div class="seller-banner-box">
+                <div class="seller-banner-content">
+                    <h3 class="banner-title">{{ translate('Want_to_sell_from_home_with_minimal_capital?') }}</h3>
+                    <p class="banner-desc">{{ translate('Open_your_own_store_without_a_shop_or_large_inventory_we_handle_shipping_and_marketing_you_sell_and_earn!') }}</p>
+                </div>
+                <div class="seller-banner-action">
+                    <a href="#download-app" class="btn-seller-cta">
+                        {{ translate('Start_as_a_seller_now') }}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
     
 
     {{-- How it Works Section --}}
@@ -2068,10 +2157,10 @@
                 {{-- Card 5: Bilingual --}}
                 <div class="feature-item-premium wow fadeInUp" data-wow-delay="0.5s">
                     <div class="feature-icon-v2">
-                        <img src="https://img.icons8.com/3d-fluency/188/globe.png" alt="Bilingual">
+                        <img src="https://img.icons8.com/3d-fluency/188/money-bag.png" alt="Investment">
                     </div>
-                    <h3>{{ translate('عربي & English') }}</h3>
-                    <p>{{ translate('تجربة سلسة بلغتين تناسب الجميع.') }}</p>
+                    <h3>{{ translate('Invest_with_minimal_capital') }}</h3>
+                    <p>{{ translate('Start_your_trade_now_without_high_costs_or_huge_inventory') }}</p>
                 </div>
             </div>
         </div>
@@ -2165,10 +2254,10 @@
                 <div class="col-lg-3 col-md-6">
                     <div class="role-card glass-premium wow fadeInUp" data-wow-delay="0.3s">
                         <div class="role-icon-box">
-                            <img src="https://img.icons8.com/3d-fluency/188/administrative-tools.png" alt="Pricing">
+                            <img src="https://img.icons8.com/3d-fluency/188/money-bag.png" alt="Investment">
                         </div>
-                        <h4>{{ translate('تحديد الكمية بحرية') }}</h4>
-                        <p>{{ translate('عدل مخزونك في أي وقت بدون قيود.') }}</p>
+                        <h4>{{ translate('start earning') }}</h4>
+                        <p>{{ translate('Start_earning_immediately_with_less_than_100_EGP_capital') }}</p>
                     </div> 
                 </div> 
                 <div class="col-lg-3 col-md-6">
@@ -2353,6 +2442,96 @@
                         </div>
                         <div class="testi-footer">
                             <span class="testi-date">Jan 28, 2024</span>
+                        </div>
+                    </div>
+                </div>
+
+                {{-- Testimonial 4: Seller (Invest Focus) --}}
+                <div class="col-lg-4 col-md-6">
+                    <div class="testimonial-card-premium wow fadeInUp" data-wow-delay="0.4s">
+                        <div class="testi-header">
+                            <div class="testi-author-info">
+                                <div class="testi-avatar">
+                                    <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?q=80&w=150&h=150&auto=format&fit=crop" alt="Seller">
+                                </div>
+                                <div>
+                                    <h4>Mona Ibrahim</h4>
+                                    <span class="testi-role seller">{{ translate('بائع') }}</span>
+                                </div>
+                            </div>
+                            <div class="testi-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                        <div class="testi-body">
+                            <p>"{{ translate('Invested_200_and_earned_5000_in_first_month') }}"</p>
+                        </div>
+                        <div class="testi-footer">
+                            <span class="testi-date">Mar 01, 2024</span>
+                        </div>
+                    </div>
+                </div>
+
+                {{-- Testimonial 5: Seller (Extra Income) --}}
+                <div class="col-lg-4 col-md-6">
+                    <div class="testimonial-card-premium wow fadeInUp" data-wow-delay="0.5s">
+                        <div class="testi-header">
+                            <div class="testi-author-info">
+                                <div class="testi-avatar">
+                                    <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=150&h=150&auto=format&fit=crop" alt="Seller">
+                                </div>
+                                <div>
+                                    <h4>Heba Hassan</h4>
+                                    <span class="testi-role seller">{{ translate('بائع') }}</span>
+                                </div>
+                            </div>
+                            <div class="testi-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                        <div class="testi-body">
+                            <p>"{{ translate('Great_opportunity_for_extra_income') }}"</p>
+                        </div>
+                        <div class="testi-footer">
+                            <span class="testi-date">Mar 05, 2024</span>
+                        </div>
+                    </div>
+                </div>
+
+                {{-- Testimonial 6: Seller (Easy Management) --}}
+                <div class="col-lg-4 col-md-6">
+                    <div class="testimonial-card-premium wow fadeInUp" data-wow-delay="0.6s">
+                        <div class="testi-header">
+                            <div class="testi-author-info">
+                                <div class="testi-avatar">
+                                    <img src="https://images.unsplash.com/photo-1552058544-f2b08422138a?q=80&w=150&h=150&auto=format&fit=crop" alt="Seller">
+                                </div>
+                                <div>
+                                    <h4>Khaled Mansour</h4>
+                                    <span class="testi-role seller">{{ translate('بائع') }}</span>
+                                </div>
+                            </div>
+                            <div class="testi-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                        <div class="testi-body">
+                            <p>"{{ translate('Fast_results_and_easy_management') }}"</p>
+                        </div>
+                        <div class="testi-footer">
+                            <span class="testi-date">Mar 07, 2024</span>
                         </div>
                     </div>
                 </div>
