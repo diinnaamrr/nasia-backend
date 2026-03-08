@@ -655,7 +655,9 @@ class CustomerAuthController extends Controller
             'email' => $request->email,
             'phone' => Helpers::normalizePhone($request->phone),
             'ref_by' =>   $ref_by,
-            'password' => bcrypt($request->password)
+            'password' => bcrypt($request->password),
+            'is_phone_verified' => 0,
+            'is_email_verified' => 1
         ]);
         $user->ref_code = Helpers::generate_referer_code($user);
         $user->save();
@@ -667,11 +669,14 @@ class CustomerAuthController extends Controller
         $firebase_otp_verification = BusinessSetting::where('key', 'firebase_otp_verification')->first()?->value??0;
         $phone = 1;
         $mail = 1;
+        $token = $user->createToken('RestaurantCustomerAuth')->accessToken;
+        
         if(isset($login_settings['phone_verification_status']) && $login_settings['phone_verification_status'] == 1){
             $phone =0;
             if(!$firebase_otp_verification){
                 $otp_interval_time= 60; //seconds
-                $verification_data= DB::table('phone_verifications')->where('phone', $request['phone'])->first();
+                $normalized_phone = Helpers::normalizePhone($request['phone']);
+                $verification_data= DB::table('phone_verifications')->where('phone', $normalized_phone)->first();
 
                 if(isset($verification_data) &&  Carbon::parse($verification_data->updated_at)->DiffInSeconds() < $otp_interval_time){
                     $time= $otp_interval_time - Carbon::parse($verification_data->updated_at)->DiffInSeconds();
@@ -685,8 +690,8 @@ class CustomerAuthController extends Controller
                 // OTP fixed for testing - always use 1111
                 $otp = '1111';
                 
-                // Save OTP to database
-                DB::table('phone_verifications')->updateOrInsert(['phone' => $request['phone']],
+                // Save OTP to database with normalized phone
+                DB::table('phone_verifications')->updateOrInsert(['phone' => $normalized_phone],
                     [
                         'token' => $otp,
                         'otp_hit_count' => 0,
@@ -694,31 +699,8 @@ class CustomerAuthController extends Controller
                         'updated_at' => now(),
                     ]);
 
-                // SMS sending commented out for testing - OTP is fixed to 1111
-                // $published_status = 0;
-                // $payment_published_status = config('get_payment_publish_status');
-                // if (isset($payment_published_status[0]['is_published'])) {
-                //     $published_status = $payment_published_status[0]['is_published'];
-                // }
-
-                // if($published_status == 1){
-                //     $response = SmsGateway::send($request['phone'],$otp);
-                // }else{
-                //     $response = SMS_module::send($request['phone'],$otp);
-                // }
-
                 // Force success response to skip SMS validation
                 $response = 'success';
-
-                $token = null;
-                // SMS validation commented out
-                // if(env('APP_MODE') != 'test' && $response !== 'success') {
-                //     $errors = [];
-                //     array_push($errors, ['code' => 'otp', 'message' => translate('messages.failed_to_send_sms')]);
-                //     return response()->json([
-                //         'errors' => $errors
-                //     ], 405);
-                // }
             }
 
         }elseif (isset($login_settings['email_verification_status']) && $login_settings['email_verification_status'] == 1){
@@ -746,7 +728,6 @@ class CustomerAuthController extends Controller
                 info($ex->getMessage());
                 $mailResponse=null;
             }
-            $token = null;
             if(env('APP_MODE') != 'test' && $mailResponse !== 'success') {
                 $errors = [];
                 array_push($errors, ['code' => 'otp', 'message' => translate('messages.failed_to_send_mail')]);
@@ -774,8 +755,7 @@ class CustomerAuthController extends Controller
             $user_email = $user->email;
         }
 
-        // Return OTP in response if phone verification is required
-        $response_data = [
+        return response()->json([
             'token' => $token, 
             'is_phone_verified' => $phone, 
             'is_email_verified' => $mail, 
@@ -783,14 +763,7 @@ class CustomerAuthController extends Controller
             'is_exist_user' => null, 
             'login_type' => 'manual', 
             'email' => $user_email
-        ];
-        
-        // Add OTP to response if phone verification is enabled
-        if(isset($login_settings['phone_verification_status']) && $login_settings['phone_verification_status'] == 1 && !$firebase_otp_verification){
-            $response_data['otp'] = '1111'; // Fixed OTP for testing
-        }
-
-        return response()->json($response_data, 200);
+        ], 200);
     }
 
     public function login(Request $request)
