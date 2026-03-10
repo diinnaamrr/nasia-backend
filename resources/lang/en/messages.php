@@ -6328,7 +6328,7 @@ Smartly or Earn. ',
   'كن بائعا وابدأ التجاره' => 'Be a vendor and start trading',
   'حول حسابك الي متجر وابدأ بيع منتجاتك بسهوله' => 'Turn your account into a store and start selling your products easily',
   'Providers' => 'Providers',
-  //aa
+  //a
   'Shopping' => 'Shopping',
   'قالوا عن ناصية' => 'Testimonials',
   'تجربة تسوق رائعة، التطبيق سهل جداً في الاستخدام والتوصيل كان أسرع مما توقعت. جودة المنتجات ممتازة.' => 'A wonderful shopping experience, the app is very easy to use and the delivery was faster than I expected. The product quality is excellent.',

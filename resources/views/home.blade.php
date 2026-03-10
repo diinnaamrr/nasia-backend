@@ -2008,7 +2008,7 @@
                         </div>
                         <h4 class="hiw-title">{{ translate('تسوق واستلم فوري') }}</h4>
                         <p class="hiw-desc">{{ translate('اختار المنتجات و استلمها في أسرع وقت') }}</p>
-                        <!--aa!-->
+                        <!--a!-->
                     </div>
                 </div>
 
