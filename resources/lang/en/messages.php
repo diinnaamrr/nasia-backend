@@ -6328,7 +6328,7 @@ Smartly or Earn. ',
   'كن بائعا وابدأ التجاره' => 'Be a vendor and start trading',
   'حول حسابك الي متجر وابدأ بيع منتجاتك بسهوله' => 'Turn your account into a store and start selling your products easily',
   'Providers' => 'Providers',
-  //a
+  //aaa
   'Shopping' => 'Shopping',
   'انضم كبائع' => 'Be a seller',
   'قالوا عن ناصية' => 'Testimonials',

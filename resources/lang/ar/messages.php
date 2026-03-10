@@ -6225,7 +6225,7 @@ Smartly or Earn.' => 'لنقم بإدارة عملك بذكاء أو كسب ال
   'no_store_found' => 'No store found',
   'انضم كبائع' => 'انضم كبائع',
   'Ex:_120' => 'Ex: 120',
-  //a
+  //aaa
   'min_order_qty_to_become_trader' => 'Min order qty to become trader',
   'If_a_customer_orders_more_than_this_quantity,_they_will_be_prompted_to_become_a_trader.' => 'If a customer orders more than this quantity, they will be prompted to become a trader.',
   'NASIA Market' => 'سوق ناصية',
