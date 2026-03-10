@@ -2006,8 +2006,8 @@
                         <div class="hiw-icon-wrapper">
                             <img src="https://img.icons8.com/3d-fluency/188/shopping-cart.png" alt="Browse & Buy">
                         </div>
-                        <h4 class="hiw-title">{{ translate('تصفح واشتري') }}</h4>
-                        <p class="hiw-desc">{{ translate('المستخدم يختار المنتجات ويضيفها للعربة بكل سهولة') }}</p>
+                        <h4 class="hiw-title">{{ translate('تسوق واستلم فوري') }}</h4>
+                        <p class="hiw-desc">{{ translate('اختار المنتجات و استلمها في أسرع وقت') }}</p>
                     </div>
                 </div>
 
@@ -2019,7 +2019,7 @@
                             <img src="https://img.icons8.com/3d-fluency/188/shop.png" alt="Be a Seller">
                         </div>
                         <h4 class="hiw-title">{{ translate('كن بائع') }}</h4>
-                        <p class="hiw-desc">{{ translate('بلمسة واحدة زر Be a Vendor يحولك لبائع مباشرة') }}</p>
+                        <p class="hiw-desc">{{ translate('بمجرد الشراء بالجملة هتكون انت التاجر في محيط سكنك') }}</p>
                     </div>
                 </div>
 
