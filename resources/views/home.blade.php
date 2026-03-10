@@ -2019,10 +2019,10 @@
                         <div class="hiw-icon-wrapper">
                             <img src="https://img.icons8.com/3d-fluency/188/shop.png" alt="Be a Seller">
                         </div>
-                        <h4 class="hiw-title">{{ translate('كن بائع') }}</h4>
+                        <h4 class="hiw-title">{{ translate('انضم كبائع') }}</h4>
                         <p class="hiw-desc">{{ translate('بمجرد الشراء بالجملة هتكون انت التاجر في محيط سكنك') }}</p>
                     </div>
-                </div>
+                </div> 
 
                 {{-- Step 3 --}}
                 <div class="col-lg-3 col-md-6">

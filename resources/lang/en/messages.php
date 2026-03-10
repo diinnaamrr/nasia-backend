@@ -6330,6 +6330,7 @@ Smartly or Earn. ',
   'Providers' => 'Providers',
   //a
   'Shopping' => 'Shopping',
+  'انضم كبائع' => 'Be a seller',
   'قالوا عن ناصية' => 'Testimonials',
   'تجربة تسوق رائعة، التطبيق سهل جداً في الاستخدام والتوصيل كان أسرع مما توقعت. جودة المنتجات ممتازة.' => 'A wonderful shopping experience, the app is very easy to use and the delivery was faster than I expected. The product quality is excellent.',
   'لوحة تحكم البائع ساعدتني جداً في إدارة مخزوني وطلباتي بسهولة. ناصية فتحت لي سوق جديد وعملاء أكتر.' => 'The vendor control panel helped me a lot in managing my inventory and orders easily. Nasia opened up a new market and more customers for me.',
