@@ -6346,4 +6346,7 @@ Smartly or Earn. ',
   'Invest_with_minimal_capital' => 'Invest with minimal capital',
   'Start_your_trade_now_without_high_costs_or_huge_inventory' => 'Start your trade now without high costs or huge inventory',
   'start earning' => 'start earning',
+  'تسوق واستلم فوري' => 'Shop and receive instantly',
+  'اختار المنتجات و استلمها في أسرع وقت' => 'Choose products and receive them as quickly as possible',
+  'بمجرد الشراء بالجملة هتكون انت التاجر في محيط سكنك' => 'As soon as you buy in bulk, you will be the merchant in your neighborhood',
 );
