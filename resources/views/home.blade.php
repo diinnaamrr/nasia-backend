@@ -678,7 +678,7 @@
     
 
 
-
+<!--path-->
         <div class="standalone-svg-container d-flex justify-content-center">
             <svg xmlns="http://www.w3.org/2000/svg" width="1240" height="393" viewBox="0 0 1240 393" fill="none" class="svg mw-100">
                 <g opacity="0.1" clip-path="url(#clip0_417_3621)">
