@@ -1759,7 +1759,7 @@
                 <div class=" col-lg-6 pe-lg-5">
                     <div class="learn-feature-content wow fadeInUp">
                         <div class="section-header text-start mb-0">
-                            <h2 class="title">
+                            <h2 class="title gold-text">
                                 {{ translate('why_nasia_is_your_first_choice') }}
                             </h2>
                             <div class="text">
@@ -1799,7 +1799,7 @@
                                                         <img src="{{ $item->image }}" alt="{{ $item->title }}">
                                                     </div>
                                                     <div class="learn-feature-item-content">
-                                                        <h5 class="subttle gold-text">{{ $item->title }}</h5>
+                                                        <h5 class="subttle {{ $index % 2 == 0 ? 'nasia-green' : 'gold-gradient' }}">{{ $item->title }}</h5>
                                                         <div class="text">
                                                             {{ $item->sub_title }}
                                                         </div>
@@ -1820,7 +1820,7 @@
                                                         <img src="{{ $item->image }}" alt="{{ $item->title }}">
                                                     </div>
                                                     <div class="learn-feature-item-content">
-                                                        <h5 class="subttle gold-text">{{ $item->title }}</h5>
+                                                        <h5 class="subttle {{ $index % 2 == 0 ? 'nasia-green' : 'gold-gradient' }}">{{ $item->title }}</h5>
                                                         <div class="text">
                                                             {{ $item->sub_title }}
                                                         </div>
@@ -1901,7 +1901,7 @@
                     $display = strtolower($m->display_name ?? '');
                     $translated = strtolower(translate("{$m->module_name}"));
                     
-                    $exclude_terms = ['grocery', 'christine', 'grocery', 'jameson', 'hobbs'];
+                    $exclude_terms = ['grocery', 'بقالة', 'christine', 'jameson', 'hobbs'];
                     
                     foreach($exclude_terms as $term) {
                         if (str_contains($name, $term) || 

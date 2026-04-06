@@ -6731,7 +6731,7 @@ Smartly or Earn.' => 'لنقم بإدارة عملك بذكاء أو كسب ال
   'guaranteed_quality_desc' => 'التعامل المباشر مع المصادر يضمن الجودة الأصلية وتجاوز المشاكل التقليدية للوسطاء.',
   'continuous_support' => 'دعم متواصل',
   'continuous_support_desc' => 'فريقنا معك في كل خطوة، من التدريب التقني حتى الدعم اللوجستي الميداني.',
-  'hero_headline' => '<span class="nasia-green">ناصية — منصة تربط المصنع مباشرة</span> <br> <span class="gold-gradient">بالتاجر والعميل مع توصيل ذكي</span>',
+  'hero_headline' => '<span class="gold-gradient">ناصية — منصة تربط المصنع مباشرة</span> <br> <span class="nasia-green">بالتاجر والعميل مع توصيل ذكي</span>',
   'hero_subheadline' => 'منظومة توزيع ذكية تضمن الوصول للمصادر مباشرةً، تُسرّع عمليات البيع، وتوفر تجربة تسوق فريدة ومربحة لجميع الأطراف.',
   'for_customers_shoppers' => 'للعملاء والمتسوقين',
   'start_shopping' => 'ابدأ التسوق',
