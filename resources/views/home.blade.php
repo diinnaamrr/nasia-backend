@@ -8,6 +8,8 @@
         :root {
             --primary-gold: #C3A04B;
             --secondary-gold: #D4AF37;
+            --nasia-green: #137E42;
+            --nasia-gold: #C3A04B;
             --bg-light: #fefefe;
             --bg-secondary: #f4f4f9;
             --text-main: #1a1a1a;
@@ -30,6 +32,10 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             font-weight: 800;
+        }
+
+        .nasia-green {
+            color: var(--nasia-green) !important;
         }
 
         /* Glassmorphism & Cards */
