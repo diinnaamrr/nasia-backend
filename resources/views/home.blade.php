@@ -32,6 +32,7 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             font-weight: 800;
+            display: inline-block;
         }
 
         .nasia-green {
@@ -1721,12 +1722,12 @@
     <section class="problem-definition-section py-5 bg-gray-soft overflow-hidden">
         <div class="container">
             <div class="section-header text-center mb-5">
-                <h2 class="title gold-text">{{ translate('why_trading_is_harder_title') }}</h2>
+                <h2 class="title gold-gradient">{{ translate('why_trading_is_harder_title') }}</h2>
                 <p class="mx-auto" style="max-width: 600px;">
                     {{ translate('why_trading_is_harder_description') }}
                 </p>
             </div>
-            <div class="row g-4 justify-content-center">
+            <div class="row g-4 justify-content-center">    
                 <div class="col-lg-4 col-md-6">
                     <div class="glass-card p-4 h-100" style="border-top: 4px solid var(--nasia-green);">
                         <div class="mb-4" style="font-size: 3.5rem;">💸</div>
@@ -1759,7 +1760,7 @@
                 <div class=" col-lg-6 pe-lg-5">
                     <div class="learn-feature-content wow fadeInUp">
                         <div class="section-header text-start mb-0">
-                            <h2 class="title gold-text">
+                            <h2 class="title gold-gradient">
                                 {{ translate('why_nasia_is_your_first_choice') }}
                             </h2>
                             <div class="text">
