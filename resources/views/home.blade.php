@@ -3,97 +3,92 @@
 @section('title', translate('messages.landing_page') . ' | ' . $business_name != 'null' ? $business_name : 'Sixam Mart')
 @section('content')
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
 
         :root {
-            --primary-gold: #D4AF37;
-            --secondary-gold: #FFD700;
-            --bg-dark: #050510;
-            --bg-darker: #020205;
-            --glass-bg: rgba(255, 255, 255, 0.03);
-            --glass-border: rgba(255, 255, 255, 0.1);
-            --text-gold-gradient: linear-gradient(135deg, #D4AF37 0%, #FFD700 100%);
+            --primary-gold: #C3A04B;
+            --secondary-gold: #D4AF37;
+            --nasia-green: #137E42;
+            --nasia-gold: #C3A04B;
+            --bg-light: #fefefe;
+            --bg-secondary: #f4f4f9;
+            --text-main: #1a1a1a;
+            --text-muted: #555555;
+            --glass-bg: rgba(255, 255, 255, 0.7);
+            --glass-border: rgba(195, 160, 75, 0.2);
+            --gold-gradient: linear-gradient(135deg, #C3A04B 0%, #E2C06B 100%);
         }
 
         body {
-            font-family: 'Inter', sans-serif !important;
-            background-color: var(--bg-dark) !important;
-            color: #ffffff !important;
+            font-family: 'Outfit', sans-serif !important;
+            background-color: var(--bg-light) !important;
+            color: var(--text-main) !important;
+            overflow-x: hidden;
         }
 
-        .premium-text-gradient {
-            background: var(--text-gold-gradient);
+
+        .gold-gradient {
+            background: var(--gold-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             font-weight: 800;
-            filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.3));
+            display: inline-block;
         }
 
-        .glass-card {
-            background: var(--glass-bg) !important;
-            backdrop-filter: blur(20px) !important;
-            -webkit-backdrop-filter: blur(20px) !important;
-            border: 1px solid var(--glass-border) !important;
-            border-radius: 20px !important;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4) !important;
+        .nasia-green {
+            color: var(--nasia-green) !important;
         }
 
-        .glass-card:hover {
-            border-color: var(--primary-gold) !important;
-            transform: translateY(-10px) !important;
-            box-shadow: 0 20px 50px rgba(212, 175, 55, 0.15) !important;
+        /* Glassmorphism & Cards */
+        .glass-panel {
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
 
-        .gold-glow {
-            filter: drop-shadow(0 0 30px rgba(212, 175, 55, 0.4));
+        .glass-panel:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(195, 160, 75, 0.15);
+            border-color: var(--primary-gold);
         }
 
-        .cmn--btn {
-            background: var(--text-gold-gradient) !important;
-            color: var(--bg-dark) !important;
-            font-weight: 700 !important;
-            border: none !important;
-            border-radius: 50px !important;
-            padding: 14px 35px !important;
-            transition: all 0.3s ease !important;
-            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4) !important;
+        /* Premium Buttons */
+        .premium-btn {
+            border-radius: 50px;
+            padding: 12px 30px;
+            font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .cmn--btn:hover {
-            transform: scale(1.05) !important;
-            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.6) !important;
-            color: #000 !important;
-        }
-
-        .banner-section {
-            background: linear-gradient(to bottom, #020205 0%, #050510 100%) !important;
-            padding: 80px 0 20px !important;
-            position: relative;
-            overflow: hidden;
-            display: flex;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            text-decoration: none !important;
+            display: inline-flex;
             align-items: center;
-            min-height: 60vh; /* Reduced height */
+            justify-content: center;
+            gap: 10px;
         }
 
-        .banner-section .title {
-            background: var(--text-gold-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            font-size: 3.2rem !important; /* Elegant size */
-            line-height: 1.2;
-            font-weight: 800 !important;
-            margin-bottom: 20px;
-            text-align: center;
-            filter: drop-shadow(0 2px 10px rgba(0,0,0,0.5));
+        .btn-gold {
+            background: var(--gold-gradient);
+            color: #fff !important;
+            border: none;
+            box-shadow: 0 4px 15px rgba(195, 160, 75, 0.3);
         }
 
-        .banner-content .text {
-            font-size: 1.2rem !important;
-            line-height: 1.6;
-            margin-bottom: 35px;
+        .btn-gold:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(195, 160, 75, 0.5);
+        }
+
+        .btn-outline-gold {
+            background: transparent;
+            border: 2px solid var(--primary-gold);
+            color: var(--primary-gold) !important;
+        }
+
             color: rgba(255, 255, 255, 0.85) !important;
             text-align: center;
             max-width: 550px;
@@ -109,232 +104,132 @@
             align-items: center;
         }
 
-        .hero-main-img {
-            width: 100% !important;
-            max-width: 500px !important;
-            border-radius: 30px; /* Added rounded corners */
-            filter: drop-shadow(0 0 40px rgba(212, 175, 55, 0.1));
-            animation: float-simple 6s ease-in-out infinite;
+        /* Hero Layout */
+        .hero-section {
+            padding: 160px 0 100px;
+            position: relative;
+            overflow: hidden;
         }
 
-        @keyframes float-simple {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-15px); }
+        .hero-title {
+            font-size: 3.8rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 25px;
         }
 
-        @media (max-width: 991px) {
-            .banner-section {
-                text-align: center;
-                padding: 40px 0 !important;
-            }
-            .banner-section .title, .banner-content .text {
-                text-align: center;
-                margin-left: auto;
-                margin-right: auto;
-            }
-            .banner-section .title {
-                font-size: 2.5rem !important;
-            }
-            .hero-visual-side {
-                margin-top: 40px;
-            }
+        .hero-description {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin-bottom: 40px;
         }
 
-        @keyframes fadeInScale {
-            from { opacity: 0; transform: scale(0.95); }
-            to { opacity: 1; transform: scale(1); }
+        .hero-cta-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 30px;
         }
 
-        .banner-content .text {
-            font-size: 1.45rem !important;
-            line-height: 1.6;
-            margin: 0 auto 40px;
-            color: rgba(255, 255, 255, 0.95) !important;
+        .cta-card {
+            flex: 1;
+            min-width: 250px;
+            padding: 30px;
             text-align: center;
         }
 
-        /* Scroll Down Indicator */
-        .scroll-indicator {
-            position: absolute;
-            bottom: 40px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 5;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
-            opacity: 0.7;
-            animation: bounceSoft 2s infinite;
+        .cta-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            display: block;
         }
 
-        .mouse-icon {
-            width: 25px;
-            height: 40px;
-            border: 2px solid var(--primary-gold);
-            border-radius: 15px;
-            position: relative;
+        /* Background Mesh Animation */
+        .mesh-bg-wrapper {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            background: radial-gradient(at 0% 0%, rgba(195, 160, 75, 0.08) 0px, transparent 50%),
+                        radial-gradient(at 100% 0%, rgba(226, 192, 107, 0.08) 0px, transparent 50%);
+            animation: mesh-drift 15s ease infinite alternate;
         }
 
-        .mouse-icon::after {
-            content: '';
-            width: 4px;
-            height: 8px;
-            background: var(--primary-gold);
-            position: absolute;
-            top: 6px;
-            left: 50%;
-            transform: translateX(-50%);
-            border-radius: 2px;
-            animation: scroll-wheel 1.5s infinite;
+        @keyframes mesh-drift {
+            0% { transform: scale(1); background-position: 0% 0%; }
+            100% { transform: scale(1.1); background-position: 20% 20%; }
         }
 
-        @keyframes scroll-wheel {
-            0% { opacity: 1; transform: translate(-50%, 0); }
-            100% { opacity: 0; transform: translate(-50%, 15px); }
+        /* Zig-Zag Sections */
+        .py-120 { padding: 120px 0; }
+        .bg-surface { background-color: var(--bg-secondary); }
+        .split-item { display: flex; align-items: center; gap: 60px; }
+        .story-img-wrapper { border-radius: 32px; overflow: hidden; box-shadow: 0 30px 60px rgba(0,0,0,0.1); }
+        .story-img-wrapper img { width: 100%; height: auto; transition: transform 0.6s ease; }
+        .story-img-wrapper:hover img { transform: scale(1.05); }
+
+        .feature-badge {
+            background: rgba(195, 160, 75, 0.1);
+            color: var(--primary-gold);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: inline-block;
+            margin-bottom: 20px;
         }
 
-        @keyframes bounceSoft {
-            0%, 100% { transform: translate(-50%, 0); }
-            50% { transform: translate(-50%, 10px); }
-        }
-
-        .hero-visual-side {
-            position: relative;
-            width: 100%;
-            max-width: 900px;
-            z-index: 1;
-        }
-
-        .hero-main-img {
-            width: 100% !important;
-            filter: drop-shadow(0 0 50px rgba(212, 175, 55, 0.15));
-            animation: float-simple 6s ease-in-out infinite;
-        }
 
         @keyframes float-simple {
             0%, 100% { transform: translateY(0px); }
             50% { transform: translateY(-15px); }
         }
 
-        .hero-floating-card {
-            position: absolute;
-            z-index: 5;
-            animation: orbital-float 10s ease-in-out infinite;
-            pointer-events: none;
+        .float-anim {
+            animation: float 6s ease-in-out infinite;
         }
 
-        .hero-floating-card.card-1 {
-            top: -10%;
-            right: 0;
-            width: 35% !important;
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
         }
 
-        @keyframes float-master {
-            0% { transform: translateY(0px) rotateX(10deg); }
-            50% { transform: translateY(-30px) rotateX(5deg); }
-            100% { transform: translateY(0px) rotateX(10deg); }
-        }
-
-        @keyframes orbital-float {
-            0% { transform: translate(0, 0) scale(1) rotate(0deg); }
-            33% { transform: translate(-20px, 15px) scale(1.05) rotate(2deg); }
-            66% { transform: translate(15px, -10px) scale(0.98) rotate(-1deg); }
-            100% { transform: translate(0, 0) scale(1) rotate(0deg); }
-        }
-
-        @media (max-width: 991px) {
-            .banner-section .title {
-                font-size: 2.8rem !important;
-            }
-            .banner-content .text {
-                font-size: 1.1rem !important;
-            }
-            .hero-glass-plate {
-                padding: 30px 20px;
-            }
-            .hero-visual-masterpiece {
-                margin: 20px auto 0; /* Stack on mobile */
-            }
-        }
-
-        /* Apply glass to existing components */
-        .venture-content-box, .learn-feature-item, .feature-card, .testimonial-item {
-            background: rgba(20, 20, 20, 0.6) !important;
-            backdrop-filter: blur(12px) !important;
-            border: 1px solid rgba(212, 175, 55, 0.2) !important;
-            border-radius: 24px !important;
-            color: #fff !important;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3) !important;
-        }
-
-        .venture-content-box .text {
-            color: rgba(255, 255, 255, 0.8) !important;
-            line-height: 1.6;
-            font-size: 1.05rem;
-        }
-
-        .ecommerce-venture-section {
-            background: linear-gradient(135deg, #0a0a0a 0%, #151515 100%) !important;
-            position: relative;
-            margin-top: -120px; /* Controlled overlap */
-            padding-top: 140px !important;
-            z-index: 1;
-        }
-
-        .standalone-svg-container {
-            position: relative;
-            z-index: 2; /* Ensure SVG is above the venture section background */
-            background: linear-gradient(to bottom, #050510 0%, #0a0a0a 100%);
-            padding: 20px 0; /* Reduced padding */
-            overflow: visible;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .standalone-svg-container svg {
-            max-width: 100%;
-            height: auto;
-        }
-
-        .title { color: #fff !important; }
-        .text { color: rgba(255,255,255,0.7) !important; }
-
+        /* Journey Sections */
         .nasia-journey-section {
-            background: linear-gradient(to bottom, var(--bg-dark), var(--bg-darker)) !important;
+            background: var(--bg-light);
+            padding: 100px 0;
             position: relative;
         }
 
-        .journey-item {
-            position: relative;
-            z-index: 1;
+        .journey-card {
+            padding: 40px;
+            text-align: center;
             height: 100%;
+        }
+
+        .journey-num {
+            width: 50px;
+            height: 50px;
+            background: var(--gold-gradient);
+            color: #fff;
+            border-radius: 50%;
             display: flex;
-            flex-direction: column;
+            align-items: center;
             justify-content: center;
+            font-weight: 800;
+            margin: 0 auto 20px;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 15px rgba(195, 160, 75, 0.3);
         }
 
-        .journey-icon img {
-            max-height: 100px;
-            object-fit: contain;
-            margin: 0 auto;
+        .journey-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            display: block;
         }
 
-        .journey-arrow {
-            opacity: 0.5;
-            animation: pulse-gold 2s infinite ease-in-out;
-        }
-
-        .gold-glow-sm {
-            filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.3));
-        }
-
-        .gold-text {
-            color: var(--primary-gold) !important;
-        }
-
-        @keyframes pulse-gold {
             0% { transform: scale(1); opacity: 0.5; }
             50% { transform: scale(1.2); opacity: 1; }
             100% { transform: scale(1); opacity: 0.5; }
@@ -342,303 +237,187 @@
 
         .mt-n5 { margin-top: -3rem !important; }
 
-        /* Venture Section Refinement */
-        .venture-img-container {
-            padding: 40px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+        .float-anim {
+            animation: float 6s ease-in-out infinite;
         }
 
-        .venture-main-visual {
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* Journey Sections */
+        .nasia-journey-section {
+            background: var(--bg-light);
+            padding: 100px 0;
             position: relative;
-            z-index: 2;
-            transition: all 0.25s ease;
-            filter: drop-shadow(0 0 30px rgba(212, 175, 55, 0.2));
         }
 
-        .venture-img-container:hover .venture-main-visual {
-            transform: scale(1.02) rotate(-2deg);
-            filter: drop-shadow(0 0 50px rgba(212, 175, 55, 0.4));
+        .journey-card {
+            padding: 40px;
+            text-align: center;
+            height: 100%;
         }
 
-        .venture-img-glow {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 80%;
-            height: 80%;
-            background: radial-gradient(circle, rgba(212, 175, 55, 0.15) 0%, transparent 70%);
-            z-index: 1;
-            filter: blur(40px);
-        }
-
-        .floating-ring {
-            position: absolute;
-            border: 1px solid rgba(212, 175, 55, 0.2);
+        .journey-num {
+            width: 50px;
+            height: 50px;
+            background: var(--gold-gradient);
+            color: #fff;
             border-radius: 50%;
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        .ring-1 {
-            width: 300px;
-            height: 300px;
-            top: 10%;
-            right: 0%;
-            animation: orbital-float 15s infinite linear;
-        }
-
-        .ring-2 {
-            width: 250px;
-            height: 250px;
-            bottom: 5%;
-            left: 5%;
-            animation: orbital-float 20s infinite linear reverse;
-        }
-
-        .venture-module-icon {
-            background: rgba(212, 175, 55, 0.1);
-            padding: 10px;
-            border-radius: 12px;
-            border: 1px solid rgba(212, 175, 55, 0.2);
-        }
-
-        /* Main Category Section Styling */
-        .main-category {
-            background: #0a0a0a !important;
-        }
-
-        .category-slide-item {
-            position: relative;
-            min-height: 450px;
-            border-radius: 30px;
-            overflow: hidden;
             display: flex;
             align-items: center;
-            justify-content: flex-start;
-            padding: 60px;
-            border: 1px solid rgba(212, 175, 55, 0.1);
-            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            justify-content: center;
+            font-weight: 800;
+            margin: 0 auto 20px;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 15px rgba(195, 160, 75, 0.3);
         }
 
-        .category-slide-item::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(90deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.6) 40%, transparent 100%);
-            z-index: 1;
+        .journey-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            display: block;
         }
 
-        .category-slide-content {
+        /* Stats & Trusted By */
+        .stats-section {
+            padding: 80px 0;
+            background-color: var(--bg-secondary);
+        }
+
+        .stat-card {
+            padding: 30px;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        /* Stats & Trusted By */
+        .stats-section {
+            padding: 80px 0;
+            background-color: var(--bg-secondary);
+        }
+
+        .stat-card {
+            padding: 30px;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .stat-value {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 991px) {
+            .hero-title { font-size: 2.8rem; }
+            .hero-section { padding: 120px 0 60px; }
+            .split-item { flex-direction: column; text-align: center; gap: 40px; }
+        }
+
+        /* ==== Premium UI Enhancements ==== */
+        :root {
+            --nasia-green: #137E42;
+            --nasia-gold: #C3A04B;
+            --nasia-bg: #fdfdfd;
+            --section-padding: 100px;
+        }
+
+        section {
+            padding: var(--section-padding) 0;
             position: relative;
-            z-index: 2;
-            max-width: 550px;
-            padding: 40px;
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(15px);
-            border-radius: 24px;
-            border: 1px solid rgba(212, 175, 55, 0.2);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
         }
 
-        .category-slide-item .title {
-            font-size: 2.8rem !important;
-            font-weight: 800 !important;
-            margin-bottom: 20px !important;
-            color: #fff !important;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
-            background: linear-gradient(to right, #fff, var(--primary-gold));
+        @media (max-width: 768px) {
+            section { padding: 60px 0; }
+        }
+
+        /* Typography & Headlines */
+        .title.gold-text {
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            font-weight: 800;
+            line-height: 1.2;
+            background: linear-gradient(135deg, var(--nasia-green) 0%, var(--nasia-gold) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            margin-bottom: 25px;
         }
 
-        .category-slide-item .text {
-            font-size: 1.25rem !important;
-            line-height: 1.6 !important;
-            color: rgba(255,255,255,0.9) !important;
-            margin-bottom: 30px !important;
-        }
-
-        .category-slide-btn {
-            display: inline-block;
-            padding: 12px 35px;
-            background: var(--primary-gold);
-            color: #000;
-            border-radius: 50px;
+        .sec-label {
+            color: var(--nasia-green);
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
-            text-decoration: none !important;
+            letter-spacing: 2px;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            display: block;
         }
 
-        .category-slide-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.4);
-            color: #000;
+        /* Elevated Glass Cards */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8) !important;
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(19, 126, 66, 0.1) !important;
+            border-radius: 24px !important;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.03) !important;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1) !important;
         }
 
-        .main-category-slider .owl-nav {
-            position: absolute;
-            top: 50%;
-            width: 100%;
-            transform: translateY(-50%);
-            display: flex;
-            justify-content: space-between;
-            pointer-events: none;
-            padding: 0 20px;
+        .glass-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(19, 126, 66, 0.08) !important;
+            border-color: var(--nasia-green) !important;
         }
 
-        .main-category-slider .owl-nav button {
-            pointer-events: auto;
-            width: 50px;
-            height: 500px;
-            background: rgba(0,0,0,0.3) !important;
-            color: var(--primary-gold) !important;
-            border-radius: 50%;
-            font-size: 2rem !important;
-            transition: all 0.3s ease;
-        }
-
-        .main-category-slider .owl-dots {
-            margin-top: 30px !important;
-        }
-
-        .main-category-slider .owl-dot span {
-            background: rgba(212, 175, 55, 0.2) !important;
-            width: 12px !important;
-            height: 12px !important;
-            transition: all 0.3s ease;
-        }
-
-        .main-category-slider .owl-dot.active span {
-            background: var(--primary-gold) !important;
-            width: 30px !important;
-        }
-        /* Delivery Area Section Styling */
-        .delivery-area-section {
-            background: #0a0a0a !important;
-            padding: 80px 0;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .zone-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            margin-top: 30px;
-        }
-
-        .zone-list .item {
-            padding: 12px 25px;
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(212, 175, 55, 0.2);
-            border-radius: 50px;
-            color: #fff;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
-
-        .zone-list .item:hover {
-            background: var(--primary-gold);
-            color: #000;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.4);
-            border-color: var(--primary-gold);
-        }
-
-        /* Customizing Popover */
-        .popover {
-            background: rgba(15, 15, 15, 0.95) !important;
-            backdrop-filter: blur(15px) !important;
-            border: 1px solid rgba(212, 175, 55, 0.3) !important;
-            border-radius: 15px !important;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.5) !important;
+        /* Prime CTAs */
+        .cmn--btn {
+            background: var(--nasia-green) !important;
             color: #fff !important;
-        }
-
-        .popover-header {
-            background: transparent !important;
-            border-bottom: 1px solid rgba(212, 175, 55, 0.2) !important;
-            color: var(--primary-gold) !important;
+            border-radius: 50px !important;
+            padding: 14px 36px !important;
             font-weight: 700 !important;
+            letter-spacing: 0.5px;
+            box-shadow: 0 8px 25px rgba(19, 126, 66, 0.25) !important;
+            border: none !important;
+            transition: all 0.3s ease !important;
         }
 
-        .popover-body {
-            color: rgba(255,255,255,0.9) !important;
+        .cmn--btn:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 12px 30px rgba(19, 126, 66, 0.35) !important;
+            background: #0f6635 !important;
         }
 
-        .delivery-map-container {
-            position: relative;
-            display: inline-block;
-        }
-
-        .delivery-map-container::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 120%;
-            height: 120%;
-            background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
-            z-index: -1;
-            filter: blur(50px);
-        }
-        /* Refer Section Styling */
-        .refer-section {
-            background: linear-gradient(to bottom, #0a0a0a, #050510) !important;
-            padding: 100px 0 !important;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .refer-glass-box {
-            padding: 50px;
-            background: rgba(255, 255, 255, 0.02);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(212, 175, 55, 0.1);
-            border-radius: 40px;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
-            position: relative;
-            z-index: 2;
-        }
-
-        .refer-img-container {
-            position: relative; 
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .refer-glow {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle, rgba(212, 175, 55, 0.15) 0%, transparent 70%);
-            filter: blur(60px);
-            z-index: 1;
-        }
-
-        .refer-section .title {
-            font-size: 3rem !important;
+        .premium-btn {
+            background: linear-gradient(135deg, var(--nasia-green), var(--nasia-gold)) !important;
+            border: none !important;
+            color: #fff !important;
             font-weight: 800 !important;
-            margin-bottom: 25px !important;
         }
 
-        .refer-section .text {
-            font-size: 1.2rem !important;
-            color: rgba(255, 255, 255, 0.8) !important;
-            line-height: 1.8 !important;
-        }
+        /* Clean Structure */
+        .max-w-600 { max-width: 600px; margin-left: auto; margin-right: auto; }
+        .mb-50 { margin-bottom: 50px !important; }
+        
+        .bg-white-soft { background-color: #ffffff; }
+        .bg-gray-soft { background-color: #fafafa; }
 
+        /* Floating elements adjustment */
+        .float-anim { animation: float 6s ease-in-out infinite; }
     </style>
+
 
 
     <!-- Basic Settings -->
@@ -653,30 +432,204 @@
 
 
 
-    <!-- ==== Banner Section Starts Here ==== -->
+    <!-- ==== Hero Section — Nasia Hybrid Funnel ==== -->
     @php($logo = \App\Models\BusinessSetting::where(['key' => 'logo'])->first())
-    <section class="banner-section position-relative">
+
+    <style>
+        /* ── Hero ─────────────────────────────── */
+        .nasia-hero {
+            padding: 140px 0 80px;
+            background: radial-gradient(ellipse at 60% 0%, rgba(212,175,55,0.08) 0%, transparent 60%),
+                        radial-gradient(ellipse at 0% 80%, rgba(195, 160, 75, 0.05) 0%, transparent 50%),
+                        #ffffff;
+            overflow: hidden;
+            position: relative;
+        }
+        .hero-badge {
+            display: inline-block;
+            padding: 6px 18px;
+            border-radius: 50px;
+            background: rgba(195, 160, 75, 0.1);
+            color: var(--primary-gold);
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            margin-bottom: 24px;
+        }
+        .hero-headline {
+            font-size: clamp(2.2rem, 5vw, 3.6rem);
+            font-weight: 800;
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+            color: var(--text-main);
+        }
+        .hero-sub {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            max-width: 640px;
+            margin: 0 auto 50px;
+        }
+
+        /* ── Segment Cards ────────────────────── */
+        .seg-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
+        @media(max-width:991px){ .seg-grid{grid-template-columns:1fr;} }
+
+        .seg-card {
+            border-radius: 28px;
+            padding: 36px 28px 28px;
+            background: #fff;
+            border: 1.5px solid rgba(195, 160, 75, 0.12);
+            box-shadow: 0 8px 40px rgba(0,0,0,0.04);
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            transition: all .35s cubic-bezier(.165,.84,.44,1);
+        }
+        .seg-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(195, 160, 75, 0.14);
+            border-color: var(--primary-gold);
+        }
+        .seg-card.featured {
+            background: linear-gradient(145deg,#fffbf0 0%,#fff 100%);
+            border-color: var(--primary-gold);
+            box-shadow: 0 12px 50px rgba(195, 160, 75, 0.18);
+        }
+        .seg-icon-wrap {
+            width: 64px; height: 64px;
+            border-radius: 18px;
+            background: rgba(195, 160, 75, 0.1);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.9rem;
+        }
+        .seg-label {
+            font-size: .95rem;
+            font-weight: 700;
+            color: var(--primary-gold);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .seg-title { font-size: 1.35rem; font-weight: 800; color: var(--text-main); margin: 0; }
+        .seg-desc { font-size: .92rem; color: var(--text-muted); line-height: 1.65; margin: 0; }
+
+        .benefits-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px; }
+        .benefits-list li { display: flex; align-items: flex-start; gap: 8px; font-size: .87rem; color: var(--text-muted); }
+        .benefits-list li::before { content: "✓"; color: var(--primary-gold); font-weight: 800; flex-shrink: 0; margin-top: 1px; }
+
+        .seg-actions { display: flex; flex-direction: column; gap: 10px; margin-top: auto; }
+        .btn-seg-primary {
+            display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+            padding: 13px 20px; border-radius: 14px;
+            background: var(--gold-gradient); color: #fff !important;
+            font-weight: 700; font-size: .95rem;
+            text-decoration: none; border: none;
+            box-shadow: 0 4px 18px rgba(195, 160, 75, 0.28);
+            transition: all .25s;
+        }
+        .btn-seg-primary:hover { transform: scale(1.03); box-shadow: 0 8px 28px rgba(195, 160, 75, 0.4); color:#fff !important; }
+        .btn-seg-secondary {
+            display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+            padding: 13px 20px; border-radius: 14px;
+            border: 2px solid rgba(195, 160, 75, 0.35); color: var(--primary-gold) !important;
+            font-weight: 700; font-size: .95rem;
+            text-decoration: none; background: transparent;
+            transition: all .25s;
+        }
+        .btn-seg-secondary:hover { background: rgba(195, 160, 75, 0.06); border-color: var(--primary-gold); color: var(--primary-gold) !important; }
+
+        .store-row { display: flex; gap: 10px; }
+        .btn-store {
+            flex: 1; display: flex; align-items: center; justify-content: center; gap: 6px;
+            padding: 11px 12px; border-radius: 12px;
+            background: var(--gold-gradient); color: #fff !important;
+            font-weight: 700; font-size: .85rem;
+            text-decoration: none;
+            transition: opacity .2s;
+        }
+        .btn-store:hover { opacity: .88; color: #fff !important; }
+
+        @media(max-width:600px){
+            .nasia-hero { padding: 100px 0 60px; }
+            .hero-headline { font-size: 2rem; }
+        }
+    </style>
+
+    <section class="nasia-hero" id="nasia-hero">
         <div class="container">
-            <div class="banner-content wow fadeInUp">
-                <h1 class="title">{{ translate('nasia_smart_investment_and_shopping') }}</h1>
-                <div class="text">
-                    {{ translate('your_integrated_gateway_for_financial_growth') }}
-                </div>
-                <div class="btn-grp d-flex gap-3 justify-content-center">
-                    <a href="#sync2" class="cmn--btn">{{ translate('start_now') }}</a>
-                    <a href="#nasia-journey" class="cmn--btn outline" style="background: transparent !important; border: 1px solid var(--primary-gold) !important; color: var(--primary-gold) !important;">{{ translate('discover_more') }}</a>
+
+            {{-- ── Value Proposition ─────────────────── --}}
+            <div class="text-center mb-5 wow fadeInUp">
+                <h1 class="hero-headline mb-3">
+                    {!! translate('hero_headline') !!}
+                </h1>
+                <p class="hero-sub mx-auto">
+                    {{ translate('hero_subheadline') }}
+                </p>
+            </div>
+
+            {{-- ── Segmentation Grid ─────────────────── --}}
+            <div class="seg-grid wow fadeInUp" data-wow-delay="0.1s">
+
+                {{-- ❶ ابدأ التسوق ─────── --}}
+                <div class="seg-card">
+                    <div class="seg-icon-wrap">🛒</div>
+                    <span class="seg-label">{{ translate('for_customers_shoppers') }}</span>
+                    <h3 class="seg-title">{{ translate('start_shopping') }}</h3>
+                    <p class="seg-desc">{{ translate('customer_hero_desc') }}</p>
+                    <ul class="benefits-list">
+                        <li>{{ translate('wholesale_prices') }}</li>
+                        <li>{{ translate('fast_safe_delivery') }}</li>
+                        <li>{{ translate('fair_return_policy') }}</li>
+                    </ul>
+                    <div class="seg-actions">
+                        <div class="store-row">
+                            <a href="javascript:void(0)" class="btn-store"> 
+                                <i class="bi bi-box-arrow-in-down"></i> {{ translate('download_app') }}
+                            </a>
+                        </div>
+                    </div>
                 </div>
 
-            </div>
-        </div>
-        <div class="px-xl-5 d-flex justify-content-center text-base banner-svg-img">
-            <img src="{{asset('public/assets/landing/img/main-banner.svg')}}" class="svg" alt="">
+                {{-- ❷ ابدأ البيع ─────── --}}
+                <div class="seg-card featured">
+                    <div class="seg-icon-wrap" style="background:rgba(195, 160, 75,0.18);">📦</div>
+                    <span class="seg-label">{{ translate('for_merchants_factories') }}</span>
+                    <h3 class="seg-title">{{ translate('start_selling') }}</h3>
+                    <p class="seg-desc">{{ translate('merchant_hero_desc') }}</p>
+                    <ul class="benefits-list">
+                        <li>{{ translate('smart_inventory_management') }}</li>
+                        <li>{{ translate('guaranteed_secure_collection') }}</li>
+                        <li>{{ translate('realtime_sales_reports') }}</li>
+                    </ul>
+                    <div class="seg-actions">
+                        <a href="javascript:void(0)" class="btn-seg-primary">
+                            <i class="bi bi-box-arrow-in-left"></i> {{ translate('register_as_seller_now') }}
+                        </a>
+                    </div>
+                </div>
+
+                {{-- ❸ ابدأ ككابتن ─────── --}}
+                <div class="seg-card">
+                    <div class="seg-icon-wrap">🚚</div>
+                    <span class="seg-label">{{ translate('for_delivery_captains') }}</span>
+                    <h3 class="seg-title">{{ translate('start_as_captain') }}</h3>
+                    <p class="seg-desc">{{ translate('captain_hero_desc') }}</p>
+                    <ul class="benefits-list">
+                        <li>{{ translate('clear_fair_commission') }}</li>
+                        <li>{{ translate('easy_to_use_app') }}</li>
+                        <li>{{ translate('24_7_support') }}</li>
+                    </ul>
+                    <div class="seg-actions">
+                        <a href="javascript:void(0)" class="btn-seg-secondary">
+                            <i class="bi bi-truck"></i> {{ translate('register_as_nasia_captain') }}
+                        </a>
+                    </div>
+                </div>
+
+            </div>{{-- end seg-grid --}}
         </div>
     </section>
-    <!-- ==== Banner Section Ends Here ==== -->
-
-    
-
+    <!-- ==== Hero Section Ends Here ==== -->
 
 <!--path-->
         <div class="standalone-svg-container d-flex justify-content-center">
@@ -1038,10 +991,10 @@
 <path d="M467.364 324.126V243.968H458.655V229.597H455.939V243.968H450.244V134.334H442.016V124.036H437.149V115.666H422.947V95.47H420.232V115.666H406.031V124.036H401.163V134.334H392.936V166.24H379.114V165.9H376.399V166.24H350.148V223.772H328.411V136.371H320.394V115.326H309.057L303.911 86.5771C303.796 85.9322 303.233 85.457 302.574 85.457C301.916 85.457 301.352 85.9254 301.237 86.5771L296.091 115.326H284.754V136.371H276.826V213.644H264.043V177.101H261.327V213.644H255.102V192.26H252.387V213.644H240.168V255.549H229.761V168.276H220.434V151.529H216.069V133.2H210.074V121.436H207.359V133.2H199.328V151.529H184.489V168.276H176.132V225.978H170.532V170.143H167.816V225.978H163.458V182.308H160.743V225.978H153.73V197.467H141.002V216.644H132.231V225.978H122.951V168.786H114.52V148.081H111.805V168.786H105.525V155.887H102.81V168.786H89.9117V180.95H79.0501V215.456H45.1078V269.879H28.8154V318.349C27.3084 317.168 25.4212 316.448 23.3643 316.448C23.0656 316.448 22.7601 316.462 22.4614 316.496C20.7915 314.636 18.3883 313.55 15.8834 313.55C13.3784 313.55 11.0228 314.595 9.34608 316.448C4.83854 316.381 1.09809 319.775 0.521072 324.126H-53.3115V326.842H482.272V324.126H467.364ZM3.27719 324.126C3.82027 321.302 6.31164 319.164 9.29177 319.164C9.48185 319.164 9.66514 319.177 9.84843 319.191L10.5952 319.259L11.05 318.668C12.2244 317.141 13.9894 316.265 15.9037 316.265C17.8181 316.265 19.6578 317.175 20.8254 318.763L21.3345 319.456L22.1831 319.286C22.5836 319.205 22.9841 319.164 23.3847 319.164C26.358 319.164 28.8426 321.295 29.3924 324.126H3.28398H3.27719ZM320.394 139.086H325.696V223.772H320.394V139.086ZM317.679 118.042V163.504L310.266 122.067L309.546 118.042H317.679ZM311.888 146.553L312.859 151.984H292.296L293.267 146.553H311.888ZM293.756 143.838L294.605 139.086H310.551L311.399 143.838H293.749H293.756ZM313.347 154.699L314.318 160.13H290.837L291.808 154.699H313.341H313.347ZM314.807 162.846L315.778 168.276H289.384L290.355 162.846H314.807ZM316.267 170.992L317.237 176.423H287.931L288.902 170.992H316.267ZM302.581 94.5196L310.069 136.371H295.093L302.581 94.5196ZM287.477 141.815V118.042H295.609L292.33 136.371L291.842 139.086L291.244 142.419L290.905 144.313L287.47 163.504V141.822L287.477 141.815ZM287.477 179.138H317.679V184.569H287.477V179.138ZM287.477 187.284H317.679V192.715H287.477V187.284ZM287.477 195.43H317.679V200.861H287.477V195.43ZM287.477 203.576H317.679V209.007H287.477V203.576ZM287.477 215.001V211.723H317.679V217.153H287.47V215.001H287.477ZM287.477 219.869H317.685V223.772H298.114V255.549H287.477V219.869ZM279.554 139.086H284.768V213.644H279.554V139.086ZM242.897 216.359H284.761V223.772H261.45V226.488H284.761V233.826H261.45V236.541H284.761V243.968H261.45V246.683H284.761V255.549H242.897V216.359ZM178.861 225.978V170.992H187.218V154.245H202.057V135.916H213.374V154.245H217.739V170.992H227.066V255.549H198.554V272.724C197.516 272.167 196.328 271.848 195.065 271.848C192.839 271.848 190.843 272.846 189.485 274.407V176.423H186.77V285.025C186.532 285.826 186.403 286.661 186.403 287.516C186.403 288.914 186.736 290.272 187.374 291.494C186.417 292.573 185.704 293.85 185.269 295.207C185.1 293.802 184.57 292.478 183.701 291.358C184.034 290.557 184.204 289.695 184.204 288.826C184.204 285.602 181.909 282.9 178.868 282.275V225.978H178.861ZM184.957 300.224C184.815 300.027 184.658 299.83 184.502 299.647C184.618 299.416 184.713 299.185 184.808 298.941C184.835 299.375 184.882 299.803 184.964 300.224H184.957ZM69.2272 324.126H32.135C32.0332 323.359 31.8363 322.619 31.5512 321.927V314.683H69.2272V324.133V324.126ZM69.2272 311.961H31.5512V299.742H69.2272V311.961ZM69.2272 297.027H31.5512V284.807H69.2272V297.027ZM69.2272 282.092H31.5512V272.588H69.2272V282.092ZM111.825 324.126H71.9426V269.873H47.8435V218.165H94.684V225.972H58.2502V228.687H94.684V236.154H58.2502V238.87H94.684V246.337H58.2502V249.052H94.684V256.52H58.2502V259.235H94.684V282.649C92.6678 282.954 90.7874 283.694 89.1717 284.801V269.757H86.4563V287.258C84.4945 289.586 83.3065 292.587 83.3065 295.866C83.3065 299.145 84.4945 302.145 86.4563 304.474V324.065H89.1717V306.931C90.9639 308.153 93.0615 308.954 95.3289 309.178V324.065H98.0443V317.399L104.188 311.452C105.756 312.654 107.657 313.312 109.68 313.312C110.413 313.312 111.132 313.217 111.832 313.047V324.126H111.825ZM100.604 304.107C100.597 304.664 100.644 305.207 100.733 305.743C99.8704 306.096 98.9675 306.334 98.0443 306.456V298.473H95.3289V306.449C92.9393 306.143 90.7942 305.057 89.1717 303.435V303.367H89.1106C87.2031 301.439 86.0219 298.792 86.0219 295.873C86.0219 289.994 90.8078 285.208 96.6866 285.208C102.565 285.208 107.134 289.79 107.331 295.499C105.851 295.893 104.487 296.653 103.366 297.739C101.629 299.423 100.651 301.683 100.61 304.107H100.604ZM102.294 309.504L98.0443 313.624V309.178C99.2526 309.056 100.447 308.771 101.574 308.329C101.778 308.737 102.029 309.13 102.294 309.504ZM109.673 310.604C108.403 310.604 107.195 310.23 106.163 309.545L109.422 306.388L107.535 304.44L104.276 307.596C103.638 306.571 103.305 305.39 103.326 304.154C103.353 302.457 104.038 300.876 105.26 299.694C106.448 298.54 108.023 297.909 109.68 297.909C111.336 297.909 113.033 298.595 114.242 299.844C115.423 301.059 116.054 302.668 116.027 304.365C116 306.062 115.314 307.644 114.092 308.825C112.904 309.979 111.329 310.617 109.673 310.617V310.604ZM120.256 225.978V324.126H114.54V311.893C115.049 311.567 115.531 311.187 115.979 310.76C117.717 309.076 118.695 306.816 118.736 304.392C118.776 301.969 117.867 299.681 116.183 297.943C115.681 297.427 115.131 296.986 114.54 296.612V215.008H111.825V295.458C111.241 295.316 110.644 295.234 110.033 295.207C109.877 292.071 108.641 289.213 106.679 287.007V215.008H103.964V284.665C102.056 283.422 99.8093 282.662 97.3994 282.533V215.463H81.7859V207.772H108.716V205.056H81.7859V200.189H108.716V197.474H81.7859V192.498H108.716V189.782H81.7859V183.673H92.6474V171.508H120.256V225.985V225.978ZM176.146 324.126H122.972V228.694H134.967V219.36H143.737V200.182H151.035V228.694H176.152V282.275C173.111 282.907 170.817 285.602 170.817 288.826C170.817 289.07 170.837 289.315 170.857 289.559H151.789V292.275H170.715C170.05 293.442 169.69 294.766 169.69 296.144C169.69 296.443 169.71 296.735 169.744 297.027H151.795V299.742H170.443C169.303 301.093 168.577 302.749 168.346 304.494H151.795V307.209H168.393C168.692 309.029 169.527 310.665 170.722 311.961H151.795V314.677H175.311C175.589 314.745 175.874 314.799 176.159 314.84V324.126H176.146ZM176.146 312.097C173.186 311.472 170.959 308.839 170.959 305.695C170.959 303.863 171.747 302.098 173.118 300.855L174.007 300.054L173.322 299.077C172.717 298.215 172.398 297.203 172.398 296.158C172.398 294.793 172.928 293.51 173.899 292.546L174.652 291.793L174.102 290.883C173.729 290.258 173.532 289.552 173.532 288.84C173.532 286.647 175.317 284.862 177.51 284.862C179.703 284.862 181.488 286.647 181.488 288.84C181.488 289.559 181.291 290.265 180.918 290.883L180.368 291.793L181.122 292.546C182.086 293.51 182.622 294.793 182.622 296.158C182.622 297.203 182.303 298.215 181.699 299.077L181.013 300.054L181.902 300.855C183.274 302.098 184.061 303.863 184.061 305.695C184.061 308.839 181.834 311.466 178.875 312.097V301.201H176.159V312.097H176.146ZM193.701 324.126H178.861V314.84C183.321 314.181 186.763 310.332 186.763 305.695C186.763 305.193 186.715 304.691 186.634 304.202C188.249 306.51 190.782 308.119 193.707 308.506V324.126H193.701ZM193.701 305.763C190.171 305.118 187.482 302.03 187.482 298.316C187.482 296.192 188.392 294.148 189.981 292.709L190.87 291.908L190.184 290.931C189.478 289.926 189.112 288.751 189.112 287.523C189.112 285.934 189.729 284.434 190.856 283.314L191.61 282.56L191.06 281.651C190.619 280.918 190.388 280.089 190.388 279.248C190.388 276.668 192.486 274.57 195.065 274.57C197.645 274.57 199.742 276.668 199.742 279.248C199.742 280.089 199.512 280.918 199.07 281.651L198.52 282.56L199.274 283.314C200.401 284.441 201.019 285.934 201.019 287.523C201.019 288.745 200.645 289.919 199.946 290.931L199.26 291.908L200.15 292.709C201.738 294.148 202.648 296.192 202.648 298.316C202.648 302.03 199.96 305.118 196.43 305.763V298.364H193.714V305.763H193.701ZM291.115 324.126H196.416V308.506C201.446 307.841 205.35 303.53 205.35 298.316C205.35 295.805 204.413 293.374 202.756 291.501C203.395 290.272 203.727 288.914 203.727 287.523C203.727 285.547 203.069 283.667 201.854 282.139C202.247 281.223 202.451 280.239 202.451 279.248C202.451 277.774 202.01 276.396 201.263 275.242V258.271H298.114V283.762C296.397 282.961 294.496 282.499 292.48 282.499C290.674 282.499 288.95 282.866 287.368 283.518H268.286V294.888H279.14C279.113 295.214 279.093 295.547 279.093 295.879C279.093 297.502 279.398 299.05 279.928 300.489H268.286V311.859H291.115V324.133V324.126ZM283.227 286.226C281.55 287.835 280.294 289.872 279.629 292.166H271.001V286.226H283.227ZM281.292 303.197C283.397 306.395 286.825 308.635 290.796 309.137H271.001V303.197H281.286H281.292ZM291.122 306.442C285.881 305.77 281.815 301.297 281.815 295.873C281.815 291.609 284.34 287.93 287.965 286.226H288.054V286.185C289.405 285.561 290.905 285.208 292.487 285.208C298.243 285.208 302.934 289.79 303.131 295.499C301.651 295.893 300.286 296.653 299.166 297.739C297.428 299.423 296.451 301.683 296.41 304.107C296.403 304.664 296.451 305.207 296.539 305.743C295.677 306.096 294.774 306.334 293.851 306.456V298.473H291.136V306.449L291.122 306.442ZM303.328 304.433L300.069 307.589C299.431 306.564 299.098 305.383 299.119 304.148C299.146 302.451 299.832 300.869 301.054 299.688C302.242 298.534 303.816 297.902 305.473 297.902C307.129 297.902 308.826 298.588 310.035 299.837C312.472 302.356 312.404 306.381 309.892 308.818C308.704 309.972 307.129 310.61 305.473 310.61C304.203 310.61 302.995 310.237 301.963 309.551L305.222 306.395L303.334 304.446L303.328 304.433ZM298.094 309.504L293.844 313.624V309.178C295.053 309.056 296.247 308.771 297.374 308.329C297.578 308.737 297.829 309.13 298.094 309.504ZM350.168 324.126H293.844V317.406L299.988 311.459C301.556 312.66 303.457 313.319 305.473 313.319C305.486 313.319 305.493 313.319 305.507 313.319V314.656H313.042V309.239C315.024 306.232 315.031 302.288 313.042 299.267V294.359H305.778C305.371 290.761 303.531 287.591 300.843 285.439V226.488H350.175V324.126H350.168ZM357.635 324.126H352.884V168.955H357.635V324.126ZM366.685 324.126H360.351V168.955H366.685V324.126ZM376.412 324.126H369.4V168.955H376.412V324.126ZM395.665 158.202H425.398V155.487H395.665V146.207H425.398V143.492H395.665V137.043H403.892V126.745H408.759V118.374H434.44V126.745H439.308V137.043H447.535V243.961H441.575V143.159H438.86V243.968H432.838V143.159H430.123V243.968H421.556V176.423H418.84V313.876C418.094 313.672 417.313 313.55 416.525 313.55C414.923 313.55 413.389 313.977 412.052 314.772V168.955H425.405V166.24H395.671V158.209L395.665 158.202ZM379.128 168.948H409.337V177.434H379.128V168.948ZM379.128 180.149H409.337V188.974H379.128V180.149ZM379.128 191.69H409.337V200.515H379.128V191.69ZM379.128 203.23H409.337V212.055H379.128V203.23ZM379.128 214.771H409.337V223.596H379.128V214.771ZM379.128 226.311H409.337V235.136H379.128V226.311ZM379.128 237.851H409.337V246.676H379.128V237.851ZM379.128 249.392H409.337V258.217H379.128V249.392ZM379.128 260.932H409.337V269.757H379.128V260.932ZM379.128 272.473H409.337V281.298H379.128V272.473ZM379.128 284.013H409.337V292.838H379.128V284.013ZM379.128 295.553H409.337V304.378H379.128V295.553ZM401.163 324.119H379.128V307.094H409.337V316.469C405.128 316.734 401.713 319.978 401.163 324.119ZM420.198 324.119H403.906C404.449 321.295 406.94 319.157 409.92 319.157C410.11 319.157 410.294 319.171 410.477 319.184L411.217 319.252L411.672 318.661C412.846 317.134 414.611 316.258 416.525 316.258C418.44 316.258 420.28 317.168 421.447 318.756L421.956 319.449L422.805 319.279C423.205 319.198 423.606 319.157 424.006 319.157C426.98 319.157 429.471 321.289 430.014 324.119H420.198ZM464.663 324.119H432.757C432.187 319.795 428.487 316.442 424.006 316.442C423.708 316.442 423.402 316.455 423.104 316.489C422.642 315.973 422.119 315.525 421.556 315.131V246.67H464.663V324.113V324.119Z" fill="currentColor"></path>
 </g>
 <g clip-path="url(#clip2_417_3621)">
-<path d="M64.3956 324.137H59.54V330.847H64.3956V324.137Z" fill="#008D67"></path>
-<path d="M62.0041 328.066L55.7578 330.494V349.367C55.7578 352.454 58.2588 354.967 61.3575 354.967H97.9937L85.7206 330.214L62.0041 328.079V328.066Z" fill="currentColor"></path>
+<path d="M64.3956 324.137H59.54V330.847H64.3956V324.137Z" fill="#C3A04B"></path>
+<path d="M62.0041 328.066L55.7578 330.494V349.367C55.7578 352.454 58.2588 354.967 61.3575 354.967H97.9937L85.7206 330.214L62.0041 328.079V328.066Z" fill="#C3A04B"></path>
 <path d="M62.0041 328.066L55.7578 330.494V349.367C55.7578 352.454 58.2588 354.967 61.3575 354.967H97.9937L85.7206 330.214L62.0041 328.079V328.066Z" fill="white" fill-opacity="0.3"></path>
-<path d="M112.975 259.439L116.342 256.145C120.588 251.997 125.956 249.203 131.775 248.093L137.912 246.934C139.729 246.592 141.437 247.885 141.596 249.728L144.926 288.084C145.195 291.244 145.341 294.403 145.341 297.575V327.319H124.358L112.963 259.439H112.975Z" fill="currentColor"></path>
+<path d="M112.975 259.439L116.342 256.145C120.588 251.997 125.956 249.203 131.775 248.093L137.912 246.934C139.729 246.592 141.437 247.885 141.596 249.728L144.926 288.084C145.195 291.244 145.341 294.403 145.341 297.575V327.319H124.358L112.963 259.439H112.975Z" fill="#C3A04B"></path>
 <path d="M112.975 259.439L116.342 256.145C120.588 251.997 125.956 249.203 131.775 248.093L137.912 246.934C139.729 246.592 141.437 247.885 141.596 249.728L144.926 288.084C145.195 291.244 145.341 294.403 145.341 297.575V327.319H124.358L112.963 259.439H112.975Z" fill="black" fill-opacity="0.2"></path>
 <path d="M498.88 324.695H158.065V342.129H498.88V324.695Z" fill="#001D2F"></path>
 <path d="M409.199 364.038C419.654 361.551 426.114 351.06 423.627 340.604C421.14 330.149 410.648 323.69 400.193 326.177C389.738 328.664 383.279 339.155 385.766 349.61C388.253 360.065 398.744 366.525 409.199 364.038Z" fill="#00395E"></path>
@@ -1083,10 +1036,10 @@
 <path d="M450.643 350.281L451.582 348.658C451.814 348.256 451.68 347.755 451.277 347.524C450.875 347.292 450.374 347.426 450.143 347.829L449.203 349.451C448.971 349.854 449.106 350.354 449.508 350.586C449.911 350.818 450.411 350.683 450.643 350.281Z" fill="#001D2F"></path>
 <path d="M451.582 341.607L450.643 339.985C450.411 339.582 449.899 339.448 449.508 339.68C449.106 339.912 448.971 340.424 449.203 340.814L450.143 342.437C450.374 342.84 450.887 342.974 451.277 342.742C451.68 342.51 451.814 341.998 451.582 341.607Z" fill="#001D2F"></path>
 <path d="M498.869 336.473H493.635V352.979H498.869V336.473Z" fill="#001D2F"></path>
-<path d="M131.153 290.687L126.225 257.625L89.3078 262.688C84.7085 263.322 80.6703 266.055 78.3768 270.081L62.6756 297.628C59.711 302.838 58.1494 308.718 58.1494 314.708V325.676H61.9924V351.1H97.6891L131.788 337.583V299.226C131.788 296.372 131.58 293.505 131.153 290.674V290.687Z" fill="currentColor"></path>
-<path d="M70.459 344.684H87.1484V351.113H73.4235C71.7888 351.113 70.459 349.783 70.459 348.148V344.684Z" fill="currentColor"></path>
+<path d="M131.153 290.687L126.225 257.625L89.3078 262.688C84.7085 263.322 80.6703 266.055 78.3768 270.081L62.6756 297.628C59.711 302.838 58.1494 308.718 58.1494 314.708V325.676H61.9924V351.1H97.6891L131.788 337.583V299.226C131.788 296.372 131.58 293.505 131.153 290.674V290.687Z" fill="#C3A04B"></path>
+<path d="M70.459 344.684H87.1484V351.113H73.4235C71.7888 351.113 70.459 349.783 70.459 348.148V344.684Z" fill="#C3A04B"></path>
 <path d="M70.459 344.684H87.1484V351.113H73.4235C71.7888 351.113 70.459 349.783 70.459 348.148V344.684Z" fill="black" fill-opacity="0.2"></path>
-<path d="M107.387 270.149V315.788L97.0054 320.717L86.5989 342.115H74.338C72.1909 342.115 70.4463 340.371 70.4463 338.224V306.87C70.4463 304.088 70.9709 301.319 71.9835 298.733L83.5123 269.282C83.8661 268.367 84.7445 267.77 85.7327 267.77H105.008C106.326 267.77 107.387 268.831 107.387 270.149Z" stroke="#008D67" stroke-width="0.963788" stroke-miterlimit="10"></path>
+<path d="M107.387 270.149V315.788L97.0054 320.717L86.5989 342.115H74.338C72.1909 342.115 70.4463 340.371 70.4463 338.224V306.87C70.4463 304.088 70.9709 301.319 71.9835 298.733L83.5123 269.282C83.8661 268.367 84.7445 267.77 85.7327 267.77H105.008C106.326 267.77 107.387 268.831 107.387 270.149Z" stroke="#C3A04B" stroke-width="0.963788" stroke-miterlimit="10"></path>
 <path d="M101.581 352.613L94.7734 326.859H188.395L179.489 352.613H101.581Z" fill="currentColor"></path>
 <path d="M133.91 345.133C133.91 331.616 122.954 320.66 109.437 320.66C95.9193 320.66 84.9639 331.616 84.9639 345.133C84.9639 348.622 85.7081 351.941 87.0256 354.954H92.6498L117.293 346.621L118.879 352.612H132.751C133.507 350.257 133.922 347.744 133.922 345.145L133.91 345.133Z" fill="#001D2F"></path>
 <path d="M218.821 352.611C219.578 350.257 219.993 347.743 219.993 345.145C219.993 331.627 209.037 320.672 195.52 320.672C182.002 320.672 171.047 331.627 171.047 345.145C171.047 347.756 171.462 350.257 172.218 352.611H218.834H218.821Z" fill="#001D2F"></path>
@@ -1130,11 +1083,11 @@
 <path d="M112.706 348.174C113.182 348.442 113.78 348.284 114.048 347.82C114.316 347.344 114.158 346.747 113.694 346.478C113.218 346.21 112.621 346.368 112.352 346.832C112.084 347.308 112.242 347.906 112.706 348.174Z" fill="#001D2F"></path>
 <path d="M113.695 343.803C114.17 343.535 114.329 342.937 114.048 342.461C113.78 341.985 113.182 341.827 112.706 342.107C112.231 342.376 112.072 342.974 112.353 343.449C112.633 343.925 113.219 344.084 113.695 343.803Z" fill="#001D2F"></path>
 <path d="M114.757 259.196L133.691 257.098C134.606 257 135.301 256.22 135.301 255.292V251.95C135.301 251.388 134.777 250.961 134.228 251.083L124.895 253.096C122.736 253.56 120.71 254.512 118.966 255.89L114.757 259.209V259.196Z" fill="#001D2F"></path>
-<path d="M164.824 337.801H137.887C136.74 337.801 135.801 338.74 135.801 339.887C135.801 341.034 136.74 341.973 137.887 341.973H164.824C165.971 341.973 166.91 341.034 166.91 339.887C166.91 338.74 165.971 337.801 164.824 337.801Z" fill="currentColor"></path>
+<path d="M164.824 337.801H137.887C136.74 337.801 135.801 338.74 135.801 339.887C135.801 341.034 136.74 341.973 137.887 341.973H164.824C165.971 341.973 166.91 341.034 166.91 339.887C166.91 338.74 165.971 337.801 164.824 337.801Z" fill="#C3A04B"></path>
 <path d="M164.824 337.801H137.887C136.74 337.801 135.801 338.74 135.801 339.887C135.801 341.034 136.74 341.973 137.887 341.973H164.824C165.971 341.973 166.91 341.034 166.91 339.887C166.91 338.74 165.971 337.801 164.824 337.801Z" fill="black" fill-opacity="0.2"></path>
 <path d="M72.9599 292.954L80.1578 272.08C80.5238 271.031 79.743 269.945 78.6328 269.945L78.401 270.08L62.6998 297.627C62.6144 297.785 65.9694 297.175 68.6534 296.675C70.6663 296.297 72.3133 294.87 72.9721 292.942L72.9599 292.954Z" fill="#001D2F"></path>
 <path d="M84.244 271.64L77.4121 294.954L102.739 291.404C103.983 291.233 104.911 290.159 104.911 288.903V272.299C104.911 270.908 103.776 269.773 102.385 269.773H86.7206C85.5738 269.773 84.5612 270.53 84.244 271.628V271.64Z" fill="#001D2F"></path>
-<path d="M122.625 269.785H112.804C111.476 269.785 110.4 270.861 110.4 272.189V288.134C110.4 289.461 111.476 290.537 112.804 290.537H122.625C123.952 290.537 125.028 289.461 125.028 288.134V272.189C125.028 270.861 123.952 269.785 122.625 269.785Z" stroke="#008D67" stroke-width="0.963788" stroke-miterlimit="10"></path>
+<path d="M122.625 269.785H112.804C111.476 269.785 110.4 270.861 110.4 272.189V288.134C110.4 289.461 111.476 290.537 112.804 290.537H122.625C123.952 290.537 125.028 289.461 125.028 288.134V272.189C125.028 270.861 123.952 269.785 122.625 269.785Z" stroke="#C3A04B" stroke-width="0.963788" stroke-miterlimit="10"></path>
 <path d="M57.966 336.591L60.1742 335.517V332.406L55.7578 334.553V346.119L57.966 345.033V336.591Z" fill="#F2EFFA"></path>
 <path d="M141.571 345.754H135.801V348.511H141.571V345.754Z" fill="#FFC01F"></path>
 <path d="M166.91 345.754H161.14V348.511H166.91V345.754Z" fill="#FFC01F"></path>
@@ -1488,7 +1441,10 @@
 <g opacity="0.5">
 <path d="M1102.78 351.438C1113.34 351.438 1121.9 342.878 1121.9 332.317C1121.9 321.757 1113.34 313.196 1102.78 313.196C1092.22 313.196 1083.66 321.757 1083.66 332.317C1083.66 342.878 1092.22 351.438 1102.78 351.438Z" fill="black" fill-opacity="0.36"></path>
 </g>
-<path d="M1089.27 328.06V336.568H1099.06V346.355H1107.57V336.568H1117.35V328.06H1107.57V318.272H1099.06V328.06H1089.27Z" fill="white"></path>
+<path d="M1090.2 320.4H1116.4V344.8H1090.2V320.4Z" fill="#C3A04B"></path>
+<path d="M1090.2 327.1H1116.4" stroke="#C3A04B" stroke-width="1.6"></path>
+<path d="M1103.3 320.6V344.8" stroke="#C3A04B" stroke-width="1.6"></path>
+<path d="M1094.2 320.4L1103.3 314.6L1112.4 320.4" stroke="#C3A04B" stroke-width="1.6" fill="none"></path>
 <path opacity="0.5" d="M1078.94 373.98H1106.05V362.899H1078.94V373.98Z" fill="black" fill-opacity="0.36"></path>
 <path d="M1163.72 318.104H1132.86C1132.33 318.104 1131.91 318.531 1131.91 319.057V324.774C1131.91 325.301 1132.33 325.728 1132.86 325.728H1163.72C1164.24 325.728 1164.67 325.301 1164.67 324.774V319.057C1164.67 318.531 1164.24 318.104 1163.72 318.104Z" fill="currentColor"></path>
 <path d="M1133.95 318.125H1133.46V325.73H1133.95V318.125Z" fill="#DFE2FF" fill-opacity="0.36"></path>
@@ -1705,28 +1661,22 @@
 <path d="M665.214 243.864L695.542 261.039C695.542 261.039 694.339 253.772 686.355 243.855H665.214V243.864Z" fill="#16649C"></path>
 </g>
 <path d="M687.26 256.133C687.26 256.291 687.137 256.423 686.988 256.423C686.839 256.423 686.716 256.291 686.716 256.133C686.716 255.975 686.839 255.844 686.988 255.844C687.137 255.844 687.26 255.975 687.26 256.133Z" fill="#414ACB"></path>
-<path d="M670.976 227.156C672.214 226.059 673.558 224.839 674.999 223.487L670.511 215.098C671.336 213.439 672.012 211.982 672.346 211.052C672.557 210.464 672.425 209.735 672.32 209.753C670.449 209.946 659.295 223.066 657.415 224.874C656.826 225.436 655.869 224.935 655.5 224.242L644.873 202.969C644.627 202.364 641.641 198.669 639.454 192.043C633.525 192.28 637.548 199.459 638.048 201.916C638.048 201.916 645.54 233.334 653.278 237.775C653.278 237.775 663.475 238.933 669.896 228.095C670.528 228.586 670.95 228.911 670.95 228.911C672.873 227.867 672.346 227.393 670.967 227.156H670.976Z" fill="#FFB0B0"></path>
+<path d="M670.976 227.156C672.214 226.059 673.558 224.839 674.999 223.487L670.511 215.098C671.336 213.439 672.012 211.982 672.346 211.052C672.557 210.464 672.425 209.735 672.32 209.753C670.449 209.946 659.295 223.066 657.415 224.874C656.826 225.436 655.869 224.935 655.5 224.242L644.873 202.969C644.627 202.364 641.641 198.669 639.454 192.043C633.525 192.28 637.548 199.459 638.048 201.916C638.048 201.916 645.54 233.334 653.278 237.775C653.278 237.775 663.475 238.933 669.896 228.095C670.528 228.586 670.95 228.911 670.95 228.911C672.873 227.867 672.346 227.393 670.967 227.156H670.976Z" fill="currentColor"></path>
 <path d="M691.827 211.613C691.827 211.613 685.846 209.27 682.868 208.094C681.797 209.7 676.579 213.438 673.497 212.508C671.591 211.929 672.162 208.761 672.162 208.761C672.355 209.27 664.591 218.59 663.616 223.461C662.693 228.059 664.529 243.189 664.529 244.997L687.62 244.356C687.62 244.356 693.865 217.809 691.818 211.613H691.827Z" fill="currentColor"></path>
 <g style="mix-blend-mode:multiply" opacity="0.37">
 <path d="M689.421 215.309L666.137 245.533L688.621 246.604L689.421 215.309Z" fill="black" fill-opacity="0.5"></path>
 </g>
-<path d="M688.322 250.199C691.467 250.41 694.268 248.242 694.866 245.153L697.176 230.409H697.22C697.22 230.409 699.003 215.007 694.778 212.611C694.084 212.216 692.775 211.69 691.73 211.286L691.748 211.233C690.457 210.795 684.791 209.285 684.791 209.285C684.73 211.277 686.768 216.367 687.523 219.887C687.014 222.748 686.653 230.585 685.881 234.797C685.336 237.746 682.771 239.887 679.768 239.896C669.948 239.913 648.886 237.842 648.658 237.834C647.955 237.825 645.926 237.746 645.364 238.185C644.837 238.597 645.689 238.773 647.938 238.939C651.539 239.22 642.58 239.132 642.431 240.08C642.334 240.686 646.128 240.572 646.181 240.703C646.146 241.046 642.316 240.44 642.325 241.037C642.343 241.783 645.294 241.871 645.689 241.958C645.619 242.064 642.712 241.572 642.747 241.958C642.782 242.344 645.821 243.055 645.882 243.275C645.944 243.485 642.826 243.02 643.177 243.608C643.274 243.775 650.116 245.012 650.116 245.012C651.258 245.232 653.945 245.855 655.711 246.241C666.259 248.567 680.734 249.69 688.331 250.199H688.322Z" fill="#FFB0B0"></path>
+<path d="M688.322 250.199C691.467 250.41 694.268 248.242 694.866 245.153L697.176 230.409H697.22C697.22 230.409 699.003 215.007 694.778 212.611C694.084 212.216 692.775 211.69 691.73 211.286L691.748 211.233C690.457 210.795 684.791 209.285 684.791 209.285C684.73 211.277 686.768 216.367 687.523 219.887C687.014 222.748 686.653 230.585 685.881 234.797C685.336 237.746 682.771 239.887 679.768 239.896C669.948 239.913 648.886 237.842 648.658 237.834C647.955 237.825 645.926 237.746 645.364 238.185C644.837 238.597 645.689 238.773 647.938 238.939C651.539 239.22 642.58 239.132 642.431 240.08C642.334 240.686 646.128 240.572 646.181 240.703C646.146 241.046 642.316 240.44 642.325 241.037C642.343 241.783 645.294 241.871 645.689 241.958C645.619 242.064 642.712 241.572 642.747 241.958C642.782 242.344 645.821 243.055 645.882 243.275C645.944 243.485 642.826 243.02 643.177 243.608C643.274 243.775 650.116 245.012 650.116 245.012C651.258 245.232 653.945 245.855 655.711 246.241C666.259 248.567 680.734 249.69 688.331 250.199H688.322Z" fill="currentColor"></path>
 <path d="M683.984 208.621C683.984 208.621 694.647 211.166 696.649 213.702C698.661 216.239 699.056 225.471 699.056 225.471L683.536 229.218L683.984 208.63V208.621Z" fill="currentColor"></path>
 <path d="M664.53 221.197L661.184 218.924C661.184 218.924 669.747 208.357 671.89 209.7L664.53 221.197Z" fill="currentColor"></path>
 <g opacity="0.6">
-<path d="M668.815 217.32C670.37 217.32 670.37 214.906 668.815 214.906C667.261 214.906 667.261 217.32 668.815 217.32Z" fill="#F1FAF9"></path>
-<path d="M674.164 228.019C675.719 228.019 675.719 225.605 674.164 225.605C672.609 225.605 672.609 228.019 674.164 228.019Z" fill="#F1FAF9"></path>
-<path d="M665.873 236.038C667.428 236.038 667.428 233.625 665.873 233.625C664.318 233.625 664.318 236.038 665.873 236.038Z" fill="#F1FAF9"></path>
-<path d="M682.2 218.128C683.755 218.128 683.755 215.715 682.2 215.715C680.646 215.715 680.646 218.128 682.2 218.128Z" fill="#F1FAF9"></path>
-<path d="M679.784 236.847C681.339 236.847 681.339 234.434 679.784 234.434C678.23 234.434 678.23 236.847 679.784 236.847Z" fill="#F1FAF9"></path>
-<path d="M693.443 219.995C694.998 219.995 694.998 217.582 693.443 217.582C691.889 217.582 691.889 219.995 693.443 219.995Z" fill="#F1FAF9"></path>
 </g>
 <path d="M644.645 195.864V174.406H631.338V195.864H644.645Z" fill="currentColor"></path>
-<path d="M641.113 194.422H634.885C634.885 193.368 634.025 192.508 632.971 192.508V177.765C634.025 177.765 634.885 176.905 634.885 175.852H641.113C641.113 176.905 641.973 177.765 643.027 177.765V192.508C641.973 192.508 641.113 193.368 641.113 194.422Z" fill="white"></path>
+<path d="M641.113 194.422H634.885C634.885 193.368 634.025 192.508 632.971 192.508V177.765C634.025 177.765 634.885 176.905 634.885 175.852H641.113C641.113 176.905 641.973 177.765 643.027 177.765V192.508C641.973 192.508 641.113 193.368 641.113 194.422Z" fill="currentColor"></path>
 <path d="M638.057 187.579C639.338 187.579 640.376 186.542 640.376 185.262C640.376 183.983 639.338 182.945 638.057 182.945C636.776 182.945 635.738 183.983 635.738 185.262C635.738 186.542 636.776 187.579 638.057 187.579Z" fill="currentColor"></path>
 <path d="M638.057 187.579C639.338 187.579 640.376 186.542 640.376 185.262C640.376 183.983 639.338 182.945 638.057 182.945C636.776 182.945 635.738 183.983 635.738 185.262C635.738 186.542 636.776 187.579 638.057 187.579Z" fill="black" fill-opacity="0.2"></path>
 <path d="M641.36 199.499L656.088 183.883L646.404 174.764L631.676 190.38L641.36 199.499Z" fill="currentColor"></path>
-<path d="M639.778 195.999L635.246 191.734C635.975 190.962 635.931 189.75 635.167 189.031L645.294 178.298C646.067 179.026 647.279 178.982 647.999 178.219L652.531 182.484C651.802 183.256 651.846 184.467 652.61 185.187L642.483 195.92C641.71 195.192 640.498 195.235 639.778 195.999Z" fill="white"></path>
+<path d="M639.778 195.999L635.246 191.734C635.975 190.962 635.931 189.75 635.167 189.031L645.294 178.298C646.067 179.026 647.279 178.982 647.999 178.219L652.531 182.484C651.802 183.256 651.846 184.467 652.61 185.187L642.483 195.92C641.71 195.192 640.498 195.235 639.778 195.999Z" fill="currentColor"></path>
 <path d="M645.531 188.818C646.41 187.888 646.366 186.422 645.435 185.545C644.504 184.667 643.037 184.711 642.159 185.641C641.28 186.572 641.324 188.037 642.255 188.915C643.186 189.792 644.653 189.748 645.531 188.818Z" fill="currentColor"></path>
 <path d="M644.284 202.387C644.284 202.387 643.529 194.137 642.326 194.813C642.124 194.927 641.658 197.867 641.386 199.604C641.386 199.604 643.529 201.886 644.284 202.387Z" fill="#F2A398"></path>
 <defs>
@@ -1767,53 +1717,192 @@
 </svg>
 </div>
     
-    
 
+    <!-- ==== Problem Definition Section Starts Here ==== -->
+    <section class="problem-definition-section py-5 bg-gray-soft overflow-hidden">
+        <div class="container">
+            <div class="section-header text-center mb-5">
+                <h2 class="title gold-gradient">{{ translate('why_trading_is_harder_title') }}</h2>
+                <p class="mx-auto" style="max-width: 600px;">
+                    {{ translate('why_trading_is_harder_description') }}
+                </p>
+            </div>
+            <div class="row g-4 justify-content-center">    
+                <div class="col-lg-4 col-md-6">
+                    <div class="glass-card p-4 h-100" style="border-top: 4px solid var(--nasia-green);">
+                        <div class="mb-4" style="font-size: 3.5rem;">💸</div>
+                        <h4 class="mb-3">{{ translate('middlemen_problem') }}</h4>
+                        <p class="text-muted">{{ translate('middlemen_problem_desc') }}</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="glass-card p-4 h-100" style="border-top: 4px solid var(--nasia-green);">
+                        <div class="mb-4" style="font-size: 3.5rem;">🏗️</div>
+                        <h4 class="mb-3">{{ translate('source_access_problem') }}</h4>
+                        <p class="text-muted">{{ translate('source_access_problem_desc') }}</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="glass-card p-4 h-100" style="border-top: 4px solid var(--nasia-green);">
+                        <div class="mb-4" style="font-size: 3.5rem;">📦</div>
+                        <h4 class="mb-3">{{ translate('logistics_chaos_problem') }}</h4>
+                        <p class="text-muted">{{ translate('logistics_chaos_problem_desc') }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+     <!-- ==== Learn Feature Section Starts Here ==== -->
+    <section class="learn-feature-section"
+        style="background: url({{ asset('assets/landing/img/learn-feature-bg.svg') }}) no-repeat center center / cover">
+        <div class="container position-relative">
+            <div class="row gy-5 gx-0 gx-xl-4 align-items-center">
+                <div class=" col-lg-6 pe-lg-5">
+                    <div class="learn-feature-content wow fadeInUp">
+                        <div class="section-header text-start mb-0">
+                            <h2 class="title gold-gradient">
+                                {{ translate('why_nasia_is_your_first_choice') }}
+                            </h2>
+                            <div class="text">
+                                {{ translate('why_nasia_description') }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                 @php($static_features = [
+                    (object)[
+                        'title' => translate('direct_source_access'),
+                        'sub_title' => translate('direct_source_desc'),
+                        'image' => asset('assets/landing/img/roles/merchant.png'),
+                    ],
+                    (object)[
+                        'title' => translate('smart_logistics_system'),
+                        'sub_title' => translate('smart_logistics_desc'),
+                        'image' => asset('assets/landing/img/roles/captain.png'),
+                    ],
+                    (object)[
+                        'title' => translate('transparency_real_saving'),
+                        'sub_title' => translate('transparency_desc'),
+                        'image' => asset('assets/landing/img/roles/customer.png'),
+                    ],
+                ])
 
+                <div class="col-lg-6">
+                    <div class="learn-feature-wrapper py-5">
+                        <div class="row g-4 learn-feature-item-group">
+                            <div class="col-6">
+                                <div class="row gy-4 gy-sm-5">
+                                    @foreach ($static_features as $index => $item)
+                                        @if($index < 2)
+                                            <div class="col-12">
+                                                <div class="learn-feature-item glass-card wow fadeInUp" data-wow-delay="0.05s">
+                                                    <div class="learn-feature-icon">
+                                                        <img src="{{ $item->image }}" alt="{{ $item->title }}">
+                                                    </div>
+                                                    <div class="learn-feature-item-content">
+                                                        <h5 class="subttle {{ $index % 2 == 0 ? 'nasia-green' : 'gold-gradient' }}">{{ $item->title }}</h5>
+                                                        <div class="text">
+                                                            {{ $item->sub_title }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @endif
+                                    @endforeach
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="row gy-4 gy-sm-5 mt-5 pt-5">
+                                    @foreach ($static_features as $index => $item)
+                                        @if($index == 2)
+                                            <div class="col-12">
+                                                <div class="learn-feature-item glass-card wow fadeInUp" data-wow-delay="0.1s">
+                                                    <div class="learn-feature-icon">
+                                                        <img src="{{ $item->image }}" alt="{{ $item->title }}">
+                                                    </div>
+                                                    <div class="learn-feature-item-content">
+                                                        <h5 class="subttle {{ $index % 2 == 0 ? 'nasia-green' : 'gold-gradient' }}">{{ $item->title }}</h5>
+                                                        <div class="text">
+                                                            {{ $item->sub_title }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @endif
+                                    @endforeach
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ==== Learn Feature Section Ends Here ==== -->
 
-    <!-- ==== Ecommerce Venture Section Starts Here ==== -->
-    <section class="ecommerce-venture-section">
+    <!-- ==== Solution: Ecommerce Venture Section Starts Here ==== -->
+    <section class="ecommerce-venture-section bg-white overflow-hidden">
         <div class="container max-w1060">
-            <div class="section-header mb-30 wow fadeInUp">
-                <h2 class="title gold-text">{{ translate('our_integrated_services_shop_smart') }}</h2>
-                <p>
-                    {{ translate('nasia_integrated_platform_description') }}
+            <div class="section-header mb-5 text-center">
+                <h2 class="title gold-text">{{ translate('start_with_nasia_selection_title') }}</h2>
+                <p class="mx-auto" style="max-width: 600px;">
+                    {{ translate('start_with_nasia_selection_desc') }}
                 </p>
             </div>
             <div class="nav--tabs-wrapper">
                 @php($dynamic_modules = \App\Models\Module::Active()->get())
                 @php($static_modules = [
                     (object)[
-                        'module_name' => 'shopping_pillar',
-                        'display_name' => translate('refined_shopping'),
-                        'description' => translate('refined_shopping_description'),
-                        'icon_full_url' => asset('assets/landing/img/nasia_ecommerce_venture.png'),
-                        'thumbnail_full_url' => asset('assets/landing/img/nasia_ecommerce_venture.png'),
+                        'module_name' => 'customer',
+                        'display_name' => translate('role_as_customer'),
+                        'title' => translate('customer_title'),
+                        'description' => translate('customer_benefits_list'),
+                        'button_text' => translate('start_saving_now'),
+                        'icon_full_url' => asset('assets/landing/img/roles/customer.png'),
+                        'thumbnail_full_url' => asset('assets/landing/img/roles/customer.png'),
+                        'bg_color' => 'rgba(76, 175, 80, 0.05)',
                         'is_static' => true
                     ],
                     (object)[
-                        'module_name' => 'investment_pillar',
-                        'display_name' => translate('smart_investment'),
-                        'description' => translate('smart_investment_description'),
-                        'icon_full_url' => asset('assets/landing/img/nasia_hero_investment.png'),
-                        'thumbnail_full_url' => asset('assets/landing/img/nasia_hero_investment.png'),
+                        'module_name' => 'merchant',
+                        'display_name' => translate('role_as_merchant'),
+                        'title' => translate('merchant_title'),
+                        'description' => translate('merchant_description'),
+                        'button_text' => translate('increase_my_profits'),
+                        'icon_full_url' => asset('assets/landing/img/roles/merchant.png'),
+                        'thumbnail_full_url' => asset('assets/landing/img/roles/merchant.png'),
+                        'bg_color' => 'rgba(255, 193, 7, 0.05)',
                         'is_static' => true
                     ],
                     (object)[
-                        'module_name' => 'delivery_pillar',
-                        'display_name' => translate('fast_delivery'),
-                        'description' => translate('fast_delivery_description'),
-                        'icon_full_url' => asset('assets/landing/img/nasia_feature_home.png'),
-                        'thumbnail_full_url' => asset('assets/landing/img/nasia_feature_home.png'),
+                        'module_name' => 'supplier',
+                        'display_name' => translate('role_as_supplier'),
+                        'title' => translate('supplier_title'),
+                        'description' => translate('supplier_description'),
+                        'button_text' => translate('deliver_to_everywhere'),
+                        'icon_full_url' => asset('assets/landing/img/roles/supplier.png'),
+                        'thumbnail_full_url' => asset('assets/landing/img/roles/supplier.png'),
+                        'bg_color' => 'rgba(156, 39, 176, 0.05)',
+                        'is_static' => true
+                    ],
+                    (object)[
+                        'module_name' => 'captain',
+                        'display_name' => translate('role_as_captain'),
+                        'title' => translate('captain_title'),
+                        'description' => translate('captain_description'),
+                        'button_text' => translate('join_our_fleet_now'),
+                        'icon_full_url' => asset('assets/landing/img/roles/captain.png'),
+                        'thumbnail_full_url' => asset('assets/landing/img/roles/captain.png'),
+                        'bg_color' => 'rgba(33, 150, 243, 0.05)',
                         'is_static' => true
                     ],
                 ])
                 @php($modules = collect($static_modules)->merge($dynamic_modules)->filter(function($m) {
                     $name = strtolower($m->module_name ?? '');
                     $display = strtolower($m->display_name ?? '');
-                    $translated = strtolower(translate("messages.{$m->module_name}"));
+                    $translated = strtolower(translate("{$m->module_name}"));
                     
-                    $exclude_terms = ['grocery', 'christine', 'بقالة', 'jameson', 'hobbs'];
+                    $exclude_terms = ['grocery', 'بقالة', 'christine', 'jameson', 'hobbs'];
                     
                     foreach($exclude_terms as $term) {
                         if (str_contains($name, $term) || 
@@ -1833,7 +1922,7 @@
                                     data-onerror-image="{{ asset('assets/admin/img/100x100/2.png') }}"
                                     src="{{ $item->icon_full_url ?? asset('assets/admin/img/100x100/2.png') }}"
                                     alt="image">
-                                <div class="txt d-block">{{ $item->is_static ?? false ? $item->display_name : translate("messages.{$item->module_name}") }}</div>
+                                <div class="txt d-block">{{ $item->is_static ?? false ? $item->display_name : translate("{$item->module_name}") }}</div>
                             </div>
                         @endforeach
                     </div>
@@ -1844,18 +1933,20 @@
                     <div class="row flex-wrap-reverse justify-content-center align-items-center">
                         <div class="col-lg-6 col-md-8">
                             <div class="venture-content mt-4 mt-lg-0">
-                                <div class="venture-content-box glass-card p-4">
+                                <div class="venture-content-box glass-card p-4" style="background-color: {{ $item->bg_color ?? 'var(--glass-bg)' }}; border-color: {{ str_replace('0.05', '0.2', $item->bg_color ?? 'var(--glass-border)') }};">
                                     <div class="d-flex align-items-center gap-3 mb-3">
                                         <div class="venture-module-icon">
                                             <img src="{{ $item->icon_full_url ?? asset('assets/admin/img/100x100/2.png') }}" alt="{{ $item->module_name }}" class="img-fluid" style="width: 40px;">
                                         </div>
-                                        <h3 class="mb-0 gold-text">{{ $item->is_static ?? false ? $item->display_name : translate("messages.{$item->module_name}") }}</h3>
+                                        <h3 class="mb-0 gold-text">{{ $item->is_static ?? false ? ($item->title ?? $item->display_name) : translate("messages.{$item->module_name}") }}</h3>
                                     </div>
                                     <div class="text">
                                         {!! $item->description ?? '' !!}
                                     </div>
                                     <div class="mt-4">
-                                        <a href="#sync2" class="cmn--btn py-2 px-4" style="font-size: 0.9rem;">{{ translate('start_now') }}</a>
+                                        <a href="#download-section" class="cmn--btn py-2 px-4" style="font-size: 0.9rem;">
+                                            {{ $item->is_static ?? false ? ($item->button_text ?? translate('start_now')) : translate('start_now') }}
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -1878,334 +1969,361 @@
             </div>
         </div>
     </section>
-    <!-- ==== Ecommerce Venture Section Ends Here ==== -->
 
-    <!-- ==== Main Category Section Starts Here ==== -->
-    <section class="main-category overflow-hidden pt-80 pb-80">
+    <!-- ==== Ecosystem Flow Diagram ==== -->
+    <style>
+        .eco-section {
+            padding: 70px 0;
+            background: linear-gradient(180deg, #fff 0%, #faf9f4 100%);
+            overflow: hidden;
+        }
+        .eco-section .sec-label {
+            font-size:.82rem; font-weight:700; letter-spacing:1.5px;
+            color:var(--primary-gold); text-transform:uppercase; margin-bottom:12px;
+        }
+        .eco-section h2 { font-size:clamp(1.6rem,3.5vw,2.4rem); font-weight:800; color:var(--text-main); margin-bottom:6px; }
+        .eco-section .sub  { color:var(--text-muted); font-size:1rem; margin-bottom:50px; }
+
+        /* Flow row */
+        .eco-flow {
+            display: flex;
+            align-items: stretch;
+            justify-content: center;
+            gap: 0;
+            position: relative;
+            flex-wrap: wrap;
+        }
+
+        /* Node */
+        .eco-node {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 14px;
+            width: 160px;
+            animation: floatNode 3s ease-in-out infinite;
+        }
+        .eco-node:nth-child(1) { animation-delay: 0s; }
+        .eco-node:nth-child(3) { animation-delay: .5s; }
+        .eco-node:nth-child(5) { animation-delay: 1s; }
+        .eco-node:nth-child(7) { animation-delay: 1.5s; }
+
+        @keyframes floatNode {
+            0%,100% { transform: translateY(0); }
+            50%      { transform: translateY(-8px); }
+        }
+
+        .eco-icon-ring {
+            width: 90px; height: 90px;
+            border-radius: 28px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 2.5rem;
+            position: relative;
+            box-shadow: 0 8px 30px rgba(195, 160, 75, 0.15);
+            transition: transform .3s;
+        }
+        .eco-icon-ring:hover { transform: scale(1.1); }
+        .eco-icon-ring::after {
+            content: '';
+            position: absolute; inset: -4px;
+            border-radius: 32px;
+            border: 2px solid rgba(195, 160, 75, 0.25);
+            animation: pulseRing 2.5s ease-in-out infinite;
+        }
+        @keyframes pulseRing {
+            0%,100% { opacity: 1; transform: scale(1); }
+            50%      { opacity: 0; transform: scale(1.18); }
+        }
+
+        .eco-node-label {
+            font-size:.82rem; font-weight:700; letter-spacing:.5px;
+            color:var(--primary-gold); text-transform:uppercase;
+        }
+        .eco-node-title { font-size:1.05rem; font-weight:800; color:var(--text-main); text-align:center; }
+        .eco-node-desc  { font-size:.8rem; color:var(--text-muted); text-align:center; max-width:130px; }
+
+        /* Arrow connector */
+        .eco-arrow {
+            align-self: center;
+            display: flex; align-items: center;
+            padding: 0 10px;
+            color: var(--primary-gold);
+        }
+        .eco-arrow svg { animation: slideArrow 1.8s ease-in-out infinite; }
+        .eco-arrow:nth-of-type(2) svg { animation-delay:.3s; }
+        .eco-arrow:nth-of-type(3) svg { animation-delay:.6s; }
+        @keyframes slideArrow {
+            0%,100% { opacity:.4; transform:translateX(0); }
+            50%      { opacity:1; transform:translateX(6px); }
+        }
+
+        /* RTL: arrows point left */
+        [dir="rtl"] .eco-arrow svg { transform: scaleX(-1); }
+        [dir="rtl"] .eco-arrow svg { animation: slideArrowRTL 1.8s ease-in-out infinite; }
+        @keyframes slideArrowRTL {
+            0%,100% { opacity:.4; transform:scaleX(-1) translateX(0); }
+            50%      { opacity:1; transform:scaleX(-1) translateX(6px); }
+        }
+
+        @media(max-width:767px){
+            .eco-flow { flex-direction: column; align-items: center; gap:10px; }
+            .eco-arrow svg { transform: rotate(90deg) !important; }
+            .eco-arrow { padding: 2px 0; }
+        }
+        .standalone-svg-container {
+            color: #C3A04B;
+        }
+    </style>
+
+    <section class="eco-section overflow-hidden">
+        <div class="container">
+            <div class="text-center mb-5">
+                <p class="sec-label">{{ translate('how_nasia_works_label') }}</p>
+                <h2>{!! translate('nasia_ecosystem_title') !!}</h2>
+                <p class="sub">{{ translate('nasia_ecosystem_sub') }}</p>
+            </div>
+
+            <div class="eco-flow">
+
+                <!-- ❶ المصنع -->
+                <div class="eco-node">
+                    <div class="eco-icon-ring" style="background:linear-gradient(135deg,#fffbef 0%,#fff8e1 100%);">🏭</div>
+                    <span class="eco-node-label">01</span>
+                    <span class="eco-node-title">{{ translate('eco_step_1_title') }}</span>
+                    <span class="eco-node-desc">{{ translate('eco_step_1_desc') }}</span>
+                </div>
+
+                <!-- Arrow -->
+                <div class="eco-arrow">
+                    <svg width="48" height="20" viewBox="0 0 48 20" fill="none">
+                        <path d="M0 10 H36 M30 3 L46 10 L30 17" stroke="#B8860B" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+
+                <!-- ❷ التاجر -->
+                <div class="eco-node">
+                    <div class="eco-icon-ring" style="background:linear-gradient(135deg,#fff3e0 0%,#fff8f0 100%);">🏪</div>
+                    <span class="eco-node-label">02</span>
+                    <span class="eco-node-title">{{ translate('eco_step_2_title') }}</span>
+                    <span class="eco-node-desc">{{ translate('eco_step_2_desc') }}</span>
+                </div>
+
+                <!-- Arrow -->
+                <div class="eco-arrow">
+                    <svg width="48" height="20" viewBox="0 0 48 20" fill="none">
+                        <path d="M0 10 H36 M30 3 L46 10 L30 17" stroke="#B8860B" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+
+                <!-- ❸ العميل -->
+                <div class="eco-node">
+                    <div class="eco-icon-ring" style="background:linear-gradient(135deg,#f0fff4 0%,#f5fff7 100%);">🛒</div>
+                    <span class="eco-node-label">03</span>
+                    <span class="eco-node-title">{{ translate('eco_step_3_title') }}</span>
+                    <span class="eco-node-desc">{{ translate('eco_step_3_desc') }}</span>
+                </div>
+
+                <!-- Arrow -->
+                <div class="eco-arrow">
+                    <svg width="48" height="20" viewBox="0 0 48 20" fill="none">
+                        <path d="M0 10 H36 M30 3 L46 10 L30 17" stroke="#B8860B" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+
+                <!-- ❹ الكابتن -->
+                <div class="eco-node">
+                    <div class="eco-icon-ring" style="background:linear-gradient(135deg,#f0f4ff 0%,#f5f7ff 100%);">🏍️</div>
+                    <span class="eco-node-label">04</span>
+                    <span class="eco-node-title">{{ translate('eco_step_4_title') }}</span>
+                    <span class="eco-node-desc">{{ translate('eco_step_4_desc') }}</span>
+                </div>
+
+            </div>{{-- end eco-flow --}}
+
+            <!-- Connection line (decorative) -->
+            <div class="text-center mt-5 wow fadeInUp" data-wow-delay="0.3s">
+                <div class="d-inline-flex align-items-center gap-3 px-4 py-2 rounded-pill"
+                     style="background:rgba(195, 160, 75, 0.07); border: 1px solid rgba(195, 160, 75, 0.2);">
+                    <span style="font-size:.9rem; color:var(--text-muted);">{{ translate('all_parties_win_label') }}</span>
+                    <span style="color:var(--primary-gold); font-size:1.1rem;">✦</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ==== Ecosystem Flow Diagram Ends ==== -->
+
+
+
+    <!-- ==== Premium Feature Slider Section ==== -->
+    <section class="main-category-premium bg-gray-soft overflow-hidden">
         <div class="container overflow-visible">
             <div class="main-category-slider owl-theme owl-carousel">
-                <!-- Shopping Slide -->
-                <div class="category-slide-item"
-                    style="background: url({{ asset('assets/landing/img/nasia_ecommerce_venture.png') }}) no-repeat center center / cover">
-                    <div class="category-slide-content wow fadeInLeft" data-wow-delay="0.1s">
-                        <h2 class="title">{{ translate('refined_shopping') }}</h2>
-                        <div class="text">{{ translate('refined_shopping_description') }}</div>
-                        <a href="#" class="category-slide-btn">{{ translate('discover_more') }}</a>
+                
+                <!-- Slide 1: Source to Home -->
+                <div class="premium-slide px-3 py-4">
+                    <div class="row align-items-center g-5">
+                        <div class="col-lg-6">
+                            <div class="slide-content text-start text-lg-start">
+                                <span class="premium-badge">{{ translate('real_saving') }}</span>
+                                <h2 class="title gold-text">{{ translate('buy_direct_from_factory') }}</h2>
+                                <p class="premium-text text-muted mb-4">{{ translate('save_30_percent_desc') }}</p>
+                                <div class="slide-btns d-flex gap-3 justify-content-start">
+                                    <a href="#download-section" class="cmn--btn">{{ translate('start_saving_now') }}</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="slide-img-wrapper position-relative text-center">
+                                <img src="{{ asset('assets/landing/img/roles/slider_source.png') }}" alt="Direct Source" class="img-fluid rounded-30 main-slider-img mw-450 mx-auto">
+                                <div class="venture-img-glow" style="background: rgba(19, 126, 66, 0.1);"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <!-- Investment Slide -->
-                <div class="category-slide-item"
-                    style="background: url({{ asset('assets/landing/img/nasia_hero_investment.png') }}) no-repeat center center / cover">
-                    <div class="category-slide-content wow fadeInLeft" data-wow-delay="0.1s">
-                        <h2 class="title">{{ translate('smart_investment') }}</h2>
-                        <div class="text">{{ translate('smart_investment_description') }}</div>
-                        <a href="#" class="category-slide-btn">{{ translate('start_your_business') }}</a>
+
+                <!-- Slide 2: Merchant Growth -->
+                <div class="premium-slide px-3 py-4">
+                    <div class="row align-items-center flex-row-reverse g-5">
+                        <div class="col-lg-6">
+                            <div class="slide-content text-start">
+                                <span class="premium-badge">{{ translate('smart_growth') }}</span>
+                                <h2 class="title gold-text">{{ translate('double_your_merchant_profits') }}</h2>
+                                <p class="premium-text text-muted mb-4">{{ translate('merchant_growth_desc') }}</p>
+                                <div class="slide-btns d-flex gap-3">
+                                    <a href="#download-section" class="cmn--btn">{{ translate('register_as_merchant') }}</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="slide-img-wrapper position-relative text-center">
+                                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1740&auto=format&fit=crop" alt="Merchant Growth" class="img-fluid rounded-30 main-slider-img mw-450 mx-auto">
+                                <div class="venture-img-glow" style="background: rgba(184, 134, 11, 0.1);"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <!-- Delivery Slide -->
-                <div class="category-slide-item"
-                    style="background: url({{ asset('assets/landing/img/nasia_feature_home.png') }}) no-repeat center center / cover">
-                    <div class="category-slide-content wow fadeInLeft" data-wow-delay="0.1s">
-                        <h2 class="title">{{ translate('fast_delivery') }}</h2>
-                        <div class="text">{{ translate('fast_delivery_description') }}</div>
-                        <a href="#" class="category-slide-btn">{{ translate('join_us') }}</a>
+
+                <!-- Slide 3: Fastest Delivery -->
+                <div class="premium-slide px-3 py-4">
+                    <div class="row align-items-center g-5">
+                        <div class="col-lg-6">
+                            <div class="slide-content text-start">
+                                <span class="premium-badge">{{ translate('fast_delivery') }}</span>
+                                <h2 class="title gold-text">{{ translate('be_part_of_logistics_fleet') }}</h2>
+                                <p class="premium-text text-muted mb-4">{{ translate('captain_income_flexibility_desc') }}</p>
+                                <div class="slide-btns d-flex gap-3">
+                                    <a href="#download-section" class="cmn--btn">{{ translate('join_the_fleet') }}</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="slide-img-wrapper position-relative text-center">
+                                <img src="https://images.unsplash.com/photo-1580674684081-7617fbf3d745?q=80&w=1500&auto=format&fit=crop" alt="Captain Delivery" class="img-fluid rounded-30 main-slider-img mw-450 mx-auto">
+                                <div class="venture-img-glow" style="background: rgba(195, 160, 75, 0.1);"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
+
+    <style>
+        .premium-badge { color: var(--nasia-green); font-weight:700; background: rgba(19, 126, 66, 0.1); padding: 6px 18px; border-radius: 50px; display:inline-block; margin-bottom:20px; font-size: 0.85rem; }
+        .premium-text { font-size: 1.15rem; line-height: 1.7; }
+        .main-slider-img { 
+            box-shadow: 0 20px 60px rgba(0,0,0,0.12); 
+            transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); 
+            background: #fff;
+        }
+        .premium-slide:hover .main-slider-img { transform: translateY(-10px) rotate(1deg); }
+        .main-category-slider .owl-nav { display: none; }
+        .main-category-slider .owl-dots { margin-top: 30px !important; }
+        .main-category-slider .owl-dots .owl-dot span { background: rgba(19, 126, 66, 0.2); width: 12px; height: 12px; border-radius: 50%; transition: all 0.3s; }
+        .main-category-slider .owl-dots .owl-dot.active span { background: var(--nasia-green); width: 34px; border-radius: 20px; }
+    </style>
     <!-- ==== Main Category Section Ends Here ==== -->
 
-    <!-- ==== Learn Feature Section Starts Here ==== -->
-    <section class="learn-feature-section"
-        style="background: url({{ asset('assets/landing/img/learn-feature-bg.svg') }}) no-repeat center center / cover">
-        <div class="container position-relative">
-            <div class="row gy-5 gx-0 gx-xl-4 align-items-center">
-                <div class=" col-lg-6 pe-lg-5">
-                    <div class="learn-feature-content wow fadeInUp">
-                        <div class="section-header text-start mb-0">
-                            <h2 class="title">
-                                {{ translate('why_nasia_is_your_first_choice') }}
-                            </h2>
-                            <div class="text">
-                                {{ translate('why_nasia_description') }}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                @php($static_features = [
-                    (object)[
-                        'title' => translate('smart_investment'),
-                        'sub_title' => translate('start_your_own_business_description'),
-                        'image' => asset('assets/landing/img/nasia_hero_investment.png'),
-                    ],
-                    (object)[
-                        'title' => translate('refined_shopping'),
-                        'sub_title' => translate('refined_shopping_short_description'),
-                        'image' => asset('assets/landing/img/nasia_ecommerce_venture.png'),
-                    ],
-                    (object)[
-                        'title' => translate('join_as_captain'),
-                        'sub_title' => translate('join_as_captain_description'),
-                        'image' => asset('assets/landing/img/nasia_feature_home.png'),
-                    ],
-                ])
-
-                <div class="col-lg-6">
-                    <div class="learn-feature-wrapper py-5">
-                        <div class="row g-4 learn-feature-item-group">
-                            <div class="col-6">
-                                <div class="row gy-4 gy-sm-5">
-                                    @foreach ($static_features as $index => $item)
-                                        @if($index < 2)
-                                            <div class="col-12">
-                                                <div class="learn-feature-item glass-card wow fadeInUp" data-wow-delay="0.05s">
-                                                    <div class="learn-feature-icon">
-                                                        <img src="{{ $item->image }}" alt="{{ $item->title }}">
-                                                    </div>
-                                                    <div class="learn-feature-item-content">
-                                                        <h5 class="subttle gold-text">{{ $item->title }}</h5>
-                                                        <div class="text">
-                                                            {{ $item->sub_title }}
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        @endif
-                                    @endforeach
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="row gy-4 gy-sm-5 mt-5 pt-5">
-                                    @foreach ($static_features as $index => $item)
-                                        @if($index == 2)
-                                            <div class="col-12">
-                                                <div class="learn-feature-item glass-card wow fadeInUp" data-wow-delay="0.1s">
-                                                    <div class="learn-feature-icon">
-                                                        <img src="{{ $item->image }}" alt="{{ $item->title }}">
-                                                    </div>
-                                                    <div class="learn-feature-item-content">
-                                                        <h5 class="subttle gold-text">{{ $item->title }}</h5>
-                                                        <div class="text">
-                                                            {{ $item->sub_title }}
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        @endif
-                                    @endforeach
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- ==== Learn Feature Section Ends Here ==== -->
+   
 
 
-    <!-- ==== Refer Section Starts Here ==== -->
-    <section class="refer-section">
-        <div class="container">
-            <div class="refer-glass-box wow fadeInUp">
-                <div class="row align-items-center gy-5">
-                    <div class="col-lg-6 text-center text-lg-start">
-                        <div class="section-header text-lg-start mb-4">
-                            <h2 class="title gold-text">
-                                {{ translate('earn_with_nasia') }}
-                            </h2>
-                            <div class="text">
-                                {{ translate('referral_description') }}
-                            </div>
-                        </div>
-                        <a href="#" class="cmn--btn mt-3">{{ translate('start_now') }}</a>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="refer-img-container wow zoomIn" data-wow-delay="0.1s">
-                            <div class="refer-glow"></div>
-                            <img src="{{ asset('assets/landing/img/nasia_hero_investment.png') }}" 
-                                alt="Nasia Referral" 
-                                class="img-fluid position-relative z-index-2 gold-glow-sm mw-450">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
     
 
-    <!-- ==== Earn Money Section Starts Here ==== -->
-    <section class="earn-money-section py-5">
+    <!-- ==== Impact Section: Our Pillars ==== -->
+    <section class="earn-money-section py-5 bg-gray-soft">
         <div class="container">
-            <div class="section-header text-center mb-5 wow fadeInUp">
-                <h2 class="title gold-text">
-                    {{ translate('horizons_of_success_with_nasia') }}
-                </h2>
-                <div class="text text-white-50">
-                    {{ translate('nasia_is_your_partner_for_success') }}
-                </div>
+            <div class="section-header text-center mb-5">
+                <h2 class="title gold-text">{{ translate('horizons_of_success_title') }}</h2>
+                <div class="text max-w-600">{{ translate('impact_section_description') }}</div>
             </div>
-        </div>
-        <div class="container">
             
-            <!-- Card 1: Supermarket Shopping -->
-            <div class="earn-item wow fadeInUp">
-                <div class="earn-item-img"
-                    style="background: url('https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?q=80&w=1740&auto=format&fit=crop') center/cover no-repeat;">
-                    <div class="position-relative text-capitalize">
-                        <a href="store" class="cmn--btn border-0">
-                            {{ translate('order_now') }}
-                        </a>
+            <div class="row g-4 justify-content-center">
+                <div class="col-lg-4 col-md-6">
+                    <div class="glass-card p-5 text-center h-100">
+                        <div class="mb-4" style="font-size: 3rem;">⚡</div>
+                        <h4 class="mb-3 gold-text">{{ translate('fast_expansion') }}</h4>
+                        <p class="text-muted">{{ translate('fast_expansion_desc') }}</p>
                     </div>
                 </div>
-                <div class="earn-item-cont"> 
-                    <div>
-                        <h4 class="subtitle">{{ translate('discover_products_from_various_sellers') }}</h4>
-                        <h3 class="title">{{ translate('shop_from_multiple_sellers') }}</h3>
+                <div class="col-lg-4 col-md-6">
+                    <div class="glass-card p-5 text-center h-100">
+                        <div class="mb-4" style="font-size: 3rem;">💎</div>
+                        <h4 class="mb-3 gold-text">{{ translate('guaranteed_quality') }}</h4>
+                        <p class="text-muted">{{ translate('guaranteed_quality_desc') }}</p>
                     </div>
                 </div>
-            </div>
-
-            <!-- Card 2: Smart Merchant -->
-            <div class="earn-item wow fadeInUp">
-                <div class="earn-item-img"
-                    style="background: url('https://images.unsplash.com/photo-1664575602276-acd073f104c1?q=80&w=1740&auto=format&fit=crop') center/cover no-repeat;">
-                    <div class="position-relative text-capitalize">
-                        <a href="#" class="cmn--btn border-0">
-                            {{ translate('register_now') }}
-                        </a>
-                    </div>
-                </div>
-                <div class="earn-item-cont">
-                    <div>
-                        <h4 class="subtitle">{{ translate('start_your_success_journey') }}</h4>
-                        <h3 class="title">{{ translate('become_a_merchant') }}</h3>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Card 3: Delivery Services -->
-            <div class="earn-item wow fadeInUp">
-                <div class="earn-item-img"
-                    style="background: url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=1740&auto=format&fit=crop') center/cover no-repeat;">
-                    <div class="position-relative text-capitalize">
-                        <a href="#" class="cmn--btn border-0">
-                            {{ translate('join_us') }}
-                        </a>
-                    </div>
-                </div>
-                <div class="earn-item-cont">
-                    <div>
-                        <h4 class="subtitle">{{ translate('join_our_fleet') }}</h4>
-                        <h3 class="title">{{ translate('delivery_services') }}</h3>
+                <div class="col-lg-4 col-md-6">
+                    <div class="glass-card p-5 text-center h-100">
+                        <div class="mb-4" style="font-size: 3rem;">🤝</div>
+                        <h4 class="mb-3 gold-text">{{ translate('continuous_support') }}</h4>
+                        <p class="text-muted">{{ translate('continuous_support_desc') }}</p>
                     </div>
                 </div>
             </div>
         </div>
-        
-
     </section>
-    <!-- ==== Earn Money Section Ends Here ==== -->
+    <!-- ==== Impact Section Ends Here ==== -->
 
 
 
-    <!-- ==== Download App Starts Here ==== -->
-    @php($landing_page_links = $landing_data['download_user_app_links'])
-    @if (
-        (isset($landing_page_links['playstore_url_status']) && $landing_page_links['playstore_url_status'] == '1') ||
-            (isset($landing_page_links['apple_store_url_status']) && $landing_page_links['apple_store_url_status'] == '1'))
-        <section class="download-app-section">
-            <div class="container">
-                <div class="row justify-content-center align-items-center g-4">
-                    <div class="col-lg-6 col-md-9">
-                        <div class="download-app-content wow fadeInUp">
-                            <h2 class="title">
-                                <div class="primary-color">
-                                    {{ translate('manage_your_business_smartly') }}
-                                </div>
-                                {{ translate('from_your_personal_phone') }}
-                                <div class="primary-color">
-                                    {{ translate('and_start_earning_now') }}
-                                </div>
-                            </h2>
-                            {{-- <h3 class="subtitle">{{ $landing_data['download_user_app_sub_title'] }}</h3> --}}
-                            <div class="btn-grp">
-                            </div>
-                            <div class="position-relative dropdown text-capitalize">
-                                <button type="button" class="cmn--btn border-0 w-75 w-sm-50 d-flex justify-content-between align-items-center"
-                                    data-bs-toggle="dropdown">
-                                    {{ translate('User App') }}
-                                    <svg class="ms-2" width="12" height="7" viewBox="0 0 12 7"
-                                        fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M6.00224 5.46105L1.33333 0.415128C1.21002 0.290383 1 0.0787335 1 0.0787335C1 0.0787335 0.708488 -0.0458817 0.584976 0.0788632L0.191805 0.475841C0.0680976 0.600389 7.43292e-08 0.766881 7.22135e-08 0.9443C7.00978e-08 1.12172 0.0680976 1.28801 0.191805 1.41266L5.53678 6.80682C5.66068 6.93196 5.82624 7.00049 6.00224 7C6.17902 7.00049 6.34439 6.93206 6.46839 6.80682L11.8082 1.41768C11.9319 1.29303 12 1.12674 12 0.949223C12 0.771804 11.9319 0.605509 11.8082 0.480765L11.415 0.0838844C11.1591 -0.174368 10.9225 0.222512 10.6667 0.480765L6.00224 5.46105Z"
-                                            fill="#ffffff"></path>
-                                    </svg>
-                                </button>
-                                <div class="dropdown-menu p-0 w-75 w-sm-50">
-                                    @if (isset($landing_page_links['playstore_url_status']) && $landing_page_links['playstore_url_status'] == '1')
-                                        <a href="{{ url('store') }}"  class="dropdown-item">
-                                            <img src="{{ asset('assets/landing/img/google-play.png') }}"
-                                                alt="">
-                                            {{ translate('google_play') }}
-                                        </a>
-                                    @endif
-                                    @if (isset($landing_page_links['apple_store_url_status']) && $landing_page_links['apple_store_url_status'] == '1')
-                                        <a href="{{ url('store') }}"  class="dropdown-item">
-                                            <img src="{{ asset('assets/landing/img/apple-store.png') }}"
-                                                alt="">
-                                            {{ translate('apple_store') }}
-                                        </a>
-                                    @endif
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-9">
-                        <img class="mw-100"
-                            src="{{ asset('assets/landing/img/nasia_app_mockup.png') }}"
-                            alt="Nasia App">
-                    </div>
-                </div>
-            </div>
-        </section>
-    @endif
-    <!-- ==== Download App Ends Here ==== -->
+
 
     <!-- ==== Testimonial Starts Here ==== -->
     @php($testimonial = [
-        ['name' => translate('testimonial_name_1'), 'designation' => translate('entrepreneur'), 'review' => translate('testimonial_review_1'), 'reviewer_image_full_url' => asset('assets/landing/img/testimonials/aisha.png')],
-        ['name' => translate('testimonial_name_2'), 'designation' => translate('tech_investor'), 'review' => translate('testimonial_review_2'), 'reviewer_image_full_url' => asset('assets/landing/img/testimonials/omar.png')],
-        ['name' => translate('testimonial_name_3'), 'designation' => translate('product_designer'), 'review' => translate('testimonial_review_3'), 'reviewer_image_full_url' => asset('assets/landing/img/testimonials/sarah.png')],
+        ['name' => translate('testimonial_name_1'), 'designation' => translate('custom_customer_role'), 'review' => translate('testimonial_review_1'), 'reviewer_image_full_url' => 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=150&auto=format&fit=crop'],
+        ['name' => translate('testimonial_name_2'), 'designation' => translate('custom_merchant_role'), 'review' => translate('testimonial_review_2'), 'reviewer_image_full_url' => 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=150&auto=format&fit=crop'],
+        ['name' => translate('testimonial_name_3'), 'designation' => translate('custom_captain_role'), 'review' => translate('testimonial_review_3'), 'reviewer_image_full_url' => 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=150&auto=format&fit=crop'],
     ])
     @if ($testimonial && count($testimonial) > 0)
-        <section class="testimonial-section overflow-hidden position-relative pt-80 pb-80">
+        <section class="testimonial-section overflow-hidden bg-white">
             <div class="container">
-                <div class="section-header wow fadeInUp mb-0">
-                    <h2 class="title mb-0">
-                        {{ translate('success_stories_title') }}
-                    </h2>
+                <div class="section-header text-center mb-5">
+                    <h2 class="title gold-text">{{ translate('success_stories_title') }}</h2>
                 </div>
-                <div class="testimonial-slider overflow-hidden owl-theme owl-carousel wow fadeInUp">
+                <div class="testimonial-slider overflow-hidden owl-theme owl-carousel">
                     @foreach ($testimonial as $data)
-                        <div class="testimonial-item">
-                            <svg width="24" height="20" viewBox="0 0 24 20" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M14.1 19.5V11.24C14.1 8.25333 15.0333 5.87333 16.9 4.1C18.8133 2.28 21.0767 1.16 23.69 0.739996V4.03C22.43 4.45 21.31 5.22 20.33 6.34C19.3967 7.46 18.93 8.81333 18.93 10.4H23.55V19.5H14.1ZM0.24 19.5V11.24C0.24 8.25333 1.17333 5.87333 3.04 4.1C4.95333 2.28 7.21667 1.16 9.83 0.739996V4.03C8.57 4.45 7.45 5.22 6.47 6.34C5.53667 7.46 5.07 8.81333 5.07 10.4H9.69V19.5H0.24Z"
-                                    fill="#71DAA6" />
-                            </svg>
-                            <blockquote>
-                                {{ $data['review'] }}
+                        <div class="testimonial-item glass-card p-4 mx-2 text-end" dir="rtl">
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <i class="bi bi-quote fs-1" style="color: var(--nasia-green);"></i>
+                                <div class="rating text-warning">
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                </div>
+                            </div>
+                            <blockquote class="mb-4" style="font-size: 1.05rem; line-height: 1.6; color: #444; min-height: 100px;">
+                                "{{ $data['review'] }}"
                             </blockquote>
-                            <div class="d-flex align-items-center justify-content-between">
-                                <div class="user">
-                                    <img src="{{ $data['reviewer_image_full_url'] }}" alt="image" onerror="this.src='{{ asset('assets/admin/img/160x160/img1.jpg') }}'">
-                                    <div>
-                                        <h6 class="name">{{ $data['name'] }}</h6>
-                                        <span class="designation">{{ $data['designation'] }}</span>
-                                    </div>
+                            <div class="d-flex align-items-center gap-3 border-top pt-3">
+                                <img src="{{ $data['reviewer_image_full_url'] }}" alt="{{ $data['name'] }}" 
+                                    class="rounded-circle shadow-sm" style="width: 55px; height: 55px; object-fit: cover;"
+                                    onerror="this.src='{{ asset('assets/admin/img/160x160/img1.jpg') }}'">
+                                <div class="text-start ms-auto">
+                                    <h6 class="name mb-0 font-weight-bold" style="color: var(--text-main);">{{ $data['name'] }}</h6>
+                                    <span class="designation small text-muted">{{ $data['designation'] }}</span>
                                 </div>
                             </div>
                         </div>
@@ -2294,6 +2412,59 @@
     @endif
     <!-- ==== Testimonial Ends Here ==== -->
 
+    <!-- ==== Final CTA: Download App Starts Here ==== -->
+    @php($landing_page_links = $landing_data['download_user_app_links'])
+    @if (
+        (isset($landing_page_links['playstore_url_status']) && $landing_page_links['playstore_url_status'] == '1') ||
+            (isset($landing_page_links['apple_store_url_status']) && $landing_page_links['apple_store_url_status'] == '1'))
+        <section id="download-section" class="download-app-section pt-80 pb-80" style="background: var(--bg-secondary);">
+            <div class="container">
+                <div class="row justify-content-center align-items-center g-4">
+                    <div class="col-lg-6 col-md-9">
+                        <div class="download-app-content wow fadeInUp">
+                            <h2 class="title">
+                                <div class="primary-color">
+                                    {{ translate('manage_your_business_smartly') }}
+                                </div>
+                                {{ translate('from_your_personal_phone') }}
+                                <div class="primary-color">
+                                    {{ translate('and_start_earning_now') }}
+                                </div>
+                            </h2>
+                            <div class="position-relative dropdown text-capitalize mt-4">
+                                <button type="button" class="btn-gold premium-btn w-75 w-sm-50 d-flex justify-content-between align-items-center"
+                                    data-bs-toggle="dropdown">
+                                    {{ translate('Get the App') }}
+                                    <i class="bi bi-download"></i>
+                                </button>
+                                <div class="dropdown-menu p-0 w-75 w-sm-50">
+                                    @if (isset($landing_page_links['playstore_url_status']) && $landing_page_links['playstore_url_status'] == '1')
+                                        <a href="javascript:void(0)"  class="dropdown-item p-3">
+                                            <img src="{{ asset('assets/landing/img/google-play.png') }}" width="24" class="me-2" alt="">
+                                            {{ translate('google_play') }}
+                                        </a>
+                                    @endif
+                                    @if (isset($landing_page_links['apple_store_url_status']) && $landing_page_links['apple_store_url_status'] == '1')
+                                        <a href="javascript:void(0)"  class="dropdown-item p-3">
+                                            <img src="{{ asset('assets/landing/img/apple-store.png') }}" width="24" class="me-2" alt="">
+                                            {{ translate('apple_store') }}
+                                        </a>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-9 text-center">
+                        <img class="img-fluid float-anim"
+                            src="{{ asset('assets/landing/img/nasia_app_mockup.png') }}"
+                            alt="Nasia App"
+                            style="max-width: 450px; border-radius: 40px; box-shadow: 0 25px 60px rgba(0,0,0,0.15); border: 2px solid rgba(195, 160, 75, 0.1);">
+                    </div>
+                </div>
+            </div>
+        </section>
+    @endif
+
     @if (isset($new_user) && $new_user == true)
         <!-- Modal -->
         <div class="modal fade show" id="welcome-modal">
@@ -2341,17 +2512,27 @@
         });
     </script>
     <script>
-        var tooltipTriggerList = [].slice.call(
-            document.querySelectorAll('[data-bs-toggle="tooltip"]')
-        );
-        var tooltipList = tooltipTriggerList.map(function(tooltipTriggerEl) {
-            return new bootstrap.Tooltip(tooltipTriggerEl);
+        $(document).ready(function() {
+            // Initialize the Premium Banner Slider
+            if($('.main-category-slider').length) {
+                $('.main-category-slider').owlCarousel({
+                    loop: true,
+                    margin: 0,
+                    nav: false,
+                    dots: true,
+                    autoplay: true,
+                    autoplayTimeout: 6000,
+                    rtl: true,
+                    items: 1,
+                    animateOut: 'fadeOut',
+                    animateIn: 'fadeIn'
+                });
+            }
+
+            // Trigger WOW animations manually if needed
+            if (typeof WOW !== 'undefined') {
+                new WOW().init();
+            }
         });
-
-        var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
-
-        var popoverList = popoverTriggerList.map(function(popoverTriggerEl) {
-            return new bootstrap.Popover(popoverTriggerEl)
-        })
     </script>
 @endpush
