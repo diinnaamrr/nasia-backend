@@ -191,7 +191,7 @@ $countryCode= strtolower($country?$country->value:'auto');
                         <ul class="dropdown-list">
                             @if ($toggle_store_registration)
                             <li>
-                                <a class="" >
+                                <a href="javascript:void(0)" class="" >
                                     {{ translate('messages.store_registration') }}
                                 </a>
                             </li>
@@ -202,7 +202,7 @@ $countryCode= strtolower($country?$country->value:'auto');
                             @endif
                         @endif
                         @if ($toggle_dm_registration)
-                            <li><a class=""
+                            <li><a href="javascript:void(0)" class=""
                                     >{{ translate('messages.deliveryman_registration') }}</a>
                             </li>
                         @endif
@@ -287,12 +287,12 @@ $countryCode= strtolower($country?$country->value:'auto');
                         @if (isset($landing_page_links['playstore_url_status']) || isset( $landing_page_links['apple_store_url_status']))
                         <div class="app-btn-grp" >
                             @if (isset($landing_page_links['playstore_url_status']))
-                            <a href="{{ url('store') }}">
+                            <a href="javascript:void(0)">
                                 <img src="{{ asset('assets/landing/img/google.svg') }}" alt="">
                             </a>
                             @endif
                             @if (isset($landing_page_links['apple_store_url_status']))
-                            <a href="{{ url('store') }}">
+                            <a href="javascript:void(0)">
                                 <img src="{{ asset('assets/landing/img/apple.svg') }}" alt="">
                             </a>
                             @endif
