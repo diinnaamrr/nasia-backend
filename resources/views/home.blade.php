@@ -583,7 +583,7 @@
                     </ul>
                     <div class="seg-actions">
                         <div class="store-row">
-                            <a href="#download-section" class="btn-store"> 
+                            <a href="javascript:void(0)" class="btn-store"> 
                                 <i class="bi bi-box-arrow-in-down"></i> {{ translate('download_app') }}
                             </a>
                         </div>
@@ -602,7 +602,7 @@
                         <li>{{ translate('realtime_sales_reports') }}</li>
                     </ul>
                     <div class="seg-actions">
-                        <a href="#download-section" class="btn-seg-primary">
+                        <a href="javascript:void(0)" class="btn-seg-primary">
                             <i class="bi bi-box-arrow-in-left"></i> {{ translate('register_as_seller_now') }}
                         </a>
                     </div>
@@ -620,7 +620,7 @@
                         <li>{{ translate('24_7_support') }}</li>
                     </ul>
                     <div class="seg-actions">
-                        <a href="#download-section" class="btn-seg-secondary">
+                        <a href="javascript:void(0)" class="btn-seg-secondary">
                             <i class="bi bi-truck"></i> {{ translate('register_as_nasia_captain') }}
                         </a>
                     </div>
@@ -2439,13 +2439,13 @@
                                 </button>
                                 <div class="dropdown-menu p-0 w-75 w-sm-50">
                                     @if (isset($landing_page_links['playstore_url_status']) && $landing_page_links['playstore_url_status'] == '1')
-                                        <a href="{{ url('store') }}"  class="dropdown-item p-3">
+                                        <a href="javascript:void(0)"  class="dropdown-item p-3">
                                             <img src="{{ asset('assets/landing/img/google-play.png') }}" width="24" class="me-2" alt="">
                                             {{ translate('google_play') }}
                                         </a>
                                     @endif
                                     @if (isset($landing_page_links['apple_store_url_status']) && $landing_page_links['apple_store_url_status'] == '1')
-                                        <a href="{{ url('store') }}"  class="dropdown-item p-3">
+                                        <a href="javascript:void(0)"  class="dropdown-item p-3">
                                             <img src="{{ asset('assets/landing/img/apple-store.png') }}" width="24" class="me-2" alt="">
                                             {{ translate('apple_store') }}
                                         </a>
