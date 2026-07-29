@@ -6600,4 +6600,5 @@ Smartly or Earn. ',
   'merchant' => 'Merchant',
   'supplier' => 'Supplier',
   'captain' => 'Captain',
+  'forget_password_whatsapp_number' => 'Forget Password WhatsApp Number',
 );

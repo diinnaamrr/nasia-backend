@@ -555,6 +555,10 @@ class BusinessSettingsController extends Controller
             'value' => $request['phone']
         ]);
 
+        Helpers::businessUpdateOrInsert(['key' => 'whatsapp_number'], [
+            'value' => $request['whatsapp_number']
+        ]);
+
         Helpers::businessUpdateOrInsert(['key' => 'email_address'], [
             'value' => $request['email']
         ]);
@@ -741,6 +745,8 @@ class BusinessSettingsController extends Controller
 
             ]);
         }
+
+        Cache::forget('business_settings_config_keys');
 
         Toastr::success(translate('messages.successfully_updated_to_changes_restart_app'));
         return back();

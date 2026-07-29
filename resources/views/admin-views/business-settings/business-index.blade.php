@@ -82,6 +82,16 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-6 col-md-4 col-xl-3">
+                                @php($whatsapp_number = \App\Models\BusinessSetting::where('key', 'whatsapp_number')->first())
+                                    <div class="form-group mb-0">
+                                        <label class="form-label"
+                                            for="whatsapp_number">{{ translate('messages.forget_password_whatsapp_number') }}</label>
+                                        <input type="tel" value="{{ $whatsapp_number->value ?? '' }}"
+                                            id="whatsapp_number" name="whatsapp_number" class="form-control"
+                                            placeholder="{{ translate('messages.Ex: +3264124565') }}" required>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-md-4 col-xl-3">
                                     <div class="form-group mb-0">
                                         <label class="form-label text-capitalize"
                                             for="country">{{ translate('messages.country') }}</label>

@@ -6788,4 +6788,5 @@ Smartly or Earn.' => 'لنقم بإدارة عملك بذكاء أو كسب ال
   'merchant' => 'Merchant',
   'supplier' => 'Supplier',
   'captain' => 'Captain',
+  'forget_password_whatsapp_number' => 'رقم واتساب نسيان كلمة المرور',
 );
