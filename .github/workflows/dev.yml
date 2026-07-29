@@ -3,7 +3,9 @@ name: Dev Deploy
 on:
   push:
     branches: [dev]
-
+permissions:
+  contents: read
+  packages: write
 
 jobs:
   build-and-push:
